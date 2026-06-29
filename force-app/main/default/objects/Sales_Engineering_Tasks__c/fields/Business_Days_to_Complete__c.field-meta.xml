@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Business_Days_to_Complete__c</fullName>
+    <description>https://mainspringenergy.atlassian.net/browse/EDS-3902</description>
+    <externalId>false</externalId>
+    <formula>ABS(
+  5 * (FLOOR((Restart_Date__c - DATE(1985,6,24))/7) - FLOOR((Completion_Date__c - DATE(1985,6,24))/7))
+  + MIN(5, MOD(Restart_Date__c - DATE(1985,6,24), 7) + 1)
+  - MIN(5, MOD(Completion_Date__c - DATE(1985,6,24), 7) + 1)
+) + 1</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Business Days to Complete</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Log_Issue__c</fullName>
+    <inlineHelpText>Type of issue with this transaction log. Invalid Timestamp means the timestamps are not sequentially ordered. Invalid Relationship means the Asset is installed under two Parent Assets at the same time.</inlineHelpText>
+    <label>Log Issue</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Invalid Relationship</fullName>
+                <default>false</default>
+                <label>Invalid Relationship</label>
+            </value>
+            <value>
+                <fullName>Invalid Timestamp</fullName>
+                <default>false</default>
+                <label>Invalid Timestamp</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>true</default>
+                <label>None</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,8 @@
+<template>
+    <template lwc:if={loading}>
+        This dashboard may take a few minutes to load...
+    </template>
+    <template lwc:if={url}>
+        <iframe height="1000px" width="100%" frameborder="0" src={url}></iframe>
+    </template>
+</template>

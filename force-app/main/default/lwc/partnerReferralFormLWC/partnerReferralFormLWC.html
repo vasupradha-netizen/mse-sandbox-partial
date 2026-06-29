@@ -1,0 +1,427 @@
+<template>
+    <div class="main-container">
+
+        <!-- ══════════════════════════════════════════════
+             LEFT PANEL — Branding, Instructions, Progress
+             ══════════════════════════════════════════════ -->
+        <template lwc:if={showLeftPanel}>     
+        <div class="left-panel">
+            <div class="brand-header flex-center">
+                <svg class="brand-icon" width="14" height="14" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true" focusable="false">
+                    <polygon points="0,12 12,12 12,0" fill="#FF4500" />
+                </svg>
+                JOIN THE NETWORK
+            </div>
+
+            <div class="legal-instructions-container">
+                <p class="instruction-lead">
+                    Please read this entire questionnaire. This Questionnaire and Certification must be
+                    completed in full and submitted to Mainspring.
+                </p>
+                <p class="instruction-body">
+                    By submitting this questionnaire,
+                    <span class="dynamic-partner-blank">{partnerNameDisplay}</span>
+                    (&ldquo;Referral Partner&rdquo;) and each person signing on behalf of Referral Partner
+                    certifies that to the best of its knowledge and belief the following responses are true
+                    and accurate as of the day of submission. Referral Partner is under a continuing
+                    obligation to update Mainspring of any changes to its responses herein.
+                </p>
+            </div>
+
+            <!-- Step Progress Tracker -->
+            <nav class="progress-container slds-m-top_xx-large" aria-label="Form progress">
+                <template for:each={progressSteps} for:item="step">
+                    <div key={step.key}
+                         class={step.className}
+                         data-step={step.key}
+                         onclick={handleStepClick}
+                         role="button"
+                         tabindex="0"
+                         aria-current={step.ariaCurrent}
+                         onkeydown={handleStepKeydown}>
+                        <div class="step-indicator" aria-hidden="true">
+                            <template if:true={step.isCompleted}>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="3"
+                                     stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </template>
+                            <template if:false={step.isCompleted}>
+                                {step.stepNumber}
+                            </template>
+                        </div>
+                        <span class="step-label">{step.label}</span>
+                    </div>
+                </template>
+            </nav>
+
+            <!--<p class="left-panel-footer slds-m-top_xx-large">
+                Referral Partner shall notify Mainspring Energy, Inc. of any material changes to information
+                submitted in the Referral Partner Due Diligence Questionnaire and Certifications document
+                (&ldquo;Due Diligence Certification&rdquo;). By submitting this Due Diligence Certification,
+                Referral Partner hereby certifies the accuracy of the information provided.
+            </p>-->
+        </div>
+        </template>
+        <!-- ══════════════════════════════════════════════
+             RIGHT PANEL — Dynamic Content Area
+             ══════════════════════════════════════════════ -->
+        <div class="right-panel">
+
+            <!-- Global Loading Overlay -->
+            <template lwc:if={isLoading}>
+                <div class="loading-wrapper" role="status" aria-live="polite" aria-label="Loading form">
+                    <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+                </div>
+            </template>
+
+            <template lwc:else>
+
+                <!-- ── STATE: Token Invalid / Expired ── -->
+                <template lwc:if={isTokenInvalid}>
+                    <div class="form-card slds-text-align_center">
+                        <div class="verification-container">
+                            <lightning-icon icon-name="utility:lock"
+                                           size="large"
+                                           class="slds-m-bottom_medium"
+                                           variant="error">
+                            </lightning-icon>
+                            <h2 class="section-title error-title slds-text-color_error">
+                                Link Expired or Invalid
+                            </h2>
+
+                            <!-- Post-Request: Inbox confirmation -->
+                            <template lwc:if={linkRequestProcessed}>
+                                <div class="success-message-box slds-m-top_large" role="status">
+                                    <lightning-icon icon-name="action:email"
+                                                   size="medium"
+                                                   class="slds-m-bottom_medium">
+                                    </lightning-icon>
+                                    <p class="success-message-title">Check Your Inbox</p>
+                                    <p class="success-message-body slds-m-top_small">
+                                        {linkRequestMessage}
+                                    </p>
+                                </div>
+                            </template>
+
+                            <!-- Pre-Request: Email input -->
+                            <template lwc:else>
+                                <p class="verification-text slds-m-bottom_large">
+                                    The secure link to access this form has expired or is invalid.
+                                    To securely request a new access link, please enter your registered
+                                    primary contact email address below.
+                                </p>
+                                <div class="input-group verification-input-group slds-m-bottom_large">
+                                    <input type="email"
+                                           placeholder="Enter your registered email address"
+                                           class="custom-input verification-input"
+                                           onchange={handleEmailInputChange}
+                                           value={verificationEmail}
+                                           aria-label="Registered email address" />
+                                </div>
+                                <button class="btn btn-primary btn-full-width"
+                                        onclick={handleRequestNewLink}
+                                        disabled={isRequestingLink}
+                                        aria-busy={isRequestingLink}>
+                                    <template lwc:if={isRequestingLink}>VERIFYING&hellip;</template>
+                                    <template lwc:else>REQUEST NEW LINK</template>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- ── STATE: Token Valid ── -->
+                <template lwc:else>
+
+                    <!-- Sub-state: Already Submitted — persists across refresh/revisit -->
+                    <template lwc:if={isFormLocked}>
+                        <div class="form-card success-card slds-align_absolute-center slds-text-align_center"
+                             role="status">
+                            <lightning-icon icon-name="action:approval"
+                                           size="large"
+                                           class="slds-m-bottom_large">
+                            </lightning-icon>
+                            <h2 class="section-title success-title">Application Submitted</h2>
+                            <p class="slds-text-body_regular slds-m-top_small">
+                                This Due Diligence Questionnaire has been submitted and is under review.
+                                If you need to make changes, please contact your Mainspring representative.
+                            </p>
+                        </div>
+                    </template>
+
+                    <!-- Sub-state: Submission / Save Success Screen -->
+                    <template lwc:elseif={showSuccessScreen}>
+                        <div class="form-card success-card slds-align_absolute-center slds-text-align_center"
+                             role="status">
+                            <lightning-icon icon-name="action:approval"
+                                           size="large"
+                                           class="slds-m-bottom_large">
+                            </lightning-icon>
+                            <h2 class="section-title success-title">{successTitle}</h2>
+                            <p class="slds-text-body_regular slds-m-top_small">{successMessage}</p>
+                        </div>
+                    </template>
+
+                    <!-- Sub-state: Active Form Wizard -->
+                    <template lwc:else>
+                        <div class="form-card">
+
+                            <!-- Step Header -->
+                            <div class="step-header-container">
+                                <p class="step-counter" aria-live="polite">
+                                    STEP {currentStep} OF {totalSteps}
+                                </p>
+                                <h2 class="section-title step-title">{currentSectionTitle}</h2>
+                            </div>
+
+                            <!-- ════════════════════════════════════════════
+                                 APPLICATION REVIEW — Injected on final step
+                                 Rendered by child component for clean separation
+                                 ════════════════════════════════════════════ -->
+                            <template lwc:if={isReviewStep}>
+                                <c-partner-referral-final-review
+                                    schema={schema}
+                                    form-data={formData}>
+                                </c-partner-referral-final-review>
+                                <div class="slds-m-vertical_large review-divider"></div>
+                            </template>
+
+                            <!-- ════════════════════════════════════════════
+                                 FORM QUESTIONS — Dynamic question renderer
+                                 ════════════════════════════════════════════ -->
+                            <template for:each={currentStepQuestions} for:item="q">
+                                <template if:true={q.isVisible}>
+
+                                    <!-- Disclaimer box (gray bg, orange left accent) -->
+                                    <template if:true={q.isDisclaimer}>
+                                        <div key={q.displayText} class="disclaimer-box">
+                                            <p>{q.displayText}</p>
+                                        </div>
+                                    </template>
+
+                                    <!-- Section Heading (orange divider block) -->
+                                    <template if:true={q.isSectionHeading}>
+                                        <div key={q.displayText} class="section-instruction-block">
+                                            <p>{q.displayText}</p>
+                                        </div>
+                                    </template>
+
+                                    <!-- Standard Question Wrapper -->
+                                    <template if:false={q.isHeading}>
+                                        <div key={q.apiName} class={q.computedClass}>
+
+                                            <!-- Question label — hidden for cert cards (text is inside the card) -->
+                                            <template if:false={q.hideLabel}>
+                                                <p class="question-text">
+                                                    <span>{q.displayText}</span>
+                                                    <template if:true={q.required}>
+                                                        <span class="required-asterisk"
+                                                              aria-label="required">&nbsp;*</span>
+                                                    </template>
+                                                </p>
+                                            </template>
+
+                                            <!-- Standard text/email/tel/date/number/url input -->
+                                            <template if:true={q.isStandardInput}>
+                                                <template if:true={q.isReadOnlyDisplay}>
+                                                    <p class="readonly-value">{q.currentValue}</p>
+                                                </template>
+                                                <template if:false={q.isReadOnlyDisplay}>
+                                                    <div class="input-group">
+                                                        <input type={q.inputType}
+                                                               data-id={q.apiName}
+                                                               value={q.currentValue}
+                                                               placeholder={q.placeholder}
+                                                               onchange={handleInputChange}
+                                                               required={q.required}
+                                                               class="custom-input validate-target"
+                                                               aria-label={q.displayText} />
+                                                    </div>
+                                                </template>
+                                            </template>
+
+                                            <!-- Address field -->
+                                            <template if:true={q.isAddress}>
+                                                <div class="input-group">
+                                                    <lightning-input-address
+                                                        address-label="Address"
+                                                        street-label="Street"
+                                                        city-label="City"
+                                                        province-label="State/Province"
+                                                        postal-code-label="Zip/Postal Code"
+                                                        street={q.streetValue}
+                                                        city={q.cityValue}
+                                                        province={q.provinceValue}
+                                                        country={q.countryValue}
+                                                        postal-code={q.postalCodeValue}
+                                                        required={q.required}
+                                                        data-id={q.apiName}
+                                                        onchange={handleAddressChange}
+                                                        show-address-lookup
+                                                        class="validate-target">
+                                                    </lightning-input-address>
+                                                </div>
+                                            </template>
+
+                                            <!-- Textarea -->
+                                            <template if:true={q.isTextArea}>
+                                                <div class="input-group">
+                                                    <textarea data-id={q.apiName}
+                                                              placeholder={q.placeholder}
+                                                              onchange={handleInputChange}
+                                                              required={q.required}
+                                                              class="custom-textarea validate-target"
+                                                              aria-label={q.displayText}>{q.currentValue}</textarea>
+                                                </div>
+                                            </template>
+
+                                            <!-- Pill Radio (Yes/No) -->
+                                            <template if:true={q.isRadio}>
+                                                <div class="radio-group" role="radiogroup"
+                                                     aria-labelledby={q.apiName}>
+                                                    <label>
+                                                        <input type="radio"
+                                                               name={q.apiName}
+                                                               value="Yes"
+                                                               checked={q.isRadioYes}
+                                                               data-id={q.apiName}
+                                                               onchange={handleInputChange} />
+                                                        Yes
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio"
+                                                               name={q.apiName}
+                                                               value="No"
+                                                               checked={q.isRadioNo}
+                                                               data-id={q.apiName}
+                                                               onchange={handleInputChange} />
+                                                        No
+                                                    </label>
+                                                </div>
+                                                <template if:true={q.showError}>
+                                                    <div class="radio-error-text" role="alert">
+                                                        This selection is required.
+                                                    </div>
+                                                </template>
+                                            </template>
+
+                                            <!-- ════════════════════════════════════════════
+                                                 CERTIFICATION CARD (Step 5 checkbox style)
+                                                 Teal bordered card — text integrated inside.
+                                                 certCardClass is reactive: updates to
+                                                 cert-card_checked when the box is ticked.
+                                                 ════════════════════════════════════════════ -->
+                                            <template if:true={q.isCheckbox}>
+                                                <label class={q.certCardClass}>
+                                                    <!-- Hidden native input — card label activates it -->
+                                                    <input type="checkbox"
+                                                           data-id={q.apiName}
+                                                           checked={q.currentValue}
+                                                           required={q.required}
+                                                           onchange={handleInputChange}
+                                                           class="validate-target cert-hidden-input" />
+                                                    <!-- Visual checkbox square -->
+                                                    <div class="cert-check-icon" aria-hidden="true">
+                                                        <template if:true={q.currentValue}>
+                                                            <svg width="11" height="11"
+                                                                 viewBox="0 0 24 24"
+                                                                 fill="none"
+                                                                 stroke="currentColor"
+                                                                 stroke-width="3.5"
+                                                                 stroke-linecap="round"
+                                                                 stroke-linejoin="round">
+                                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                                            </svg>
+                                                        </template>
+                                                    </div>
+                                                    <!-- Certification statement text -->
+                                                    <p class="cert-card-text">{q.displayText}</p>
+                                                </label>
+                                            </template>
+                                        </div>
+                                    </template>
+
+                                </template>
+                            </template>
+
+                            <!-- Validation Error Footer Banner -->
+                            <template lwc:if={hasValidationError}>
+                                <div class="footer-error-banner" role="alert" aria-live="assertive">
+                                    <lightning-icon icon-name="utility:warning"
+                                                   size="x-small"
+                                                   variant="error"
+                                                   class="slds-m-right_xx-small">
+                                    </lightning-icon>
+                                    Please complete all required fields highlighted above before continuing.
+                                </div>
+                            </template>
+
+                            <!-- Wizard Navigation Footer -->
+                            <div class="wizard-footer">
+                                <div class="left-buttons">
+                                    <template lwc:if={showPreviousBtn}>
+                                        <button class="btn btn-secondary"
+                                                onclick={handlePrevious}
+                                                aria-label="Go to previous step">
+                                            &larr; Back
+                                        </button>
+                                    </template>
+                                </div>
+                                <div class="right-buttons">
+                                    <button class="btn btn-primary"
+                                            onclick={handleNext}
+                                            aria-label={nextButtonAriaLabel}>
+                                        {nextButtonLabel}
+                                    </button>
+                                    <button class="btn btn-secondary"
+                                            onclick={handleSaveAndClose}>
+                                        Save &amp; Finish Later
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Unsaved Changes Modal -->
+                        <template lwc:if={showUnsavedModal}>
+                            <div class="modal-overlay"
+                                 role="presentation"
+                                 onclick={handleStayAndComplete}>
+                                <div class="custom-modal-box"
+                                     role="alertdialog"
+                                     aria-modal="true"
+                                     aria-labelledby="unsavedChangesTitle"
+                                     aria-describedby="unsavedChangesDesc"
+                                     onclick={stopModalPropagation}>
+                                    <h2 id="unsavedChangesTitle" class="modal-title">
+                                        Unsaved Changes
+                                    </h2>
+                                    <p id="unsavedChangesDesc" class="modal-message">
+                                        You have unsaved changes on this step. Would you like to abandon
+                                        your edits and leave, or stay here and complete your edits before
+                                        clicking <strong>Save &amp; Next</strong>?
+                                    </p>
+                                    <div class="modal-btn-group">
+                                        <button type="button"
+                                                class="modal-btn btn-outline"
+                                                onclick={handleStayAndComplete}>
+                                            Stay &amp; Complete
+                                        </button>
+                                        <button type="button"
+                                                class="modal-btn btn-solid"
+                                                onclick={handleAbandonChanges}>
+                                            Abandon Changes
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                    </template>
+                </template>
+            </template>
+        </div>
+    </div>
+</template>

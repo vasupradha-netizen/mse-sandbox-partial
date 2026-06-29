@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Application_Link__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+    ISBLANK(Token__c), 
+    null, 
+    $Label.Referral_Site_Base_URL &amp; &quot;?token=&quot; &amp; Token__c
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Application Link</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

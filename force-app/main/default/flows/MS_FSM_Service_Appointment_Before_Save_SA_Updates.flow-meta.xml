@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Gantt_Label_Value</name>
+        <label>Assign Gantt Label Value</label>
+        <locationX>270</locationX>
+        <locationY>1211</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.FSL__GanttLabel__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GanttLabel</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_there_a_Location_on_the_Parent_Work_Order</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Location_on_the_Service_Appointment</name>
+        <label>Assign Location on the Service Appointment</label>
+        <locationX>50</locationX>
+        <locationY>1511</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.MS_FSM_Location__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Parent_Work_Order.LocationId</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Parent_Work_Order_Id</name>
+        <label>Assign Parent Work Order Id</label>
+        <locationX>50</locationX>
+        <locationY>611</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.MS_FSM_Parent_Work_Order__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.ParentRecordId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Was_a_Root_Asset_Found</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Root_Asset</name>
+        <label>Assign Root Asset</label>
+        <locationX>50</locationX>
+        <locationY>911</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.MS_FSM_Asset__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Parent_Work_Order.AssetId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_the_Gantt_Label_Populated</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Is_Service_Appointment_New_or_Updated</name>
+        <label>Is Service Appointment New or Updated</label>
+        <locationX>512</locationX>
+        <locationY>395</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>SA_is_New</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ISNEW</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Was_a_Parent_Work_Order_Found</targetReference>
+            </connector>
+            <label>SA is New</label>
+        </rules>
+        <rules>
+            <name>SA_Is_Updated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ISNEW</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>SA Is Updated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_the_Gantt_Label_Populated</name>
+        <label>Is the Gantt Label Populated</label>
+        <locationX>182</locationX>
+        <locationY>1103</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Gantt_Label_Value</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_the_Gantt_Label_is_Populated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.FSL__GanttLabel__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_there_a_Location_on_the_Parent_Work_Order</targetReference>
+            </connector>
+            <label>Yes, the Gantt Label is Populated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_there_a_Location_on_the_Parent_Work_Order</name>
+        <label>Is there a Location on the Parent Work Order</label>
+        <locationX>182</locationX>
+        <locationY>1403</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_there_is_a_Location_on_the_Parent_Work_Order</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Parent_Work_Order.LocationId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Location_on_the_Service_Appointment</targetReference>
+            </connector>
+            <label>Yes, there is a Location on the Parent Work Order</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_a_Parent_Work_Order_Found</name>
+        <label>Was a Parent Work Order Found</label>
+        <locationX>182</locationX>
+        <locationY>503</locationY>
+        <defaultConnector>
+            <targetReference>Was_a_Root_Asset_Found</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_a_Parent_Work_Order_was_found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Parent_Work_Order.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Parent_Work_Order_Id</targetReference>
+            </connector>
+            <label>Yes, a Parent Work Order was found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_a_Root_Asset_Found</name>
+        <label>Was a Root Asset Found</label>
+        <locationX>182</locationX>
+        <locationY>803</locationY>
+        <defaultConnector>
+            <targetReference>Is_the_Gantt_Label_Populated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_a_Root_Asset_was_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Parent_Work_Order.AssetId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Root_Asset</targetReference>
+            </connector>
+            <label>Yes, a Root Asset was Found</label>
+        </rules>
+    </decisions>
+    <description>Purpose of this Flow is to make applicable Service Appointment Updates before the Service Appointment is committed to the database.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>GanttLabel</name>
+        <dataType>String</dataType>
+        <expression>{!Get_Parent_Work_Order.Account.Name}&amp;&quot; | &quot;&amp;{!Get_Parent_Work_Order.Asset.MS_FSM_LGen_SN_Short_Form__c}&amp;&quot; | &quot;&amp;{!$Record.Subject}</expression>
+    </formulas>
+    <formulas>
+        <name>ISNEW</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <interviewLabel>MS_FSM_Service Appointment - Before Save - SA Updates {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MS_FSM_Service Appointment - Before Save - SA Updates</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Parent_Work_Order</name>
+        <label>Get Parent Work Order</label>
+        <locationX>512</locationX>
+        <locationY>287</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Service_Appointment_New_or_Updated</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.ParentRecordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>WorkOrder</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>386</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Parent_Work_Order</targetReference>
+        </connector>
+        <object>ServiceAppointment</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

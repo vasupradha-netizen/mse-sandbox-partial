@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Service_Resource_Field_to_Null</name>
+        <label>Assign Service Resource Field to Null</label>
+        <locationX>50</locationX>
+        <locationY>494</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Service_Appointment.MS_FSM_Service_Resource__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Service_Appointment</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Service_Resource_on_SA</name>
+        <label>Update Service Resource on SA</label>
+        <locationX>314</locationX>
+        <locationY>494</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Service_Appointment.MS_FSM_Service_Resource__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.MS_FSM_Service_Resource_Id__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Service_Appointment</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Clearing_out_SA_Field_or_Updating</name>
+        <label>Clearing out SA Field or Updating</label>
+        <locationX>182</locationX>
+        <locationY>386</locationY>
+        <defaultConnector>
+            <targetReference>Update_Service_Resource_on_SA</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Clearing_out_SA_Field</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.MS_FSM_Service_Resource_Id__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Service_Resource_Field_to_Null</targetReference>
+            </connector>
+            <label>Clearing out SA Field</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_a_Service_Appointment_Found</name>
+        <label>Was a Service Appointment Found</label>
+        <locationX>380</locationX>
+        <locationY>278</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_a_Service_Appointment_was_found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Service_Appointment.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Clearing_out_SA_Field_or_Updating</targetReference>
+            </connector>
+            <label>Yes, a Service Appointment was found</label>
+        </rules>
+    </decisions>
+    <description>Purpose of this Flow is to make applicable Service Appointment Updates based on an Assigned Resource Being Deleted</description>
+    <environments>Default</environments>
+    <interviewLabel>MS_FSM_Platform Event - AR Delete {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MS_FSM_Platform Event - AR Delete</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Service_Appointment</name>
+        <label>Get Service Appointment</label>
+        <locationX>380</locationX>
+        <locationY>170</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Was_a_Service_Appointment_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.MS_FSM_Service_Appointment_Id__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>ServiceAppointment</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Service_Appointment</name>
+        <label>Update Service Appointment</label>
+        <locationX>182</locationX>
+        <locationY>686</locationY>
+        <inputReference>Get_Service_Appointment</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>254</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Service_Appointment</targetReference>
+        </connector>
+        <flowRunAsUser>TriggeringUser</flowRunAsUser>
+        <object>MS_FSM_AR_Delete__e</object>
+        <triggerType>PlatformEvent</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

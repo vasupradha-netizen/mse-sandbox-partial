@@ -1,0 +1,49 @@
+<template>
+    <div class="screen-one-container">
+        <template if:true={_detailsFetchedFromWoli}>
+            <template if:false={_isRemoval}>
+                <div class="both-asset-container">
+                    <p class="slds-text-body_regular slds-text-align_center slds-p-top_large"><b>Installed Product:</b> {_detailsFetchedFromWoli.MS_FSM_Install_Swap_Product__r.Name.value}</p>
+                </div>
+            </template>
+        </template>
+            <template if:true={_isReplacement}>
+                <div class="both-asset-container">
+                    <p class="slds-text-body_regular slds-text-align_center slds-p-top_small"><b>Removed Asset:</b> {removedAssetText}</p>
+                </div>
+            </template>
+            <template if:true={_isRemoval}>
+                <p class="slds-text-body_regular slds-text-align_center slds-p-top_large"><b>Asset to Remove: </b>{selectedAssetToRemoveName}</p>
+            </template>
+            <template if:false={_isInstall}>
+                <template lwc:if={showRingInspection}>
+                    <p class="slds-text-body_regular slds-text-align_center slds-p-top_small"><b>Return</b> {l2AssetRingsOfInspection} <b>for Inspection</b></p>
+                </template>              
+                <div class="slds-p-top_large selection-container">
+                    <p class="slds-text-body_regular dispo-selection"><b>Removal Disposition:</b></p>
+                    <lightning-combobox
+                        class="combo"
+                        name="removal-disposition"
+                        value={dispoSelection}
+                        options={dispoPicklist}
+                        onchange={handleDispositionSelection}>
+                    </lightning-combobox>
+                    <template if:true={dispoSelectionErrorMessage}>
+                        <p class="slds-text-color_error">Please make Removal Disposition selection</p>
+                    </template>
+                </div>
+            </template>
+        <br>
+        <template if:true={displayOverrideDateTimeSelect}>
+            <p class="slds-text-body_regular dispo-selection"><b>Override Timestamp</b></p>
+            <lightning-input 
+                type="datetime"
+                value={dateTime}
+                onchange={handleDateTimeInput}>
+            </lightning-input>   
+        </template>
+        <div class="nav-button-container">
+            <lightning-button variant="brand" label={buttontext} title="Primary action" onclick={handleNext} class="slds-m-left_x-small"></lightning-button>
+        </div>
+    </div>
+  </template>

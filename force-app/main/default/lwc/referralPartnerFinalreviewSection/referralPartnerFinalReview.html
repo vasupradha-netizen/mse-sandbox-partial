@@ -1,0 +1,91 @@
+<template>
+    <div class="review-wrapper">
+
+        <!-- ══════════════════════════════════════
+             Review Header
+             ══════════════════════════════════════ -->
+        <div class="review-header slds-m-bottom_medium">
+            <h4 class="review-main-title">Application Review</h4>
+            <p class="review-subtitle">
+                Review your responses below before signing and submitting.
+            </p>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             Review Sections — one per schema step
+             ══════════════════════════════════════ -->
+        <template for:each={reviewSections} for:item="section">
+            <div key={section.key} class="review-section slds-m-bottom_small">
+
+                <!-- Section Heading (orange uppercase bar) -->
+                <div class="review-section-heading">
+                    <span>{section.title}</span>
+                </div>
+
+                <!-- Rows -->
+                <template for:each={section.rows} for:item="row">
+
+                    <!-- Long-text (textarea) answers — full-width block below the label -->
+                    <template if:true={row.isLongText}>
+                        <div key={row.key} class={row.rowClass}>
+                            <p class="row-label">{row.label}</p>
+                            <template if:true={row.isEmpty}>
+                                <p class="answer-empty">&mdash;</p>
+                            </template>
+                            <template if:false={row.isEmpty}>
+                                <p class="row-longtext">{row.displayValue}</p>
+                            </template>
+                        </div>
+                    </template>
+
+                    <!-- Standard rows — label (left) / answer (right) -->
+                    <template if:false={row.isLongText}>
+                    <div key={row.key} class={row.rowClass}>
+
+                        <!-- Question label (left) -->
+                        <p class="row-label">{row.label}</p>
+
+                        <!-- Answer (right) — badge for Yes/No, text for everything else -->
+                        <div class="row-answer">
+
+                            <!-- Yes / No pill badge -->
+                            <template if:true={row.isYesNo}>
+                                <span class={row.badgeClass}>{row.displayValue}</span>
+                            </template>
+
+                            <!-- Checkbox confirmed indicator -->
+                            <template if:true={row.isCheckbox}>
+                                <template if:true={row.isChecked}>
+                                    <span class="answer-agreed">
+                                        <lightning-icon icon-name="utility:check"
+                                                       size="xx-small"
+                                                       class="slds-m-right_xx-small">
+                                        </lightning-icon>
+                                        Agreed
+                                    </span>
+                                </template>
+                                <template if:false={row.isChecked}>
+                                    <span class="answer-empty">Not confirmed</span>
+                                </template>
+                            </template>
+
+                            <!-- Plain text answer -->
+                            <template if:true={row.isPlainText}>
+                                <template if:true={row.isEmpty}>
+                                    <span class="answer-empty">&mdash;</span>
+                                </template>
+                                <template if:false={row.isEmpty}>
+                                    <span class="row-text">{row.displayValue}</span>
+                                </template>
+                            </template>
+
+                        </div>
+                    </div>
+                    </template>
+                </template>
+
+            </div>
+        </template>
+
+    </div>
+</template>

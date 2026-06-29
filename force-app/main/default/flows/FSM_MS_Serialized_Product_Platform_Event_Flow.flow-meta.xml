@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Asset_Id_to_Serialized_Product</name>
+        <label>Assign Asset Id to Serialized Product</label>
+        <locationX>50</locationX>
+        <locationY>386</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Serialized_Product.AssetId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.FSM_MS_Asset_Id__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Serialized_Product</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Was_a_Serialized_Product_Found</name>
+        <label>Was a Serialized Product Found</label>
+        <locationX>182</locationX>
+        <locationY>278</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Serialized_Product_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Serialized_Product.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Asset_Id_to_Serialized_Product</targetReference>
+            </connector>
+            <label>Yes, Serialized Product Found</label>
+        </rules>
+    </decisions>
+    <description>Purpose of this flow is to update a Serialized Product with the Asset that was created as part of the Serialized Product Consumption.</description>
+    <environments>Default</environments>
+    <interviewLabel>Serialized Product Platform Event Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Serialized Product Platform Event Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Serialized_Product</name>
+        <label>Get Serialized Product</label>
+        <locationX>182</locationX>
+        <locationY>170</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Was_a_Serialized_Product_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.FSM_MS_Serialized_Product_Id__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SerializedProduct</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Serialized_Product</name>
+        <label>Update Serialized Product</label>
+        <locationX>50</locationX>
+        <locationY>494</locationY>
+        <inputReference>Get_Serialized_Product</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Serialized_Product</targetReference>
+        </connector>
+        <flowRunAsUser>TriggeringUser</flowRunAsUser>
+        <object>FSM_MS_Serialized_Product_Update__e</object>
+        <triggerType>PlatformEvent</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

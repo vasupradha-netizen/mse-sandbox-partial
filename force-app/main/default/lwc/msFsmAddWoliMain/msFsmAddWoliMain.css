@@ -1,0 +1,40 @@
+h3 {
+    margin-bottom: 8px;
+}
+
+.card-block {
+    margin-bottom: 8px;
+}
+
+.input-short {
+    width: 200px;
+}
+
+.card-inner {
+    padding: 8px;
+}
+
+.s2select, .s3select, .s3unselect, .s3disabled {
+    padding: 6px;
+    margin-bottom: 6px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    text-wrap: wrap;
+    text-overflow: ellipsis;
+}
+
+.s2select {
+    background-color: #7CB1FE;
+}
+
+.s3select {
+    background-color: #F9E3B6;
+}
+
+.s3unselect {
+    background-color: #FCB6C5;
+}
+
+.s3disabled {
+    background-color: gray;
+}

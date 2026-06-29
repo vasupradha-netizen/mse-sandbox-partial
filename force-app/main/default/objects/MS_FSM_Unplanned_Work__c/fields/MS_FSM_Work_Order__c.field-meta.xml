@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Work_Order__c</fullName>
+    <description>Work Order in which this Unplanned Work was performed</description>
+    <label>Work Order</label>
+    <referenceTo>WorkOrder</referenceTo>
+    <relationshipLabel>Unplanned Work</relationshipLabel>
+    <relationshipName>Unplanned_Work</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

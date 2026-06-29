@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<isExposed>true</isExposed>
+	<apiVersion>67.0</apiVersion>
+	<description>The component serves as the master container (parent layout) for partner Referral Onboarding Questionnaire form.</description>
+</LightningComponentBundle>

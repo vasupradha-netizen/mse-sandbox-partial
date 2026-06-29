@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>allowChanges</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>htmlValue</name>
+                    <value>A new Regulatory Assessment has been created. Please find the details below:
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;a href=&quot;https://mainspringenergy2021--partial.sandbox.my.salesforce.com/lightning/r/Project_Assessment__c/{{{Project_Assessment__c.Id}}}/view&quot; target=&quot;_blank&quot;&gt;View Project Assessment Record&lt;/a&gt;
+&lt;br&gt;
+&lt;br&gt;
+
+Kindly review the record and complete your respective sections at your earliest convenience. If you have any questions or need clarification on any part, feel free to reach out.</value>
+                </componentInstanceProperties>
+                <componentName>contentbuilder:html</componentName>
+                <identifier>contentbuilder_html</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-96b2091f-fd04-4150-bd11-fc417a140815</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columnBody</name>
+                    <value>Facet-96b2091f-fd04-4150-bd11-fc417a140815</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>columnCount</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>columnIndex</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>columnSpacer</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>padding</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>verticalAlign</name>
+                    <value>top</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>width</name>
+                    <value>100%</value>
+                </componentInstanceProperties>
+                <componentName>contentbuilder:column</componentName>
+                <identifier>contentbuilder_column</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-663b8ebb-8386-47e8-b1c6-ab670fd61cb8</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>backgroundColor</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>backgroundImageUrl</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-663b8ebb-8386-47e8-b1c6-ab670fd61cb8</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>verticalAlignment</name>
+                    <value>top</value>
+                </componentInstanceProperties>
+                <componentName>contentbuilder:row</componentName>
+                <identifier>contentbuilder_row</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Project_Assessment</masterLabel>
+    <template>
+        <name>contentpage:defaultEmailTemplatePageTemplate</name>
+        <properties>
+            <name>backgroundColor</name>
+            <value>#E9EAEC</value>
+        </properties>
+        <properties>
+            <name>backgroundImageUrl</name>
+        </properties>
+        <properties>
+            <name>bodyColor</name>
+            <value>#FFFFFF</value>
+        </properties>
+        <properties>
+            <name>paddingBottom</name>
+            <value>10</value>
+        </properties>
+        <properties>
+            <name>paddingLeft</name>
+            <value>10</value>
+        </properties>
+        <properties>
+            <name>paddingRight</name>
+            <value>10</value>
+        </properties>
+        <properties>
+            <name>paddingTop</name>
+            <value>10</value>
+        </properties>
+        <properties>
+            <name>preheader</name>
+        </properties>
+    </template>
+    <type>EmailTemplatePage</type>
+</FlexiPage>

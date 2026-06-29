@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Technician_Response_Next_Steps__c</fullName>
+    <description>Field for reply from technician on question: &quot;What are the next steps after troubleshooting or before starting LGen?&quot;</description>
+    <label>Technician Response Next Steps</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

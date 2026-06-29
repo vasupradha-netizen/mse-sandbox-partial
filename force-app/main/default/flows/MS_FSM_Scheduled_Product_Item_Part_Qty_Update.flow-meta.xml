@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Add_Necessary_Quantity</name>
+        <label>Add Necessary Quantity</label>
+        <locationX>50</locationX>
+        <locationY>468</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.QuantityOnHand</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>QuantityFormula</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_PIUpdateBoolean</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Does_Product_Item_Need_to_be_updated</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Does_Product_Item_Need_to_be_updated</name>
+        <label>Does Product Item Need to be updated</label>
+        <locationX>182</locationX>
+        <locationY>660</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Product_Item_Needs_to_be_updated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>var_PIUpdateBoolean</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Product_Item</targetReference>
+            </connector>
+            <label>Yes Product Item Needs to be updated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_the_Product_Item_a_Part</name>
+        <label>Is the Product Item a Part</label>
+        <locationX>380</locationX>
+        <locationY>252</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_it_is_a_part</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Product2.MS_FSM_Product_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Part</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_the_Quantity_Under_Threshold</targetReference>
+            </connector>
+            <label>Yes, it is a part</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_the_Quantity_Under_Threshold</name>
+        <label>Is the Quantity Under Threshold</label>
+        <locationX>182</locationX>
+        <locationY>360</locationY>
+        <defaultConnector>
+            <targetReference>Does_Product_Item_Need_to_be_updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Quantity_is_under_Threshold</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.QuantityOnHand</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <numberValue>9999.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Necessary_Quantity</targetReference>
+            </connector>
+            <label>Yes, Quantity is under Threshold</label>
+        </rules>
+    </decisions>
+    <description>Purpose of this flow is to run nightly and update the Quantity of Non-Serialized Part Product Items</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>QuantityFormula</name>
+        <dataType>Number</dataType>
+        <expression>9999-{!$Record.QuantityOnHand}</expression>
+        <scale>0</scale>
+    </formulas>
+    <interviewLabel>MS_FSM_Scheduled - Product Item - Part Qty Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MS_FSM_Scheduled - Product Item - Part Qty Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Product_Item</name>
+        <label>Update Product Item</label>
+        <locationX>50</locationX>
+        <locationY>768</locationY>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>254</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_the_Product_Item_a_Part</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>IsProduct2Serialized</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>QuantityOnHand</field>
+            <operator>LessThan</operator>
+            <value>
+                <numberValue>9999.0</numberValue>
+            </value>
+        </filters>
+        <object>ProductItem</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2024-10-24</startDate>
+            <startTime>01:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>var_PIUpdateBoolean</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+</Flow>

@@ -1,0 +1,98 @@
+Name,MS_FSM_External_Id__c,MS_FSM_EH_Column_Name__c,MS_FSM_Data_Type__c,MS_FSM_EH_Column_Number__c,MS_FSM_EH_Table_Id__c,MS_FSM_Target_Field__c
+Master Part Record - Type,bnjiec2wn-109,Type,text,109,bnjiec2wn,QuantityUnitOfMeasure
+Master Part Record - PartNumber_Rev,bnjiec2wn-21,PartNumber_Rev,text,21,bnjiec2wn,ProductCode
+Master Part Record - Part Number MRP - Cost with Override,bnjiec2wn-382,Part Number MRP - Cost with Override,decimal,382,bnjiec2wn,MS_FSM_Cost__c
+Master Part Record - Is Serialized,bnjiec2wn-664,Is Serialized,boolean,664,bnjiec2wn,IsSerialized
+Master Part Record - FSM Product Type,bnjiec2wn-665,FSM Product Type,text,665,bnjiec2wn,MS_FSM_Product_Type__c
+Master Part Record - Part Number MRP - Generic Part Name,bnjiec2wn-680,Part Number MRP - Generic Part Name,text,680,bnjiec2wn,Family
+Master Part Record - FSM Part State,bnjiec2wn-694,FSM Part State,boolean,694,bnjiec2wn,IsActive
+Master Part Record - Part Number MRP - Part Name - FSM Asset Placement Required?,bnjiec2wn-701,Description,boolean,701,bnjiec2wn,MS_FSM_Require_Asset_Placement__c	
+Master Part Record - Description,bnjiec2wn-9,Description,text,9,bnjiec2wn,
+Inventory - Serial Number,bnk5gmxgy-10,Quantity,text,10,bnk5gmxgy,SerialNumber
+Inventory - FSM Load Component Hierarchy,bnk5gmxgy-1012,FSM Load Component Hierarchy,boolean,1012,bnk5gmxgy,
+Inventory - Core Package - Unit Tag,bnk5gmxgy-1022,Core Package - Unit Tag,text,1022,bnk5gmxgy,
+Inventory - Serial Number - Line Item - Price,bnk5gmxgy-1029,Serial Number - Line Item - Price,decimal,1029,bnk5gmxgy,
+Inventory - EH Record Id,bnk5gmxgy-3,EH Record Id,text,3,bnk5gmxgy,
+Inventory - Rev Number,bnk5gmxgy-33,Rev Number,text,33,bnk5gmxgy,
+Inventory - Quantity UoM,bnk5gmxgy-39,Quantity UoM,text,39,bnk5gmxgy,QuantityUnitOfMeasure
+Inventory - Location Id,bnk5gmxgy-47,Location Id,text,47,bnk5gmxgy,
+Inventory - Quantity,bnk5gmxgy-7,Quantity,decimal,341,bnk5gmxgy,QuantityOnHand
+Assembly - Assembly Serial Number,bnnfe2qf9-12,Assembly Serial Number,text,12,bnnfe2qf9,SerialNumber
+Assembly - Record ID #,bnnfe2qf9-3,Record ID#,text,3,bnnfe2qf9,MS_FSM_EtaHub_Record_Id__c
+Assembly - Customer Name,bnnfe2qf9-318,Customer Name,text,318,bnnfe2qf9,
+Assembly - Location Id,bnnfe2qf9-522,Location Id,text,559,bnnfe2qf9,MS_FSM_Temporary_Location_Id__c
+Assembly - Account Id,bnnfe2qf9-524,Account Id,text,561,bnnfe2qf9,
+Assembly - Associated Node,bnnfe2qf9-525,Associated Node,text,525,bnnfe2qf9,MS_FSM_Node_Name__c
+Assembly - Manufacture Date,bnnfe2qf9-526,Manufacture Date,date,526,bnnfe2qf9,ManufactureDate
+Assembly - LGen SN - Short Form,bnnfe2qf9-527,LGen SN - Short Form,text,527,bnnfe2qf9,MS_FSM_LGen_SN_Short_Form__c
+Assembly - Customer Site Name,bnnfe2qf9-533,Customer Site Name,text,560,bnnfe2qf9,MS_FSM_Customer_Site_Name__c
+Assembly - Site Street,bnnfe2qf9-534,Site Street,text,553,bnnfe2qf9,
+Assembly - Site Street 2,bnnfe2qf9-535,Site Street 2,text,554,bnnfe2qf9,
+Assembly - Site City,bnnfe2qf9-536,Site City,text,555,bnnfe2qf9,
+Assembly - Site State,bnnfe2qf9-537,Site State,text,556,bnnfe2qf9,
+Assembly - Site Postal Code,bnnfe2qf9-538,Site Postal Code,text,557,bnnfe2qf9,
+Assembly - Site Country,bnnfe2qf9-539,Site Country,text,558,bnnfe2qf9,
+Assembly - Assembly No_Rev,bnnfe2qf9-7,Assembly No_Rev,text,7,bnnfe2qf9,MS_FSM_Rev_Number__c
+Assembly - Assembly Description,bnnfe2qf9-8,Assembly Description,text,8,bnnfe2qf9,Description
+Assembly Component - Serial Number,bnnfe3sdc-12,Serial Number,text,12,bnnfe3sdc,SerialNumber
+Assembly Component - EPN Description,bnnfe3sdc-14,EPN Description,text,14,bnnfe3sdc,Description
+Assembly Component - EPN_Rev,bnnfe3sdc-15,EPN_Rev,text,15,bnnfe3sdc,MS_FSM_Rev_Number__c
+Assembly Component - Assembly Serial Number,bnnfe3sdc-21,Assembly Serial Number,text,21,bnnfe3sdc,MS_FSM_Parent_Serial_Number__c
+Assembly Component - Quantity,bnnfe3sdc-24,Quantity,decimal,24,bnnfe3sdc,Quantity
+Assembly Component - Addition Time Stamp,bnnfe3sdc-267,Addition Time Stamp,datetime,267,bnnfe3sdc,MS_FSM_Install_Date_Time__c
+Assembly Component - Record Id,bnnfe3sdc-3,Record ID#,text,3,bnnfe3sdc,MS_FSM_EtaHub_Record_Id__c
+Assembly Component - Template Record - Side,bnnfe3sdc-567,Checkout QTY | Template Record - Side,text,567,bnnfe3sdc,MS_FSM_Asset_Placement__c
+Assembly Component - FSM Tag,bnnfe3sdc-575,FSM Tag,text,575,bnnfe3sdc,MS_FSM_Tag__c
+Assembly Component - Maximum Serial Formula,bnnfe3sdc-578,Assembly - ASN Formula - Maximum Record ID# - Removed from assy not checked - FSM Tag        ,text,578,bnnfe3sdc,MS_FSM_Max_Serial_Number__c
+Part Master - Is Maintenance Plan Required,bpk87rsn2-1035,Is Maintenance Plan Required?,boolean,1035,bpk87rsn2,MS_FSM_Maintenance_Plan_Required__c
+Part Master - Record Id,bpk87rsn2-3,Record Id,text,3,bpk87rsn2,MS_FSM_EtaHub_Record_Id__c
+Part Master - Description,bpk87rsn2-427,Description,text,427,bpk87rsn2,
+Part Master - Part Number,bpk87rsn2-6,Part Number,text,6,bpk87rsn2,ProductCode
+Inventory Location - EH Record Id,bqzwcecb4-3,Record Id,text,3,bqzwcecb4,MS_FSM_EtaHub_Id__c
+Inventory Location - Id,bqzwcecb4-6,Id,text,6,bqzwcecb4,MS_FSM_Location_Id__c
+Inventory Location - Location Key,bqzwcecb4-9,Location Key,text,9,bqzwcecb4,Name
+CM Assembly - Parent Description,brv5unzwf-10,Parent Description,text,10,brv5unzwf,Description
+CM Assembly - ASN,brv5unzwf-12,ASN,text,12,brv5unzwf,SerialNumber
+CM Assembly - EPN_Rev,brv5unzwf-121,EPN_Rev,text,121,brv5unzwf,MS_FSM_Rev_Number__c
+CM Assembly - Location Internal Name,brv5unzwf-216,Location Internal Name,text,251,brv5unzwf,
+CM Assembly - ASN - Associated Node,brv5unzwf-221,ASN - Associated Node,text,221,brv5unzwf,
+CM Assembly - ASN - LGen SN - Short Form,brv5unzwf-222,ASN - LGen SN - Short Form,text,222,brv5unzwf,MS_FSM_LGen_SN_Short_Form__c
+CM Assembly - Manufacture Date,brv5unzwf-223,Manufacture Date,date,223,brv5unzwf,ManufactureDate
+CM Assembly - Location Customer Name,brv5unzwf-228,Location Customer Name,text,250,brv5unzwf,
+CM Assembly - Location City,brv5unzwf-233,Location City,text,246,brv5unzwf,
+CM Assembly - Location State,brv5unzwf-234,Location State,text,247,brv5unzwf,
+CM Assembly - Location Postal Code,brv5unzwf-235,Location Postal Code,text,248,brv5unzwf,
+CM Assembly - Location Country,brv5unzwf-236,Location Country,text,249,brv5unzwf,
+CM Assembly - Site Street,brv5unzwf-244,Site Street,text,244,brv5unzwf,
+CM Assembly - Site Street 2,brv5unzwf-245,Site Street 2,text,245,brv5unzwf,
+CM Assembly - Account Id,brv5unzwf-253,Account Id,text,253,brv5unzwf,
+CM Assembly - Record Id,brv5unzwf-3,Record Id,text,3,brv5unzwf,MS_FSM_EtaHub_Record_Id__c
+CM Assembly Component - EPN Rev Number,brv5up2nq-130,EPN Rev Number,text,130,brv5up2nq,MS_FSM_Rev_Number__c
+CM Assembly Component - EPN Description,brv5up2nq-131,EPN Description,text,131,brv5up2nq,Description
+CM Assembly Component - Parent Serial,brv5up2nq-15,Related Assembly (ref) | Related Assembly,text,15,brv5up2nq,MS_FSM_Parent_Serial_Number__c
+CM Assembly Component - Addition Time Stamp,brv5up2nq-170,Addition Time Stamp,datetime,170,brv5up2nq,MS_FSM_Install_Date_Time__c
+CM Assembly Component - Quantity,brv5up2nq-19,Quantity,decimal,19,brv5up2nq,Quantity
+CM Assembly Component - Record Id,brv5up2nq-3,Record ID#,text,3,brv5up2nq,MS_FSM_EtaHub_Record_Id__c
+CM Assembly Component - Template Record - Side,brv5up2nq-301,Template Record - Side,text,301,brv5up2nq,MS_FSM_Asset_Placement__c
+CM Assembly Component - FSM Tag,brv5up2nq-324,FSM Tag,text,324,brv5up2nq,MS_FSM_Tag__c
+CM Assembly Component - Serial Number,brv5up2nq-82,Comp SN Formula | Serial Number,text,82,brv5up2nq,SerialNumber
+Staging FSM Work Order - Subject,bufd2pu5y-10,Subject,text,10,bufd2pu5y,Subject
+Staging FSM Work Order - Description,bufd2pu5y-12,Description,text,12,bufd2pu5y,Description
+Staging FSM Work Order - Planned Service Date,bufd2pu5y-13,Planned Service Date,date,13,bufd2pu5y,Staging_Work_Order_Date__c
+Staging FSM Work Order - Number of Techs,bufd2pu5y-14,Number of Techs,decimal,14,bufd2pu5y,MS_FSM_Number_of_Techs__c
+Staging FSM Work Order - Required Part SN,bufd2pu5y-15,Required Part SN,text,15,bufd2pu5y,
+Staging FSM Work Order - Required Part Qty,bufd2pu5y-16,Required Part Qty,decimal,16,bufd2pu5y,
+Staging FSM Work Order - Required Part EHREV,bufd2pu5y-25,Required Part EHREV,text,25,bufd2pu5y,
+Staging FSM Work Order - Disposition,bufd2pu5y-27,Disposition,text,27,bufd2pu5y,
+Staging FSM Work Order - Asset Part Number,bufd2pu5y-28,Asset Part Number,text,28,bufd2pu5y,
+Staging FSM Work Order - Record Id,bufd2pu5y-3,Record Id,text,3,bufd2pu5y,MS_FSM_EtaHub_Id__c
+Staging FSM Work Order - Site Name,bufd2pu5y-6,Site Name,text,6,bufd2pu5y,
+Staging FSM Work Order - LGen SN,bufd2pu5y-7,LGen SN,text,7,bufd2pu5y,
+Staging FSM Work Order - Asset SN,bufd2pu5y-8,Asset SN,decimal,8,bufd2pu5y,
+Staging FSM Work Order - Work Type,bufd2pu5y-9,Work Type,text,9,bufd2pu5y,
+Staging FSM Work Order - Rework Asset Part Number,bufd2pu5y-42,Rework Asset Part Number,text,42,bufd2pu5y,
+Staging FSM Work Order Step - Name,bufd2q7wt-7,Name,text,7,bufd2q7wt,Name
+Staging FSM Work Order Step - Description,bufd2q7wt-8,Description,text,8,bufd2q7wt,Description
+Assembly Component - Is New FSM Asset Record,bnnfe3sdc-638,Is New FSM Asset Record,boolean,638,bnnfe3sdc,
+CM Assemby Component - Is New FSM Asset Record,brv5up2nq-355,Is New FSM Asset Record,boolean,355,brv5up2nq,
+Master Part Record - Netsuite Id,bnjiec2wn-424,Netsuite Id,text,424,bnjiec2wn,MS_FSM_NetsuiteId__c

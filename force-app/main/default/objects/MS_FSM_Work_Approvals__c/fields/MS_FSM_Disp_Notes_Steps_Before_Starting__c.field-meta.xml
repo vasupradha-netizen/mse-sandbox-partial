@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Disp_Notes_Steps_Before_Starting__c</fullName>
+    <description>Field for notes from dispatcher on question: &quot;What else are you going to do before starting the LGen?&quot;</description>
+    <inlineHelpText>Dispatcher notes for: &quot;What else are you going to do before starting the LGen?&quot;</inlineHelpText>
+    <label>Dispatcher Notes Steps Before Starting</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

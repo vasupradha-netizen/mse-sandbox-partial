@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Next_60_Days__c</fullName>
+    <formula>MS_FSM_Next_Calibration__c &lt;= TODAY() + 60 &amp;&amp;  MS_FSM_Overdue_Calibration__c != True</formula>
+    <label>Next 60 Days</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

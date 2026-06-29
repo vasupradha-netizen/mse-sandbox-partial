@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Tech_Resp_Battery_Cable_Status__c</fullName>
+    <description>Field for technician&apos;s response to question: &quot;What is the current status of the LGen? (battery cables connected/ battery cables disconnected)?</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Technician&apos;s response for: &quot;What is the current status of the LGen? (battery cables connected/ battery cables disconnected)?</inlineHelpText>
+    <label>Technician Response Battery Cable Status</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

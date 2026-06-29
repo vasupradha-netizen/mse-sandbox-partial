@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dispatcher_Notes_OK_To_Start__c</fullName>
+    <description>Field for dispatcher notes on question: &quot;Communicated &quot;Ok to start&quot; to FOA engineer?&quot;</description>
+    <label>Dispatcher Notes OK to Start</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

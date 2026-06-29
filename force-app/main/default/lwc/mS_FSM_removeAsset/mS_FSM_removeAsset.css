@@ -1,0 +1,48 @@
+.remove-asset-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.selection-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;  
+  align-items: center;
+}
+
+.asset-remove {
+  font-weight: bold;
+  align-items: center;
+  font-size: 18px;
+  width: 100%;
+}
+
+.input-container {
+  display: flex;
+  align-items: center; 
+  width: 100%;
+}
+
+.combo {
+  font-weight: bold;
+  width: 100%;
+  font-size: 18px;
+
+}
+
+.button-container {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}

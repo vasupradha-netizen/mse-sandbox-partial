@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ring_Side_of_Broken_Segment_Tip__c</fullName>
+    <description>Enter the side of the broken ring segment. Technicians will need to identify ring segments broken at tip (specify left or right tip)</description>
+    <label>Ring Side of Broken Segment Tip</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Left</fullName>
+                <default>false</default>
+                <label>Left</label>
+            </value>
+            <value>
+                <fullName>Right</fullName>
+                <default>false</default>
+                <label>Right</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Total Loss</fullName>
+                <default>false</default>
+                <label>Total Loss</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

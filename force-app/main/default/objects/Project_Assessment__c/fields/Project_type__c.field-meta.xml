@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_type__c</fullName>
+    <label>Project type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>5MW+</fullName>
+                <default>false</default>
+                <label>5MW+</label>
+            </value>
+            <value>
+                <fullName>Public agency (inclusive of municipalities)</fullName>
+                <default>false</default>
+                <label>Public agency (inclusive of municipalities)</label>
+            </value>
+            <value>
+                <fullName>Hydrogen/ammonia</fullName>
+                <default>false</default>
+                <label>Hydrogen/ammonia</label>
+            </value>
+            <value>
+                <fullName>Undisturbed land</fullName>
+                <default>false</default>
+                <label>Undisturbed land</label>
+            </value>
+            <value>
+                <fullName>Prior hazardous materials inclusive of fuel tanks</fullName>
+                <default>false</default>
+                <label>Prior hazardous materials inclusive of fuel tanks</label>
+            </value>
+            <value>
+                <fullName>Known past permitting challenges</fullName>
+                <default>false</default>
+                <label>Known past permitting challenges</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

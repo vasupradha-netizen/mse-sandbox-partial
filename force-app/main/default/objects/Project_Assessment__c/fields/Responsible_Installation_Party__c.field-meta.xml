@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Responsible_Installation_Party__c</fullName>
+    <label>Responsible Installation Party</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MSE</fullName>
+                <default>false</default>
+                <label>MSE</label>
+            </value>
+            <value>
+                <fullName>3rd Party EPC</fullName>
+                <default>false</default>
+                <label>3rd Party EPC</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

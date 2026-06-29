@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Platform_Event_Override_Values</name>
+        <label>Assign Platform Event Override Values</label>
+        <locationX>308</locationX>
+        <locationY>276</locationY>
+        <assignmentItems>
+            <assignToReference>AssetActionPlatformEvent.MS_FSM_WOLIId__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>AssetActionPlatformEvent.MS_FSM_InstallUsageEndDateTimeOverride__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Asset_Action_Platform_Event_for_Date_Overrides</targetReference>
+        </connector>
+    </assignments>
+    <description>Purpose of this flow is to override the timestamps on the Asset and Asset Transaction Log</description>
+    <environments>Default</environments>
+    <interviewLabel>MS_FSM_Work Order Line Item - Update - Override Timestamps {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MS_FSM_Work Order Line Item - Update - Override Timestamps</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Asset_Action_Platform_Event_for_Date_Overrides</name>
+        <label>Create Asset Action Platform Event for Date Overrides</label>
+        <locationX>308</locationX>
+        <locationY>384</locationY>
+        <inputReference>AssetActionPlatformEvent</inputReference>
+    </recordCreates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>MS_FSM_InstalledUsageEndDateTimeOverride__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>WorkOrderLineItem</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <scheduledPaths>
+            <name>Two_Minutes_After</name>
+            <connector>
+                <targetReference>Assign_Platform_Event_Override_Values</targetReference>
+            </connector>
+            <label>Two Minutes After</label>
+            <offsetNumber>2</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <timeSource>RecordTriggerEvent</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+    <variables>
+        <name>AssetActionPlatformEvent</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>FSM_Asset_Action__e</objectType>
+    </variables>
+</Flow>

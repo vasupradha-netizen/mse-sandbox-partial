@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recommendation_on_pursuing_sales_opps__c</fullName>
+    <inlineHelpText>Provide a recommendation on whether or not to pursue sales opportunities in this territory</inlineHelpText>
+    <label>Recommendation on pursuing sales opps</label>
+    <length>32768</length>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

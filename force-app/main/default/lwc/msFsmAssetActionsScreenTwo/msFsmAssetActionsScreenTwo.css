@@ -1,0 +1,110 @@
+.screen-two-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.new-asset-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+}
+
+.installed-product {
+  text-align: center; 
+  margin: 0; 
+  max-width: 100%; 
+  word-wrap: break-word; 
+}
+
+.specification-input-container, .asset-placement-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+}
+
+.prompt {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.detail-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85%;
+  position: relative;
+}
+
+.combo {
+  width: 100%;
+  font-size: 12px;
+}
+
+.combo-container {
+  position: relative;
+  z-index: 10; 
+  width: 100%;
+  background-color: white;  
+}
+
+.product-message-p {
+  font-size: 12px;
+}
+
+.button-container-two {
+  display: flex;
+  align-items: center;
+}
+
+
+.edit-button{
+  --slds-c-button-sizing-border: 1.5px;
+  --slds-c-button-color-background: white;
+  --slds-c-button-color-border: black;
+  --slds-c-button-text-color: orange;
+
+  --slds-c-button-color-background-hover: white;
+  --slds-c-button-color-border-hover: black;
+  --slds-c-button-text-color-hover: orange;
+
+  --slds-c-button-color-background-active: white;
+  --slds-c-button-color-border-active: black;
+  --slds-c-button-text-color-active: orange;
+}
+
+
+.missing-inventory-container {
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+}
+
+.prompt-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+}
+
+.missing-text {
+  text-align: center; 
+  margin: 0; 
+  max-width: 100%; 
+  word-wrap: break-word; 
+}
+
+.missing-input {
+  margin-top: 0;
+}
+
+.image-capture-container {
+  margin-top: 100px;
+  height: 100%;
+}

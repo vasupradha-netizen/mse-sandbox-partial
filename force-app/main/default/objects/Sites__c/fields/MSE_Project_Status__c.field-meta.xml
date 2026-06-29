@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MSE_Project_Status__c</fullName>
+    <label>MSE Project Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Feasibility</fullName>
+                <default>false</default>
+                <label>Feasibility</label>
+            </value>
+            <value>
+                <fullName>Contracting</fullName>
+                <default>false</default>
+                <label>Contracting</label>
+            </value>
+            <value>
+                <fullName>Design</fullName>
+                <default>false</default>
+                <label>Design</label>
+            </value>
+            <value>
+                <fullName>Permitting</fullName>
+                <default>false</default>
+                <label>Permitting</label>
+            </value>
+            <value>
+                <fullName>Ready to Construct</fullName>
+                <default>false</default>
+                <label>Ready to Construct</label>
+            </value>
+            <value>
+                <fullName>Construction</fullName>
+                <default>false</default>
+                <label>Construction</label>
+            </value>
+            <value>
+                <fullName>Commissioning</fullName>
+                <default>false</default>
+                <label>Commissioning</label>
+            </value>
+            <value>
+                <fullName>Hold</fullName>
+                <default>false</default>
+                <label>Hold</label>
+            </value>
+            <value>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+                <label>Canceled</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

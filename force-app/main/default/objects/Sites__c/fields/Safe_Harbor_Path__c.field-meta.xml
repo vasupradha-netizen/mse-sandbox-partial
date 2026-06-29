@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Safe_Harbor_Path__c</fullName>
+    <label>Safe Harbor Path</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>5% Test with LGen</fullName>
+                <default>false</default>
+                <label>5% Test with LGen</label>
+            </value>
+            <value>
+                <fullName>5% Test with LGen - 105 days</fullName>
+                <default>false</default>
+                <label>5% Test with LGen - 105 days</label>
+            </value>
+            <value>
+                <fullName>5% Test with BOF</fullName>
+                <default>false</default>
+                <label>5% Test with BOF</label>
+            </value>
+            <value>
+                <fullName>On Site Physical Work</fullName>
+                <default>false</default>
+                <label>On Site Physical Work</label>
+            </value>
+            <value>
+                <fullName>Offsite Physical Work</fullName>
+                <default>false</default>
+                <label>Offsite Physical Work</label>
+            </value>
+            <value>
+                <fullName>Not Pursuing Safe Harbor</fullName>
+                <default>false</default>
+                <label>Not Pursuing Safe Harbor</label>
+            </value>
+            <value>
+                <fullName>2024 Project Execution</fullName>
+                <default>false</default>
+                <label>2024 Project Execution</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>None</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

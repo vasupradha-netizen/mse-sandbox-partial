@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Financier__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Financier represents the third party financing the purchase. Will be copied from parent Opportunity but can be changed.</description>
+    <inlineHelpText>The Financier represents the third party financing the purchase. Will be copied from parent Opportunity but can be changed.</inlineHelpText>
+    <label>Financier</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Sites (System Owner)</relationshipLabel>
+    <relationshipName>Sites1</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

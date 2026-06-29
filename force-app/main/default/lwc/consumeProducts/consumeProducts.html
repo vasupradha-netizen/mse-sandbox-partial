@@ -1,0 +1,52 @@
+<template>
+    <template if:true={woliInit}>
+        <div class="slds-p-vertical_small detail-container">
+            <p class="slds-text-heading_small"><b>Work Order: {woli.WorkOrder.WorkOrderNumber}</b></p>
+            <p class="slds-text-heading_small"><b>Work Order Line Item: {woli.LineItemNumber}, {woli.Asset.Name}</b></p>
+        </div>
+        <template if:true={prodInit}>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered" 
+                    aria-labelledby="element-with-table-label other-element-with-table-label">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                    <template for:each={tableHeaders} for:item="h">
+                        <th key={h.value} class="" scope="col" width={h.width}>
+                            <div class="slds-truncate" title={h.value}>{h.label}</div>
+                        </th>
+                    </template>
+                </tr>
+                </thead>
+                <tbody>
+                    <template for:each={prodLines} for:item="p">
+                        <tr key={p.pid}>
+                            <td><!-- ON CLICK - uncheck "include" -->
+                                <lightning-input type="checkbox"
+                                                checked={p.include}
+                                                disabled={p.disableInclude}
+                                                label="include in parts consumed"
+                                                onchange={onEnableToggle}
+                                                data-id={p.index}
+                                                variant="label-hidden"></lightning-input>
+                            </td>
+                            <td class="slds-cell-wrap">
+                                <span class={p.nameClass}>{p.name}</span>
+                            </td>
+                            <td>
+                                <lightning-input type="number"
+                                                value={p.qtyNeed}
+                                                max={p.qtyHand}
+                                                label="Quantity Needed"
+                                                disabled={p.disableQty}
+                                                onchange={onQuantityChange}
+                                                data-id={p.index}
+                                                variant="label-hidden"></lightning-input>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            <br/>
+            <lightning-button label="Submit" onclick={clickSubmit} disabled={disableSubmit}></lightning-button>
+        </template>
+    </template>
+</template>

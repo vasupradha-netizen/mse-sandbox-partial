@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_taken_to_Ready_for_Review__c</fullName>
+    <externalId>false</externalId>
+    <formula>(Time_Spent_in_To_Do__c  +  Time_Spent_in_Ready_for_Analysis__c  +  Time_Spent_in_Analysis__c + Time_Spent_in_Validation__c) / 8</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Number of days taken to reach Ready for Review</inlineHelpText>
+    <label>Time taken to Ready for Review (Days)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

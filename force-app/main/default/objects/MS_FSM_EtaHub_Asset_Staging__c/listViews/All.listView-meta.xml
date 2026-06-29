@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>CREATED_DATE</columns>
+    <columns>NAME</columns>
+    <columns>MS_FSM_Asset_Id__c</columns>
+    <columns>MS_FSM_Status__c</columns>
+    <columns>MS_FSM_Timestamp__c</columns>
+    <columns>MS_FSM_Asset_Serial_Number__c</columns>
+    <columns>MS_FSM_EtaHub_Record_Id__c</columns>
+    <columns>MS_FSM_EtaHub_Table_Id__c</columns>
+    <columns>MS_FSM_Parent_Serial_Number__c</columns>
+    <columns>MS_FSM_Part_Number__c</columns>
+    <columns>MS_FSM_Removal_Disposition__c</columns>
+    <columns>MS_FSM_Root_Serial_Number__c</columns>
+    <columns>MS_FSM_Stage__c</columns>
+    <columns>MS_FSM_Error_Message__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>All</label>
+</ListView>

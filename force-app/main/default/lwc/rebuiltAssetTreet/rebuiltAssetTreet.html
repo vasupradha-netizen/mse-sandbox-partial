@@ -1,0 +1,17 @@
+<template>
+    <lightning-quick-action-panel header="Rebuild Asset Tree">
+        <template if:true={ready}>
+            <template if:true={errorMsg}>
+                Error: {errorMsg}
+            </template>
+            <template if:false={errorMsg}>
+                <p>Clicking the button below will rebuild all Assets beneath this LGEN by resyncing with EtaHub. This will take several minutes.</p>
+                <br/>
+                <lightning-button variant="brand" label="Rebuild Tree" onclick={onButtonClick}></lightning-button>
+            </template>
+        </template>
+        <template if:true={showSpinner}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </template>
+    </lightning-quick-action-panel>
+</template>

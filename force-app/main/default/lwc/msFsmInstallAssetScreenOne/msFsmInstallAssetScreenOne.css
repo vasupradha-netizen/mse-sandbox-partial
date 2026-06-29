@@ -1,0 +1,45 @@
+.screen-one-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+}
+
+.both-asset-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+}
+
+.installed-product, .asset-to-remove {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center; 
+  margin: 0; 
+  max-width: 100%; 
+  word-wrap: break-word; 
+}
+
+.selection-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.dispo-selection, .return-text {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.combo {
+  width: 90%;
+}
+
+.nav-button-container {
+
+}

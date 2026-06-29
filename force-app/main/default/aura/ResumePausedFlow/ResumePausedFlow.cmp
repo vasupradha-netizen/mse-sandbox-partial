@@ -1,0 +1,89 @@
+<aura:component controller="InterviewsByRecordController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="columns" type="List" default=""/>
+    <aura:attribute name="Interviews" type="Object" />
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="ContextRecord" type="Object" />
+    <aura:attribute name="overlay" type="Aura.Component"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:handler event="force:refreshView" action="{!c.init}" />
+ 
+    <force:recordData aura:id="contextRecord" recordId="{!v.recordId}"
+       targetFields="{!v.ContextRecord}" layoutType="FULL"/>
+ 
+    <lightning:overlayLibrary aura:id="overlayLib" />
+    <lightning:card iconName="standard:flow" class="slds-card_boundary">
+        <aura:set attribute="title">
+            <span class="slds-card__header-link">Resume Questionnaire in Progress</span>
+        </aura:set>
+        <aura:set attribute="actions">
+            <lightning:buttonIcon iconName="utility:refresh" onclick="{!c.init}" 
+                                  alternativeText="Refresh the list of interviews" />
+        </aura:set>
+     <table class="slds-table slds-table--bordered slds-table--cell-buffer 
+        slds-table_fixed-layout">
+       <thead>
+          <tr class="slds-text-heading--label">
+             <th scope="col"><div class="slds-truncate">Interview Label</div></th>
+             <th scope="col"><div class="slds-truncate">Pause Reason</div></th>
+             <th scope="col"><div class="slds-truncate">Paused Date</div></th> 
+             <th scope="col"><div class="slds-truncate">Current Element</div></th>
+             <th scope="col"><div class="slds-truncate">Owner</div></th>
+             <th scope="col" style="width: 3.25rem;"><div class="slds-truncate"/>
+                 <div class="slds-th__action">
+                    <span class="slds-assistive-text">Actions</span>
+                 </div>
+              </th>
+          </tr>
+       </thead>
+       <tbody>
+          <!-- Use the Apex controller to fetch interviews associated 
+            with this record -->
+          <aura:iteration items="{!v.Interviews}" var="interview">
+             <tr>
+                 <th scope="row">
+                    <div class="slds-truncate" title="{!interview.InterviewLabel}">
+                        {!interview.InterviewLabel}
+                     </div>
+                 </th>
+                 <td role="gridcell">
+                     <div class="slds-truncate" title="{!interview.PauseLabel}">
+                         {!interview.PauseLabel}
+                     </div>
+                 </td>
+                 <td role="gridcell">
+                     <div class="slds-truncate" title="{!interview.PausedDate}">
+                         <ui:outputDateTime value="{!interview.PausedDate}" 
+                            format="M/d/y h:m a"/>
+                     </div>
+                 </td>
+                 <td role="gridcell">
+                     <div class="slds-truncate" title="{!interview.CurrentElement}">
+                         {!interview.CurrentElement}
+                     </div>
+                 </td>
+                 <td role="gridcell">
+                     <div class="slds-truncate" title="{!interview.PausedBy}">
+                         {!interview.PausedBy}
+                     </div>
+                 </td>
+                 <td role="gridcell">
+                     <!-- Display Resume and Delete actions in a menu at the 
+                        end of each row -->
+                     <div class="slds-shrink-none">
+                         <lightning:buttonMenu iconSize="x-small" 
+                            class="paused-interview-card-row-menu"
+                             alternativeText="Actions for this interview" 
+                             onselect="{! c.handleMenuSelect }">
+                             <lightning:menuItem aura:id="{!interview.Id + 'resume'}" 
+                                label="Resume" value="{!interview.Id + '.resume'}" />
+                             <lightning:menuItem aura:id="{!interview.Id + 'delete'}" 
+                                label="Delete" value="{!interview.Id + '.delete'}"/>
+                         </lightning:buttonMenu>
+                      </div>
+                </td>
+             </tr>
+          </aura:iteration>
+       </tbody>
+    </table>
+    </lightning:card>
+</aura:component>

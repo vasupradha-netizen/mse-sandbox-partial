@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Stage__c</fullName>
+    <description>Used within the Asset Trigger helper to define the stage of the integration processing done in MS_FSM_EHINT_AssetStagingTriggerHelper</description>
+    <label>Stage</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New</fullName>
+                <default>true</default>
+                <label>New</label>
+            </value>
+            <value>
+                <fullName>Error</fullName>
+                <default>false</default>
+                <label>Error</label>
+            </value>
+            <value>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+                <label>Not Applicable</label>
+            </value>
+            <value>
+                <fullName>Processed</fullName>
+                <default>false</default>
+                <label>Processed</label>
+            </value>
+            <value>
+                <fullName>Processed - New Asset</fullName>
+                <default>false</default>
+                <label>Processed - New Asset</label>
+            </value>
+            <value>
+                <fullName>Processed - Later ATL Found - New ATL Only</fullName>
+                <default>false</default>
+                <label>Processed - Later ATL Found - New ATL Only</label>
+            </value>
+            <value>
+                <fullName>Processed - New ATL and Asset Update</fullName>
+                <default>false</default>
+                <label>Processed - New ATL and Asset Update</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

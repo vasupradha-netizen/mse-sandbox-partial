@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deal_type__c</fullName>
+    <label>Deal type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ESA</fullName>
+                <default>false</default>
+                <label>ESA</label>
+            </value>
+            <value>
+                <fullName>Cash</fullName>
+                <default>false</default>
+                <label>Cash</label>
+            </value>
+            <value>
+                <fullName>Lease</fullName>
+                <default>false</default>
+                <label>Lease</label>
+            </value>
+            <value>
+                <fullName>Build-Transfer</fullName>
+                <default>false</default>
+                <label>Build-Transfer</label>
+            </value>
+            <value>
+                <fullName>Tolling</fullName>
+                <default>false</default>
+                <label>Tolling</label>
+            </value>
+            <value>
+                <fullName>To Be Determined</fullName>
+                <default>false</default>
+                <label>To Be Determined</label>
+            </value>
+            <value>
+                <fullName>Cash-MSE, ESA-Customer</fullName>
+                <default>false</default>
+                <label>Cash-MSE, ESA-Customer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

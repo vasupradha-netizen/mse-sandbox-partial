@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Electrical_Topology__c</fullName>
+    <label>Electrical Topology</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Grid Parallel</fullName>
+                <default>false</default>
+                <label>Grid Parallel</label>
+            </value>
+            <value>
+                <fullName>Grid-connected Microgrid (operates grid-parallel)</fullName>
+                <default>false</default>
+                <label>Grid-connected Microgrid (operates grid-parallel)</label>
+            </value>
+            <value>
+                <fullName>Grid-connected Microgrid (operates islanded)</fullName>
+                <default>false</default>
+                <label>Grid-connected Microgrid (operates islanded)</label>
+            </value>
+            <value>
+                <fullName>Grid-connected Microgrid (NWA)</fullName>
+                <default>false</default>
+                <label>Grid-connected Microgrid (NWA)</label>
+            </value>
+            <value>
+                <fullName>Islanded Microgrid</fullName>
+                <default>false</default>
+                <label>Islanded Microgrid</label>
+            </value>
+            <value>
+                <fullName>Islanded then Grid-Connected Microgrid</fullName>
+                <default>false</default>
+                <label>Islanded then Grid-Connected Microgrid</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

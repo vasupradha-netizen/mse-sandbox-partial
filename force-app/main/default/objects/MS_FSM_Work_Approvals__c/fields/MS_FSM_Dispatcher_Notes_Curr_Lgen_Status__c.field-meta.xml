@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Dispatcher_Notes_Curr_Lgen_Status__c</fullName>
+    <description>Field for notes from dispatcher on question: &quot;What is the current status of the LGen? (480 on / 480 off, fully assembled / disassembled, cores running / cores not running, battery cables connected / battery cables disconnected)&quot;</description>
+    <inlineHelpText>Dispatcher notes for: &quot;What is the current status of the LGen? (480 on / 480 off, fully assembled / disassembled, cores running / cores not running, battery cables connected / battery cables disconnected)&quot;</inlineHelpText>
+    <label>Dispatcher Notes Current Lgen Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

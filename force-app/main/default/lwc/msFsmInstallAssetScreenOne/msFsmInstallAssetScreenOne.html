@@ -1,0 +1,30 @@
+<template>
+    <div class="screen-one-container">
+        <template if:true={_detailsFetchedFromWoli}>
+            <div class="both-asset-container">
+                <p class="slds-text-body_regular slds-align_absolute-center slds-p-top_large installed-product">Installed Product: {_detailsFetchedFromWoli.MS_FSM_Install_Swap_Product__r.Name.value}</p>
+            </div>
+        </template>
+            <template if:true={_isReplacement}>
+                <div class="both-asset-container">
+                    <p class="slds-text-body_regular slds-align_absolute-center slds-p-top_small asset-to-remove">Removed Asset: {removedAssetText}</p>
+                </div>
+                <template lwc:if={showRingInspection}>
+                    <p class="slds-text-body_regular slds-align_absolute-center slds-p-top_small return-text">Return {l2AssetRingsOfInspection} for Inspection</p>
+                </template> 
+                <div class="slds-p-top_large selection-container">
+                    <p class="slds-text-body_regular dispo-selection">Removal Disposition: </p>
+                        <lightning-combobox
+                        class="combo"
+                        name="removal-disposition"
+                        value={dispoSelection}
+                        options={dispoPicklist}
+                        onchange={handleDispositionSelection}></lightning-combobox>
+                  </div>
+            </template>
+        <br>
+        <div class="nav-button-container">
+            <lightning-button variant="brand" label="ENTER ASSET DETAILS" title="Primary action" onclick={handleNext} class="slds-m-left_x-small"></lightning-button>
+        </div>
+    </div>
+</template>

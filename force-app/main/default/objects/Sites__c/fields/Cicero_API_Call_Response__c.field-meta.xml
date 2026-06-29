@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cicero_API_Call_Response__c</fullName>
+    <description>This will track the latest cicero API response : success or error. Not entire response but rather if there was success or an issue and what the message was.</description>
+    <inlineHelpText>This will track the latest cicero API response : success or error. Not entire response but rather if there was success or an issue and what the message was.</inlineHelpText>
+    <label>Cicero API Call Response</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

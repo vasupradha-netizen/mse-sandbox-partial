@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_prob_to_0</name>
+        <label>Assign prob to 0</label>
+        <locationX>1634</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Probability</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_opp_probability</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_prob_to_10</name>
+        <label>Assign prob to 10</label>
+        <locationX>1898</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Probability</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>10.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_opp_probability</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Prob_to_100</name>
+        <label>Assign Prob to 100</label>
+        <locationX>2690</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Probability</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>100.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_opp_probability</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_prob_to_25</name>
+        <label>Assign prob to 25</label>
+        <locationX>314</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Probability</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>25.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_opp_probability</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Prob_to_25_Reselelr</name>
+        <label>Assign Prob to 25 - Reseller</label>
+        <locationX>2162</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Probability</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>25.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_opp_probability</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_prob_to_5</name>
+        <label>Assign prob to 5</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Probability</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>5.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_opp_probability</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_prob_to_55</name>
+        <label>Assign prob to 55</label>
+        <locationX>1106</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Probability</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>55.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_opp_probability</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_prob_to_60</name>
+        <label>Assign prob to 60</label>
+        <locationX>578</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Probability</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>60.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_opp_probability</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_prob_to_60_Reseller</name>
+        <label>Assign prob to 60_Reseller</label>
+        <locationX>2426</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Probability</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>60.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>update_opp_probability</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>If_stage_is_negotiating_contract</name>
+        <label>If stage is negotiating contract</label>
+        <locationX>1238</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Stage_is_NC</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Negotiating Contract</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_prob_to_55</targetReference>
+            </connector>
+            <label>Stage is NC</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Reseller_Stage</name>
+        <label>Reseller Stage</label>
+        <locationX>2294</locationX>
+        <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference>update_opp_probability</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Reseller_Preliminary_Initial_Meeting</name>
+            <conditionLogic>(1 OR 3) AND 2</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Preliminary Meeting</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Initial Assessment</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_prob_to_0</targetReference>
+            </connector>
+            <label>Reseller - Preliminary Meeting or Initial Assessment</label>
+        </rules>
+        <rules>
+            <name>Reseller_Indicative_Proposal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Indicative Proposal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_prob_to_10</targetReference>
+            </connector>
+            <label>Reseller - Indicative Proposal</label>
+        </rules>
+        <rules>
+            <name>Reseller_Firm_Proposal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Firm Proposal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Prob_to_25_Reselelr</targetReference>
+            </connector>
+            <label>Reseller - Firm Proposal</label>
+        </rules>
+        <rules>
+            <name>Reseller_Negotiating_Contract</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Negotiating Contract</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_prob_to_60_Reseller</targetReference>
+            </connector>
+            <label>Reseller - Negotiating Contract</label>
+        </rules>
+        <rules>
+            <name>Reseller_Closed_Won</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Prob_to_100</targetReference>
+            </connector>
+            <label>Reseller - Closed Won</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Stage_Name_Change</name>
+        <label>Stage Name Change</label>
+        <locationX>446</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>update_Indicative_Proposal_prob</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Indicative Proposal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_prob_to_5</targetReference>
+            </connector>
+            <label>update Indicative Proposal prob</label>
+        </rules>
+        <rules>
+            <name>Firm_Proposal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Firm Proposal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_prob_to_25</targetReference>
+            </connector>
+            <label>Firm Proposal</label>
+        </rules>
+        <rules>
+            <name>Negotiating_Contract</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Negotiating Contract</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_prob_to_60</targetReference>
+            </connector>
+            <label>Negotiating Contract</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Update_probability</name>
+        <label>Update probability</label>
+        <locationX>1788</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Assign_probability</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Standard Sale</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.BTM_Segment__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Biz Dev (IOUs &amp; IPPs)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.BTM_Segment__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Public Power</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Stage_Name_Change</targetReference>
+            </connector>
+            <label>Assign probability</label>
+        </rules>
+        <rules>
+            <name>Assign_NC_55</name>
+            <conditionLogic>1 AND( 2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Development Sale</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.BTM_Segment__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Biz Dev (IOUs &amp; IPPs)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.BTM_Segment__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Public Power</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>If_stage_is_negotiating_contract</targetReference>
+            </connector>
+            <label>Assign NC-55</label>
+        </rules>
+        <rules>
+            <name>Reseller_Opportunity</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Sales_Channel__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Indirect_MSE_Reseller</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Reseller_Stage</targetReference>
+            </connector>
+            <label>Reseller Opportunity</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Update opp probability field {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update opp probability field</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>update_opp_probability</name>
+        <label>update opp probability</label>
+        <locationX>1788</locationX>
+        <locationY>815</locationY>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>1662</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_probability</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>StageName</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

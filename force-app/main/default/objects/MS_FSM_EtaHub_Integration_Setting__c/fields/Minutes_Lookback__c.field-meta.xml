@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Minutes_Lookback__c</fullName>
+    <description>Number of minutes to look back for Part Master, Master Part Record, and Inventory Location. Can be incremented up if errors occur (to force reattempts) or reset to the standard 15.</description>
+    <externalId>false</externalId>
+    <label>Minutes Lookback</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

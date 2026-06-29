@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Creates a Work Order from a Case record page, using data from the current Case record</description>
+    <flowDefinition>MS_FSM_Case_Create_Work_Order</flowDefinition>
+    <label>Create Work Order</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

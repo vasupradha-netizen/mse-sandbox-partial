@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Year_9_Early_Termination_Amount_kWh__c</fullName>
+    <externalId>false</externalId>
+    <label>Year 9 Early Termination Amount ($/kWh)</label>
+    <precision>16</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

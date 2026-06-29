@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Custom setting used for the Cicero API integration. Used by code to get the information about the connection to the Cicero API endpoint.</description>
+    <enableFeeds>false</enableFeeds>
+    <label>Cicero Setting</label>
+    <visibility>Public</visibility>
+</CustomObject>

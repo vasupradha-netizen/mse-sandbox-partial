@@ -1,0 +1,785 @@
+/* ==========================================================
+   DESIGN TOKENS
+   ========================================================== */
+:host {
+    --mainspring-black: #0B132B;
+    --mainspring-orange: #FF4500;
+    --bg-workspace: #ECECEC;
+    --text-muted: #555555;
+    --border-light: #CBD5E1;
+        /* ── Semantic pill tokens ── */
+    /* Yes — warm forest green, premium not clinical */
+    --pill-yes-bg:       #F0FDF4;  /* Mint wash — visible at rest */
+    --pill-yes-border:   #86EFAC;  /* Soft green border */
+    --pill-yes-text:     #166534;  /* Forest green text */
+    --pill-yes-active:   #15803D;  /* Rich green fill when selected */
+    --pill-yes-glow:     rgba(21, 128, 61, 0.15);
+ 
+    /* No — muted rose/crimson, warm enough to pair with brand orange */
+    --pill-no-bg:        #FFF1F2;  /* Rose wash — visible at rest */
+    --pill-no-border:    #FDA4AF;  /* Soft rose border */
+    --pill-no-text:      #9F1239;  /* Deep rose text */
+    --pill-no-active:    #BE123C;  /* Crimson fill when selected */
+    --pill-no-glow:      rgba(190, 18, 60, 0.15);
+    display: block;
+    flex-grow: 1;
+}
+
+/* ==========================================================
+   LAYOUT — Outer container & panels
+   ========================================================== */
+.main-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4rem;
+    width: 90%;
+    max-width: 1300px;
+    margin: 5rem auto;
+    padding: 0 2rem;
+}
+
+.left-panel {
+    position: sticky;
+    top: 5rem;
+    flex: 0 0 600px;
+    background-color: var(--mainspring-black);
+    padding: 3rem 2.5rem;
+    min-height: 100vh;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-panel {
+    flex: 0 0 970px;
+    max-width: none;
+    min-width: 0;
+}
+
+/* ==========================================================
+   LEFT PANEL — Typography & branding
+   ========================================================== */
+.brand-header {
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #8C98A4;
+    margin-bottom: 2rem;
+    gap: 16px;
+    font-family: 'GT America', 'Inter', sans-serif;
+    text-transform: uppercase;
+}
+
+.legal-instructions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.instruction-lead,
+.instruction-body {
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #CBD5E1;
+    font-family: 'GT America', 'Inter', sans-serif;
+}
+
+.dynamic-partner-blank {
+    font-weight: 700;
+    padding: 0 4px;
+    color: #FFFFFF;
+}
+
+.left-panel-footer {
+    font-size: 0.8rem;
+    color: #4A5568;
+    line-height: 1.5;
+    font-family: 'GT America', 'Inter', sans-serif;
+    margin-top: auto;
+    padding-top: 3rem;
+}
+
+/* ==========================================================
+   PROGRESS TRACKER (Left panel)
+   ========================================================== */
+.progress-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-left: 0;
+    border-left: none;
+}
+
+/* Connecting line between step circles */
+.progress-container::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 11px;
+    width: 1px;
+    background-color: #2A324A;
+    z-index: 1;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    gap: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.step:hover       { opacity: 0.8; }
+.step:focus       { outline: 2px solid var(--mainspring-orange); outline-offset: 2px; }
+
+.step-indicator {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: var(--mainspring-black);
+    border: 1px solid #5A647A;
+    color: #5A647A;
+    flex-shrink: 0;
+}
+
+.step-label {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: #5A647A;
+}
+
+/* Active step */
+.step.active .step-indicator {
+    background-color: var(--mainspring-orange);
+    border-color: var(--mainspring-orange);
+    color: #FFFFFF;
+}
+.step.active .step-label {
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+/* Completed step */
+.step.completed .step-indicator {
+    background-color: var(--mainspring-black);
+    border-color: #5A647A;
+    color: #FFFFFF;
+}
+.step.completed .step-label {
+    color: #FFFFFF;
+}
+
+/* ==========================================================
+   RIGHT PANEL — Global loading overlay
+   ========================================================== */
+.loading-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================================
+   FORM CARD
+   ========================================================== */
+.form-card {
+    background: #FFFFFF;
+    width: 100%;
+    border-radius: 8px;
+    padding: 3rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.step-counter {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--mainspring-orange);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Divider between review block and signature questions */
+.review-divider {
+    border: none;
+    border-top: 1px solid #E5E7EB;
+}
+
+/* ==========================================================
+   QUESTION WRAPPERS & INDENTATION
+   ========================================================== */
+.question-wrapper {
+    background-color: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    width: 100%;
+}
+
+.question-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+}
+
+.sub-question-tab  { padding-left: 2.5rem; }
+.deep-nested-tab   { padding-left: 4.5rem; margin-top: -0.5rem; }
+
+/* ==========================================================
+   SECTION HEADINGS (Orange uppercase divider blocks)
+   ========================================================== */
+.section-instruction-block {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid #E5E7EB;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.section-instruction-block p {
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--mainspring-orange);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================
+   DISCLAIMER BOX — e.g. "By signing below Referral Partner..."
+   Gray box with an orange left accent border, normal-case text.
+   Opt in via "isHeading": true + "variant": "disclaimer" in schema.
+   ========================================================== */
+.disclaimer-box {
+    background-color: #F9FAFB;
+    border-left: 3px solid var(--mainspring-orange);
+    border-radius: 0 4px 4px 0;
+    padding: 1.5rem 1.75rem;
+    margin: 1.5rem 0 2rem;
+}
+
+.disclaimer-box p {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #374151;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+/* ==========================================================
+   FORM INPUTS
+   ========================================================== */
+.input-group { width: 100%; }
+
+.custom-input,
+.custom-textarea {
+    width: 100%;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    outline: none;
+    background: #FFFFFF;
+    color: #111827;
+    transition: border-color 0.2s ease;
+}
+
+.custom-input:focus,
+.custom-textarea:focus {
+    border-color: var(--mainspring-orange);
+    box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.1);
+}
+
+.custom-textarea {
+    min-height: 50px;
+    resize: vertical;
+}
+
+.required-asterisk {
+    color: var(--mainspring-orange);
+    font-weight: bold;
+    display: inline;
+}
+
+/* Read-only confirmation text — used for fields whose value was already
+   captured on an earlier step (e.g. Legal Entity Name on the final step). */
+.readonly-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+}
+
+.footer-error-banner {
+    color: #e52d2d;
+    font-weight: 600;
+    text-align: right;
+    margin-bottom: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* ==========================================================
+   PILL RADIO BUTTONS & CHECKBOXES
+   ========================================================== */
+.radio-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.radio-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 2.5rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 50px;
+    background-color: #FFFFFF;
+    color: var(--mainspring-black);
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+/* ── YES — rest ── */
+.radio-group label:has(input[value="Yes"]) {
+    background-color: var(--pill-yes-bg);
+    border-color:     var(--pill-yes-border);
+    color:            var(--pill-yes-text);
+}
+ 
+/* ── YES — hover (unselected only) ── */
+.radio-group label:has(input[value="Yes"]:not(:checked)):hover {
+    border-color: var(--pill-yes-active);
+    box-shadow:   0 0 0 3px var(--pill-yes-glow);
+}
+ 
+/* ── YES — selected ── */
+.radio-group label:has(input[value="Yes"]:checked) {
+    background-color: var(--pill-yes-active);
+    border-color:     var(--pill-yes-active);
+    color:            #FFFFFF;
+    box-shadow:       0 0 0 3px var(--pill-yes-glow);
+}
+ 
+/* ── NO — rest ── */
+.radio-group label:has(input[value="No"]) {
+    background-color: var(--pill-no-bg);
+    border-color:     var(--pill-no-border);
+    color:            var(--pill-no-text);
+}
+ 
+/* ── NO — hover (unselected only) ── */
+.radio-group label:has(input[value="No"]:not(:checked)):hover {
+    border-color: var(--pill-no-active);
+    box-shadow:   0 0 0 3px var(--pill-no-glow);
+}
+ 
+/* ── NO — selected ── */
+.radio-group label:has(input[value="No"]:checked) {
+    background-color: var(--pill-no-active);
+    border-color:     var(--pill-no-active);
+    color:            #FFFFFF;
+    box-shadow:       0 0 0 3px var(--pill-no-glow);
+}
+
+.checkbox-container {
+    font-size: 1.05rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+    transform: scale(1.25);
+    accent-color: var(--mainspring-black);
+}
+
+.radio-error-text {
+    color: #ea001e;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* ==========================================================
+   WIZARD FOOTER NAVIGATION
+   ========================================================== */
+.wizard-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #F3F4F6;
+}
+
+.left-buttons,
+.right-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 1rem 2.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    border: none;
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--mainspring-orange);
+    outline-offset: 3px;
+}
+
+.btn-primary {
+    background-color: var(--mainspring-black);
+    color: #FFFFFF;
+    border: 1px solid var(--mainspring-black);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #1e293b;
+    border-color: #1e293b;
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background-color: #FFFFFF;
+    color: var(--mainspring-black);
+    border: 1px solid var(--border-light);
+}
+
+.btn-secondary:hover {
+    background-color: #F9F9F9;
+    border-color: var(--mainspring-black);
+}
+
+/* ==========================================================
+   TOKEN INVALID / VERIFICATION SCREEN
+   ========================================================== */
+.step-header-container { margin-bottom: 2.5rem; }
+.step-title            { margin-bottom: 0; }
+.error-title,
+.success-title         { margin-bottom: 1rem; }
+.success-card          { min-height: 50vh; }
+
+.verification-container {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+.verification-text {
+    color: #5A647A;
+    line-height: 1.5;
+    font-size: 1.05rem;
+}
+
+.verification-input-group {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.verification-input {
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 1rem;
+}
+
+.btn-full-width { width: 100%; }
+
+.success-message-box {
+    background-color: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.success-message-title {
+    color: #166534;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.success-message-body {
+    color: #166534;
+    font-size: 1.05rem;
+    margin-top: 1rem;
+}
+
+/* ==========================================================
+   UNSAVED CHANGES MODAL
+   ========================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(11, 19, 43, 0.65);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-modal-box {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    width: 460px;
+    max-width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.75rem;
+    font-family: 'GT America', 'Inter', sans-serif;
+}
+
+.modal-message {
+    font-size: 0.95rem;
+    color: #4B5563;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    font-family: 'GT America', 'Inter', sans-serif;
+}
+
+.modal-btn-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'GT America', 'Inter', sans-serif;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.modal-btn:focus-visible {
+    outline: 2px solid var(--mainspring-black);
+    outline-offset: 2px;
+}
+
+.btn-outline {
+    background-color: #FFFFFF;
+    color: #4B5563;
+    border: 1px solid #D1D5DB;
+}
+
+.btn-outline:hover {
+    background-color: #F3F4F6;
+    color: #111827;
+}
+
+.btn-solid {
+    background-color: #E03C1B;
+    color: #FFFFFF;
+    border: 1px solid #E03C1B;
+}
+
+.btn-solid:hover { background-color: #C12E12; }
+
+/* ==========================================================
+   CERTIFICATION CARDS — Step 5 checkbox questions
+   Teal card with integrated statement text, matching the
+   screenshot design: light teal bg, teal border, SVG tick.
+   ========================================================== */
+.cert-wrapper {
+    margin-bottom: 1rem;
+}
+
+.cert-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border: 1.5px solid #A5F3FC;      /* Light teal border (unchecked) */
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    background-color: #F0FDFE;         /* Very light teal wash */
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, background-color 0.2s ease,
+                box-shadow 0.2s ease;
+    text-align: left;
+}
+
+.cert-card:hover {
+    border-color: #67E8F9;
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.08);
+}
+
+.cert-card_checked {
+    border-color: #06B6D4;             /* Solid teal border when checked */
+    background-color: #ECFEFF;
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+}
+
+/* Visually hidden native checkbox — the label click handles it */
+.cert-hidden-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Square checkbox icon — empty ring until checked, filled teal when checked */
+.cert-check-icon {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 4px;
+    border: 2px solid #06B6D4;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    margin-top: 2px;                   /* Optically align with first text line */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.cert-card_checked .cert-check-icon {
+    background-color: #06B6D4;
+    border-color: #06B6D4;
+}
+
+.cert-card-text {
+    font-size: 0.95rem;
+    color: #1F2937;
+    line-height: 1.65;
+    flex: 1;
+    margin: 0;
+    min-width: 0;                      /* Allow text to wrap within flex container */
+    overflow-wrap: break-word;
+}
+
+/* ==========================================================
+   UTILITY
+   ========================================================== */
+.flex-center {
+    display: flex;
+    align-items: center;
+}
+
+.brand-icon { margin-right: 8px; }
+
+/* ==========================================================
+   RESPONSIVE — Mobile & Tablet
+   ========================================================== */
+@media (max-width: 900px) {
+    .main-container {
+        flex-direction: column;
+        padding: 0 1rem;
+        gap: 1.5rem;
+        margin: 1.5rem auto;
+    }
+
+    .left-panel {
+        position: relative;
+        min-height: auto;
+        flex: none;
+        width: 100%;
+        padding: 2rem 1.5rem;
+        border-radius: 8px;
+    }
+
+    .right-panel {
+        max-width: 100%;
+        width: 100%;
+        padding-top: 0;
+    }
+
+    .form-card { padding: 1.5rem; }
+
+    .radio-group { flex-direction: column; }
+
+    .wizard-footer {
+        flex-direction: column-reverse;
+        gap: 1rem;
+    }
+
+    .left-buttons,
+    .right-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .custom-modal-box { padding: 2rem 1.5rem; }
+    .modal-btn-group  { flex-direction: column; }
+
+    .btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.8rem;
+    }
+}

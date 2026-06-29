@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Stage_user__c</fullName>
+    <label>Model Type Opp Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Initial Assessment</fullName>
+                <default>false</default>
+                <label>Initial Assessment</label>
+            </value>
+            <value>
+                <fullName>Indicative Proposal</fullName>
+                <default>false</default>
+                <label>Indicative Proposal</label>
+            </value>
+            <value>
+                <fullName>Firm Proposal</fullName>
+                <default>false</default>
+                <label>Firm Proposal</label>
+            </value>
+            <value>
+                <fullName>Negotiating Contract</fullName>
+                <default>false</default>
+                <label>Negotiating Contract</label>
+            </value>
+            <value>
+                <fullName>Preliminary Discussions</fullName>
+                <default>false</default>
+                <label>Preliminary Discussions</label>
+            </value>
+            <value>
+                <fullName>Proposal/RFP Generation</fullName>
+                <default>false</default>
+                <label>Proposal/RFP Generation</label>
+            </value>
+            <value>
+                <fullName>Term Sheet</fullName>
+                <default>false</default>
+                <label>Term Sheet</label>
+            </value>
+            <value>
+                <fullName>Final Site Development</fullName>
+                <default>false</default>
+                <label>Final Site Development</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

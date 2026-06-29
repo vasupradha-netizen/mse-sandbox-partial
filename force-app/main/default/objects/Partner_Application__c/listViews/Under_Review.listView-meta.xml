@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Under_Review</fullName>
+    <columns>NAME</columns>
+    <columns>Legal_Entity_Name__c</columns>
+    <columns>Primary_Contact__c</columns>
+    <columns>Submission_Date__c</columns>
+    <columns>Approval_Stage__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Under Review</value>
+    </filters>
+    <label>Under Review</label>
+</ListView>

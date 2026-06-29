@@ -1,0 +1,654 @@
+// schemaConfig.js
+export const INTERNAL_SCHEMA = {
+  "steps": [
+    {
+      "stepNumber": 1,
+      "title": "General Information",
+      "questions": [
+        {
+          "isHeading": false,
+          "questionNumber": "1",
+          "displayText": "Legal Entity Name of Referral Partner:",
+          "apiName": "Legal_Entity_Name__c",
+          "type": "text",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "1.1",
+          "displayText": "List any trade names or doing business as (DBA) names:",
+          "apiName": "DBA_Trade_Names__c",
+          "type": "text",
+          "required": false,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "1.2",
+          "displayText": "List the state of formation of Referral Partner legal entity:",
+          "apiName": "State_of_Formation__c",
+          "type": "text",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "1.3",
+          "displayText": "List the states where the Referral Partner legal entity is qualified to conduct business:",
+          "apiName": "States_Qualified__c",
+          "type": "text",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": true,
+          "questionNumber": "2",
+          "displayText": "Provide the contact information for the Referral Partner:",
+          "apiName": null,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "2.1",
+          "displayText": "Primary Contact:",
+          "apiName": "Primary_Contact__c",
+          "type": "text",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "2.2",
+          "displayText": "Company Address",
+          "apiName": "Address__c",
+          "type": "address",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "2.3",
+          "displayText": "Email Address:",
+          "apiName": "Email_Address__c",
+          "type": "email",
+          "placeholder": "john@company.com",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "2.4",
+          "displayText": "Phone Number:",
+          "apiName": "Phone_Number__c",
+          "placeholder": "+1 (555)123-4567",
+          "type": "tel",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "3",
+          "displayText": "Provide the full legal names of every director, officer, general partner, or shareholder of Referral Partner (collectively, \"Referral Partner Leaders\"):",
+          "apiName": "Partner_Leaders__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "4",
+          "displayText": "List any affiliates, subsidiaries, parent companies, predecessor companies, beneficial owners, financing parties, or joint venture partners of Referral Partner (collectively, \"Related Entities\"):",
+          "apiName": "Related_Entities__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 0
+        }
+      ]
+    },
+    {
+      "stepNumber": 2,
+      "title": "Government Relationship/Enforcement Questions",
+      "questions": [
+        {
+          "isHeading": false,
+          "questionNumber": "5",
+          "displayText": "Will any local, state, federal, or international government (collectively, \"Government\") provide funding (e.g., grant, direct allocation, etc.) to support Referral Partner's anticipated contracting with Mainspring Energy, Inc.?",
+          "apiName": "Govt_Funding__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "5.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Govt_Funding_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Govt_Funding__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "6",
+          "displayText": "Does any Government have ownership interests in or exert influence over Referral Partner or its Related Entities?",
+          "apiName": "Govt_Ownership__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "6.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Govt_Ownership_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Govt_Ownership__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "7",
+          "displayText": "Has a foreign or domestic governmental entity found the Referral Partner or any Referral Partner Leaders or Related Entities to be in violation of Government laws or regulations?",
+          "apiName": "Govt_Violation__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "7.1.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Govt_Violation_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Govt_Violation__c",
+            "value": "Yes"
+          }
+        }
+      ]
+    },
+    {
+      "stepNumber": 3,
+      "title": "Contracting History Questions",
+      "questions": [
+        {
+          "isHeading": false,
+          "questionNumber": "8",
+          "displayText": "In the last seven (7) years has the Referral Partner, any of its Related Entities, or Referral Partner Leaders been the subject of any bankruptcy proceedings, whether or not closed, or is any bankruptcy proceeding pending?",
+          "apiName": "Bankruptcy__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "8.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Bankruptcy_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Bankruptcy__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "9",
+          "displayText": "Within the last two (2) year period has the Referral Partner, any of its Related Entities, or Referral Partner Leaders, acted as a referral partner, reseller, or consultant to any company, person, or entity engaged in the sale of linear generators, fuel cells, turbines, engines, or any company, person, or entity that could reasonably expected to be in competition with Mainspring (collectively, a \"Competitor\")?",
+          "apiName": "Competitor_Engagement__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "9.1",
+          "displayText": "If Yes, please provide details:",
+          "apiName": "Competitor_Engagement_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Competitor_Engagement__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "10",
+          "displayText": "Does the Referral Partner, any of its Related Entities, or Referral Partner Leaders have any financial or ownership interests in or otherwise exercise influence over a Competitor?",
+          "apiName": "Competitor_Interest__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "10.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Competitor_Interest_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Competitor_Interest__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "11",
+          "displayText": "Is there any threatened, pending, or active civil or criminal litigation, arbitration, administrative proceeding, or governmental investigation against Referral Partner, any of its Related Entities, or Referral Partner Leaders?",
+          "apiName": "Litigation__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "11.1",
+          "displayText": "If Yes, provide details, including, if applicable, case citations:",
+          "apiName": "Litigation_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Litigation__c",
+            "value": "Yes"
+          }
+        }
+      ]
+    },
+    {
+      "stepNumber": 4,
+      "title": "Officer Questions",
+      "questions": [
+        {
+          "isHeading": true,
+          "questionNumber": "12",
+          "displayText": "In the past five (5) years has any of Referral Partner, Referral Partner Leaders, or Related Entities:",
+          "apiName": null,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.1",
+          "displayText": "Been suspended or debarred or disqualified from any Government contracting or procurement process?",
+          "apiName": "Suspended_Debarred__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.1.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Suspended_Debarred_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Suspended_Debarred__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.2",
+          "displayText": "Been defaulted on or been suspended, canceled, or terminated for cause on any contract, whether Government or private sector?",
+          "apiName": "Contract_Default__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.2.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Contract_Default_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Contract_Default__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.3",
+          "displayText": "Been subject to an administrative proceeding or civil action, including arbitration, seeking specific performance, or restitution in connection with any contract whether Government or private sector?",
+          "apiName": "Admin_Proceeding__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.3.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Admin_Proceeding_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Admin_Proceeding__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.4",
+          "displayText": "Been called upon by a surety to complete any contract, whether Government or private sector?",
+          "apiName": "Surety_Completion__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.4.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Surety_Completion_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Surety_Completion__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.5",
+          "displayText": "Had a revocation or suspension of any business or professional permit and/or license?",
+          "apiName": "License_Revocation__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.5.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "License_Revocation_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "License_Revocation__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.6",
+          "displayText": "Been the subject of a criminal investigation, whether open or closed, or an indictment for any business-related conduct constituting a crime under any Government's laws or regulations?",
+          "apiName": "Criminal_Investigation__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.6.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Criminal_Investigation_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Criminal_Investigation__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.7",
+          "displayText": "Been the subject of an indictment, judgment, or conviction (including entering into a plea bargain) for conduct constituting a crime by any Government?",
+          "apiName": "Conviction__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.7.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Conviction_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Conviction__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.8",
+          "displayText": "Entered into a consent order, monitoring agreement, or other type of oversight with any Government entity involving a violation of local, state, federal, or international environmental laws or regulations?",
+          "apiName": "Environmental_Order__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.8.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Environmental_Order_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Environmental_Order__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.9",
+          "displayText": "Been determined by any Government to have committed a willful violation of a labor law or regulation?",
+          "apiName": "Labor_Violation__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.9.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Labor_Violation_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Labor_Violation__c",
+            "value": "Yes"
+          }
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.10",
+          "displayText": "Been the subject of an investigation or deemed in violation of or non-compliance with any Government's security or finance laws?",
+          "apiName": "Security_Finance_Violation__c",
+          "type": "radio",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "12.10.1",
+          "displayText": "If Yes, provide details:",
+          "apiName": "Security_Finance_Details__c",
+          "type": "textarea",
+          "required": true,
+          "indentLevel": 1,
+          "dependsOn": {
+            "apiName": "Security_Finance_Violation__c",
+            "value": "Yes"
+          }
+        }
+      ]
+    },
+    {
+      "stepNumber": 5,
+      "title": "Certifications",
+      "questions": [
+        {
+          "isHeading": true,
+          "questionNumber": "13",
+          "displayText": "Referral Partner hereby certifies that:",
+          "apiName": null,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "13.1",
+          "displayText": "The Referral Partner's referrals will be arrived at independently, without collusion, consultation, communication, or agreement, for the purposes of restricting competition, as to any matter relating to such prices with any other Competitor.",
+          "apiName": "Cert_13_1__c",
+          "type": "checkbox",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "",
+          "displayText": "Signatory Initials",
+          "apiName": "Cert_13_1_Signatory__c",
+          "type": "text",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "13.2",
+          "displayText": "The Referral Partner and its Related Entities and Referral Partner Leaders have not engaged in collusion, consultation, communication, or agreement for the purposes of restricting competition as to any matter relating to prices or competition.",
+          "apiName": "Cert_13_2__c",
+          "type": "checkbox",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "",
+          "displayText": "Signatory Initials",
+          "apiName": "Cert_13_2_Signatory__c",
+          "type": "text",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "13.3",
+          "displayText": "The Referral Partner, Related Entities, and Referral Partner Leaders are in compliance with all applicable economic and trade sanctions administered by the U.S. Department of the Treasury's Office of Foreign Assets Control and has not knowingly engaged in any transactions or dealings with individuals or entities that are subject to OFAC sanctions.",
+          "apiName": "Cert_13_3__c",
+          "type": "checkbox",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "",
+          "displayText": "Signatory Initials",
+          "apiName": "Cert_13_3_Signatory__c",
+          "type": "text",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "13.4",
+          "displayText": "The Referral Partner agrees to disclose any other business relationship it has with a prospective customer relating to a specific Lead.",
+          "apiName": "Cert_13_4__c",
+          "type": "checkbox",
+          "required": true,
+          "indentLevel": 1
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "",
+          "displayText": "Signatory Initials",
+          "apiName": "Cert_13_4_Signatory__c",
+          "type": "text",
+          "required": true,
+          "indentLevel": 1
+        }
+      ]
+    },
+    {
+      "stepNumber": 6,
+      "title": "Final Review & Signature",
+      "questions": [
+        {
+          "isHeading": true,
+          "questionNumber": "",
+          "variant": "disclaimer",
+          "displayText": "By signing below Referral Partner, by and through its Signatory, certifies and affirms that it has provided information that is complete, true and accurate. Referral Partner understands that Mainspring reserves the right to terminate any resulting contract or agreement by and between Referral Partner and Mainspring (including any contracts between such parties and a third-party), without further obligation or liability, in the event it is found that any certification completed or information provided by Referral Partner was false, misleading, or intentionally incomplete. Upon such finding, Mainspring may exercise its right to terminate any or all agreements by providing written notice to Referral Partner.",
+          "apiName": null,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "",
+          "displayText": "Referral Partner Legal Entity Name",
+          "apiName": "Signatory_Legal_Entity__c",
+          "type": "text",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "",
+          "displayText": "Signatory Name and Title",
+          "apiName": "Signatory_Name_Title__c",
+          "type": "text",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "",
+          "displayText": "Signatory Email Address",
+          "apiName": "Signatory_Email__c",
+          "type": "email",
+          "placeholder": "john@company.com",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "",
+          "displayText": "Digital Signature (Type full name):",
+          "apiName": "Final_Signature__c",
+          "type": "text",
+          "required": true,
+          "indentLevel": 0
+        },
+        {
+          "isHeading": false,
+          "questionNumber": "",
+          "displayText": "Date",
+          "apiName": "Submission_Date__c",
+          "type": "date",
+          "required": true,
+          "indentLevel": 0
+        }
+      ]
+    }
+  ]
+};

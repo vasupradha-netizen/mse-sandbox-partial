@@ -1,0 +1,63 @@
+<template>
+  <lightning-card>
+    <div class="page-container slds-p-horizontal_x-small">
+      <template if:true={detailsFetchedFromWoli}>
+        <template if:false={displaySpinner}>
+          <div class="install-woli-details">
+            <p class="slds-text-heading_small"><b>Root Asset: </b>{rootAssetSerial} | {rootAssetProductFamily}</p>
+            <p class="slds-text-heading_small"><b>L2 Asset: </b>{l2AssetSerial} | {l2AssetProductFamily}</p>
+            <p class="slds-text-heading_small"><b>Parent Asset: </b>{parentAssetSerial} | {parentAssetProductFamily}</p>
+          </div>
+        </template>
+      </template>
+      <template if:true={screenOne}>
+        <div class="screen-one-container"> 
+            <c-ms-fsm-install-asset-screen-one
+              dispo-picklist={dispoPicklist}
+              details-fetched-from-woli={detailsFetchedFromWoli}
+              object-to-send={objectToSend}></c-ms-fsm-install-asset-screen-one>
+        </div>  
+      </template>
+      <template if:true={screenTwo}>
+        <div class="screen-two-container">
+          <c-ms-fsm-install-asset-screen-two
+            details-fetched-from-woli={detailsFetchedFromWoli}
+            object-to-send={objectToSend}
+            serialized-product-suggestions={serializedProductSuggestions}
+            record-id={recordId}></c-ms-fsm-install-asset-screen-two>
+        </div>
+      </template>
+      <template if:true={screenThree}>
+        <div class="screen-three-container">
+          <template if:false={displaySpinner}>
+            <p class="slds-text-heading_small slds-align_absolute-center"><b>Click "Complete Install" to Install: {objectToSend.newAssetName}</b></p>
+          </template>
+            <template if:true={displaySpinner}>
+                <div class="slds-spinner_container">
+                  <p class="slds-text-heading_small slds-align_absolute-center"><b>Finalizing your {woliWorkType}</b></p>
+                  <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                  </div>
+                </div>
+            </template>
+            <div class="nav-button-container slds-p-top_x-large">
+            <template if:false={displaySpinner}>
+              <lightning-button variant="brand" label="COMPLETE INSTALL" title="Finish" onclick={createAllRecords} class="slds-m-left_x-small"></lightning-button>
+            </template>  
+            </div>
+        </div>
+      </template>
+    </div>
+  </lightning-card>
+  <template lwc:if={showError}>
+    <p>An error occurred.</p>
+    <p>{error}</p>
+    <p>Error Source: {errorSrc}</p>
+    <p>Current Version: {VERSION}</p>
+  </template>
+  <!-- <div style="width: 275px; word-wrap: break-word;">
+    <p>{inventoryLocationName}</p>
+    <p>{jsonInitial}</p>
+  </div> -->
+</template>

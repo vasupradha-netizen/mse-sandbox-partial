@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Highly_priced_responsive_flexible_loads__c</fullName>
+    <inlineHelpText>Does the customer have highly priced responsive, flexible loads?</inlineHelpText>
+    <label>Highly priced responsive/flexible loads?</label>
+    <length>131071</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Overdue_Calibration__c</fullName>
+    <formula>MS_FSM_Next_Calibration__c &lt; TODAY()</formula>
+    <label>Overdue Calibration</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

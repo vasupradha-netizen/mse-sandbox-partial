@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Capacity_of_a_single_core_kW__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>This is 1/2 of project max capacity as listed in the contract addendum.</inlineHelpText>
+    <label>Capacity of a single core (kW)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

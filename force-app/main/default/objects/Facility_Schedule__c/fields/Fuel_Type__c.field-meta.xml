@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fuel_Type__c</fullName>
+    <label>Fuel Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Natural Gas</fullName>
+                <default>false</default>
+                <label>Natural Gas</label>
+            </value>
+            <value>
+                <fullName>Hydrogen</fullName>
+                <default>false</default>
+                <label>Hydrogen</label>
+            </value>
+            <value>
+                <fullName>Propane</fullName>
+                <default>false</default>
+                <label>Propane</label>
+            </value>
+            <value>
+                <fullName>Biogas</fullName>
+                <default>false</default>
+                <label>Biogas</label>
+            </value>
+            <value>
+                <fullName>H2-NG Blend</fullName>
+                <default>false</default>
+                <label>H2-NG Blend</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

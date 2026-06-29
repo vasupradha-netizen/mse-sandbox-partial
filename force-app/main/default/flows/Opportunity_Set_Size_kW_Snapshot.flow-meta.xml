@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Set_Size_kW_Snapshot</name>
+        <label>Set Size kW Snapshot</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Size_kW_Snapshot__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Calculate_Size_kW_Snapshot</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <formulas>
+        <description>Set Size kW Snapshot</description>
+        <name>Calculate_Size_kW_Snapshot</name>
+        <dataType>Number</dataType>
+        <expression>IF(
+$Record.Size__c &gt; 0,
+$Record.Size__c,
+$Record.Number_of_Units__c * 250
+)</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <description>Set Size kW Snapshot</description>
+        <name>lculate_Size_kW_Snapshot</name>
+        <dataType>Number</dataType>
+        <expression>IF(
+$Record.Size__c &gt; 0,
+$Record.Size__c,
+$Record.Number_of_Units__c * 250
+)</expression>
+        <scale>0</scale>
+    </formulas>
+    <interviewLabel>Set Size kW Snapshot {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Set Size kW Snapshot</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Size_kW_Snapshot</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

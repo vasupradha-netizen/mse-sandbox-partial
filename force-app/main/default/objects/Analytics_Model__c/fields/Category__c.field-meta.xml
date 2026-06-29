@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <label>Modeling Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Simple indicative model in a known market</fullName>
+                <default>false</default>
+                <label>Simple indicative model in a known market - 2 days</label>
+            </value>
+            <value>
+                <fullName>Portfolio analysis</fullName>
+                <default>false</default>
+                <label>Portfolio analysis - 7 days</label>
+            </value>
+            <value>
+                <fullName>Standard indicative model in a known market</fullName>
+                <default>false</default>
+                <label>Standard indicative model in a known market - 3 days</label>
+            </value>
+            <value>
+                <fullName>Standard Indicative model in a new market</fullName>
+                <default>false</default>
+                <label>Standard Indicative model in a new market - 5 days</label>
+            </value>
+            <value>
+                <fullName>Detailed model</fullName>
+                <default>false</default>
+                <label>Detailed model - 6 days</label>
+            </value>
+            <value>
+                <fullName>Detailed multiphase or complex model</fullName>
+                <default>false</default>
+                <label>Detailed multiphase or complex model - 7 days</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

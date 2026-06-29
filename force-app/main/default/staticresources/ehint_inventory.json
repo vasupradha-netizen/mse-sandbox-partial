@@ -1,0 +1,135 @@
+{
+  "data": [
+    {
+      "10": {
+        "value": "9681512"
+      },
+      "3": {
+        "value": 11559
+      },
+      "33": {
+        "value": "E0132042_A"
+      },
+      "39": {
+        "value": "ea"
+      },
+      "47": {
+        "value": "FS1"
+      },
+      "341": {
+        "value": 1
+      },
+      "1029": {
+        "value": null
+      },
+      "1012": {
+        "value": true
+      },
+      "1022": {
+        "value" : "1234"
+      }
+    },
+    {
+      "10": {
+        "value": "9681551"
+      },
+      "3": {
+        "value": 12735
+      },
+      "33": {
+        "value": "E0132042_A"
+      },
+      "39": {
+        "value": "ea"
+      },
+      "47": {
+        "value": "FS1"
+      },
+      "341": {
+        "value": 1
+      },
+      "1029": {
+        "value": null
+      },
+      "1012": {
+        "value": false
+      },
+      "1022": {
+        "value" : "xyz"
+      }
+    },
+    {
+      "10": {
+        "value": "100003703"
+      },
+      "3": {
+        "value": 15759
+      },
+      "33": {
+        "value": "E0129088_A"
+      },
+      "39": {
+        "value": "ea"
+      },
+      "47": {
+        "value": "FS3"
+      },
+      "341": {
+        "value": 1
+      },
+      "1029": {
+        "value": 10
+      },
+      "1012": {
+        "value": true
+      },
+      "1022": {
+        "value" : "abc"
+      }
+    }
+  ],
+  "fields": [
+    {
+      "id": 10,
+      "label": "Serial Number",
+      "type": "text"
+    },
+    {
+      "id": 33,
+      "label": "Eng Part No_Rev",
+      "type": "text"
+    },
+    {
+      "id": 39,
+      "label": "Serial Number - UoM",
+      "type": "text"
+    },
+    {
+      "id": 47,
+      "label": "Location",
+      "type": "text"
+    },
+    {
+      "id": 7,
+      "label": "Inventory Quantity",
+      "type": "numeric"
+    },
+    {
+      "id": 81,
+      "label": "Serial Number - Line Item - Price",
+      "type": "currency"
+    },
+    {
+      "id": 3,
+      "label": "Record ID#",
+      "type": "recordid"
+    }
+  ],
+  "metadata": {
+    "numFields": 7,
+    "numRecords": 3,
+    "skip": 0,
+    "top": 3,
+    "totalRecords": 1664
+  }
+}

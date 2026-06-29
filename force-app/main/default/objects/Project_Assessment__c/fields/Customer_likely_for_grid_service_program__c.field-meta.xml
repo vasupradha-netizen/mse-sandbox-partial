@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_likely_for_grid_service_program__c</fullName>
+    <inlineHelpText>&quot;Is the customer electricity use profile a likely candidate for grid service programs?(Reach out to Brian Kauffman if unsure)&quot;</inlineHelpText>
+    <label>Customer likely for grid service program</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Checking for null values</description>
+        <name>Does_PC_State_Exist</name>
+        <label>Does PC State Exist?</label>
+        <locationX>374</locationX>
+        <locationY>492</locationY>
+        <defaultConnectorLabel>Null Value</defaultConnectorLabel>
+        <rules>
+            <name>Yes_PC_State_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Product_Consumed_State</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Serialized_Product_Platform_Event</targetReference>
+            </connector>
+            <label>Yes PC State Exists</label>
+        </rules>
+    </decisions>
+    <description>The purpose of this flow is to update the product consumed related to a serialized product. This is to finalize the transaction and prevent conflicts with standard SFS functionality 4/16-Update wait to 5 mins 4/22-Update Serialized Product Id to pull from PC State instead of WOLI</description>
+    <environments>Default</environments>
+    <interviewLabel>MS_FSM_Product Consumed - Create - Finalize Consumption {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MS_FSM_Product Consumed - Create - Finalize Consumption</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Updating the Serialized Product with the Asset Id. Performing this in a separate transaction to avoid conflicts with standard SFS functionality</description>
+        <name>Create_Serialized_Product_Platform_Event</name>
+        <label>Create Serialized Product Platform Event</label>
+        <locationX>242</locationX>
+        <locationY>600</locationY>
+        <inputAssignments>
+            <field>FSM_MS_Asset_Id__c</field>
+            <value>
+                <elementReference>$Record.WorkOrderLineItem.MS_FSM_Installed_Asset__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>FSM_MS_Serialized_Product_Id__c</field>
+            <value>
+                <elementReference>Get_Product_Consumed_State.SerializedProductId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>FSM_MS_Serialized_Product_Update__e</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <description>Used to store the Serialized Product Id</description>
+        <name>Get_Product_Consumed_State</name>
+        <label>Get Product Consumed State</label>
+        <locationX>374</locationX>
+        <locationY>384</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Does_PC_State_Exist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ProductConsumedId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>ProductConsumedState</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Sets the values to consume</description>
+        <name>Update_Product_Consumed_to_Consumed</name>
+        <label>Update Product Consumed to Consumed</label>
+        <locationX>374</locationX>
+        <locationY>276</locationY>
+        <connector>
+            <targetReference>Get_Product_Consumed_State</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>IsConsumed</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>MS_FSM_Needs_Finalized__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>QuantityConsumed</field>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>MS_FSM_Needs_Finalized__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>ProductConsumed</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <scheduledPaths>
+            <name>Five_Minutes_After_Create</name>
+            <connector>
+                <targetReference>Update_Product_Consumed_to_Consumed</targetReference>
+            </connector>
+            <label>Five Minutes After Create</label>
+            <maxBatchSize>1</maxBatchSize>
+            <offsetNumber>5</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <timeSource>RecordTriggerEvent</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Tech_Re_Before_Starting__c</fullName>
+    <description>Field for reply from technician on question: &quot;What else are you going to do before starting the LGen?&quot;</description>
+    <inlineHelpText>Technician response for: &quot;What else are you going to do before starting the LGen?&quot;</inlineHelpText>
+    <label>Tech Response Steps Before Starting</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

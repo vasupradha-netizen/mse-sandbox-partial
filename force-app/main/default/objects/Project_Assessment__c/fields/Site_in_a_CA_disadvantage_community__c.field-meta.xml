@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Site_in_a_CA_disadvantage_community__c</fullName>
+    <inlineHelpText>Is the site located in a CA disadvantaged community, indicating it could be eligible for gov&apos;t funding?</inlineHelpText>
+    <label>Site in a CA disadvantage community?</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

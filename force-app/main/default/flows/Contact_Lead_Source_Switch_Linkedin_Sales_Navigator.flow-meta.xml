@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>Created for EDS-4521. 
+This flow works in conjunction with the LinkedIn Sales Navigator integration, which creates contacts with the lead source of Linkedin Sales Navigator. This flow then splits that out across lead source and lead source detail, as LISN integration is incapable of setting the lead source detail field directly.</description>
+    <environments>Default</environments>
+    <interviewLabel>Contact - Lead Source Switch - Linkedin Sales Navigator {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contact - Lead Source Switch - Linkedin Sales Navigator</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>update_Lead_Source_Lead_Source_Detail</name>
+        <label>update Lead Source &amp; Lead Source Detail</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>LeadSource</field>
+            <value>
+                <stringValue>LinkedIn</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Lead_Source_Detail__c</field>
+            <value>
+                <stringValue>Sales Navigator</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>update_Lead_Source_Lead_Source_Detail</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>LeadSource</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>LinkedIn Sales Navigator</stringValue>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

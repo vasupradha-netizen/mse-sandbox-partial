@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Created_by_SDR_Check</name>
+        <label>Created by SDR Check</label>
+        <locationX>314</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Created_by_Sales</name>
+            <conditionLogic>(1 OR 2 OR 3) AND 4</conditionLogic>
+            <conditions>
+                <leftValueReference>$UserRole.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Undefined_Team_Executive_Roll_up</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$UserRole.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Channel_Development_Partnerships</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$UserRole.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sales_Development_Representative</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Standard_Sale</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Status_Update</targetReference>
+            </connector>
+            <label>Created by SDR</label>
+        </rules>
+        <rules>
+            <name>Not_Created_by_SDR</name>
+            <conditionLogic>1 AND 2 AND 3 AND 4</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Standard_Sale</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$UserRole.DeveloperName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Undefined_Team_Executive_Roll_up</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$UserRole.DeveloperName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Channel_Development_Partnerships</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$UserRole.DeveloperName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Sales_Development_Representative</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>initial_assessment</targetReference>
+            </connector>
+            <label>Not Created by SDR</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>autocloseday</name>
+        <dataType>Date</dataType>
+        <expression>TODAY() +273</expression>
+    </formulas>
+    <interviewLabel>Update stage SDR {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update stage SDR</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>initial_assessment</name>
+        <label>initial assessment</label>
+        <locationX>314</locationX>
+        <locationY>395</locationY>
+        <inputAssignments>
+            <field>CloseDate</field>
+            <value>
+                <elementReference>autocloseday</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>StageName</field>
+            <value>
+                <stringValue>Initial Assessment</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Status_Update</name>
+        <label>Status Update</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <inputAssignments>
+            <field>CloseDate</field>
+            <value>
+                <elementReference>autocloseday</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>StageName</field>
+            <value>
+                <stringValue>Preliminary Meeting</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>188</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Created_by_SDR_Check</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

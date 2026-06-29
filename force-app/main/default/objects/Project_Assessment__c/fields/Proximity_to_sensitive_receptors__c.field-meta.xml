@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Proximity_to_sensitive_receptors__c</fullName>
+    <inlineHelpText>Special requirements related to proximity to sensitive receptors (e.g., schools or residential areas)?</inlineHelpText>
+    <label>Proximity to sensitive receptors?</label>
+    <length>32768</length>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,78 @@
+<template>
+    <lightning-card variant="narrow" class="custom-card">
+        
+        <div class="slds-p-around_medium custom-dark-header">
+            <h2 class="slds-text-heading_medium slds-m-bottom_xxx-small slds-display_flex slds-align-items_center">
+                <lightning-icon icon-name="utility:warning" size="small" variant="inverse" class="slds-m-right_x-small"></lightning-icon>
+                Due Diligence Responses
+            </h2>
+        </div>
+
+        <div class="slds-p-around_medium slds-theme_default">
+            
+            <template if:true={isLoading}>
+                <div class="slds-is-relative slds-m-vertical_xx-large">
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:false={isLoading}>
+                <lightning-tabset variant="scoped">
+                    
+                    <template for:each={processedSchema} for:item="step">
+                        <lightning-tab label={step.title} key={step.stepNumber}>
+                            
+                            <h3 class="section-title slds-m-bottom_medium">{step.title}</h3>
+
+                            <div class="slds-grid slds-grid_vertical">
+                                <template for:each={step.questions} for:item="q">
+                                    
+                                    <div class="slds-col slds-size_1-of-1 slds-p-bottom_medium slds-p-horizontal_small" key={q.uniqueKey} if:true={q.isVisible}>
+                                        
+                                        <template if:true={q.isHeadingOnly}>
+                                            <div class="slds-text-heading_small slds-m-top_small slds-text-color_default slds-text-title_bold">
+                                                {q.fullText}
+                                            </div>
+                                        </template>
+
+                                        <template if:false={q.isHeadingOnly}>
+                                            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-border_bottom slds-p-bottom_x-small">
+                                                
+                                                <span class="slds-form-element__label custom-label-bold">
+                                                    {q.shortLabel}
+                                                </span>
+                                                
+                                                <div class="slds-form-element__control slds-m-top_xx-small">
+                                                    <div class="slds-form-element__static slds-text-color_default">
+                                                        
+                                                        <template if:true={q.isStandardText}>
+                                                            <lightning-formatted-text value={q.currentValue}></lightning-formatted-text>
+                                                        </template>
+
+                                                        <template if:true={q.isEmail}>
+                                                            <lightning-formatted-email value={q.currentValue}></lightning-formatted-email>
+                                                        </template>
+
+                                                        <template if:true={q.isBooleanType}>
+                                                            <div class="slds-display_flex slds-align-items_center">
+                                                                <lightning-icon icon-name={q.booleanIcon} size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                                                                {q.currentValueDisplay}
+                                                            </div>
+                                                        </template>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+
+                                    </div>
+                                </template>
+                            </div>
+
+                        </lightning-tab>
+                    </template>
+                </lightning-tabset>
+            </template>
+        </div>
+    </lightning-card>
+</template>

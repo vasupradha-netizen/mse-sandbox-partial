@@ -1,0 +1,236 @@
+/* ==========================================================
+   DESIGN TOKENS — mirrors parent's token set
+   ========================================================== */
+:host {
+    --mainspring-black:  #0B132B;
+    --mainspring-orange: #FF4500;
+    --border-light:      #E5E7EB;
+    display: block;
+}
+
+/* ==========================================================
+   REVIEW WRAPPER & HEADER
+   ========================================================== */
+.review-wrapper {
+    flex:1;
+    /* Prevent any child from busting out of the card */
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.review-header {
+    padding-bottom: 1.75rem;
+}
+
+.review-main-title {
+    font-size: 1.0rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.5rem;
+    font-family: 'GT America', 'Inter', sans-serif;
+}
+
+.review-subtitle {
+    font-size: 0.85rem;
+    color: #6B7280;
+    margin: 0;
+    font-family: 'GT America', 'Inter', sans-serif;
+    line-height: 1.5;
+}
+
+/* ==========================================================
+   REVIEW SECTIONS — one block per schema step
+   ========================================================== */
+.review-section {
+    /* Extra vertical breathing room between sections */
+    padding-bottom: 1.5rem;
+}
+
+/* Orange uppercase section heading — matches the form step headings */
+.review-section-heading {
+    padding: 1.1rem 0;
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 0.25rem;
+}
+
+.review-section-heading span {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--mainspring-orange);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-family: 'GT America', 'Inter', sans-serif;
+}
+
+/* ==========================================================
+   REVIEW ROWS — Question / Answer key-value pairs
+   The key fixes here:
+     1. min-width: 0 on the row AND on the label — this is the
+        critical CSS property that lets flex children shrink
+        below their natural content size (preventing overflow).
+     2. overflow-wrap / word-break on the label text.
+   ========================================================== */
+.review-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1 rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #F3F4F6;
+    /* ▼ Prevents the row itself from overflowing its flex parent */
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.review-row:last-child {
+    border-bottom: none;
+}
+
+/* Long-text (textarea) rows stack the label above the full-width answer
+   block instead of the default side-by-side label/answer layout. */
+.review-row:has(> .row-longtext) {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* Indented rows — conditional sub-question revealed by a Yes answer */
+.review-row_indented {
+    padding-left: 1.5rem;
+    /*border-left: 3px solid #FED7C3;
+    background-color: #FFF9F7;*/
+    border-radius: 0 4px 4px 0;
+    margin: 0.25rem 0;
+}
+
+.review-row_deep-indented {
+    padding-left: 3rem;
+    /*border-left: 3px solid #FED7C3;
+    background-color: #FFF9F7;*/
+    border-radius: 0 4px 4px 0;
+    margin: 0.25rem 0;
+}
+
+/* ── Row label (question text, left side) ── */
+.row-label {
+    flex: 1 1 0%;             /* grow + shrink, min-content = 0 */
+    min-width: 0;             /* ← THE critical fix for text overflow */
+    font-size: 0.9rem;
+    color: #374151;
+    line-height: 1.55;
+    font-family: 'GT America', 'Inter', sans-serif;
+    margin: 0;
+    padding-right: 1rem;
+    /* Text wrapping properties */
+    overflow-wrap: break-word;
+    word-wrap:     break-word;
+    word-break:    break-word;
+}
+
+/* ── Row answer (right side) ── */
+.row-answer {
+    flex-shrink: 0;
+    flex-grow: 0;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* Give answers a sensible max so very long text wraps */
+    max-width: 45%;
+}
+
+.row-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111827;
+    font-family: 'GT America', 'Inter', sans-serif;
+    /* Allow long email addresses / URLs to wrap */
+    overflow-wrap: break-word;
+    word-break:    break-all;
+    text-align:    right;
+}
+
+/* Full-width block for long (textarea) answers — avoids the cramped
+   45%-wide, character-by-character wrapped column. */
+.row-longtext {
+    width: 100%;
+    margin: 0.5rem 0 0;
+    padding: 1rem 1.25rem;
+    background-color: #FFF9F7;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111827;
+    line-height: 1.6;
+    font-family: 'GT America', 'Inter', sans-serif;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    box-sizing: border-box;
+}
+
+.answer-empty {
+    font-size: 0.9rem;
+    color: #9CA3AF;
+    font-style: italic;
+}
+
+/* Checkbox "✓ Agreed" indicator */
+.answer-agreed {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #166534;
+    white-space: nowrap;
+}
+
+/* ==========================================================
+   YES / NO PILL BADGES
+   Dark navy = No  |  green = Yes
+   ========================================================== */
+.review-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    min-width: 32px;
+    letter-spacing: 0.25px;
+    font-family: 'GT America', 'Inter', sans-serif;
+    white-space: nowrap;
+}
+
+.review-badge_no {
+    background-color: var(--mainspring-black);
+    color: #FFFFFF;
+}
+
+.review-badge_yes {
+    background-color: #166534;
+    color: #FFFFFF;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 680px) {
+    .review-row {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    .row-answer {
+        text-align:  left;
+        justify-content: flex-start;
+        max-width: 100%;
+    }
+
+    .row-text { text-align: left; }
+
+    .review-badge { min-width: 44px; }
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Tech_Resp_OK_to_Start__c</fullName>
+    <description>Field for reply from technician on question: &quot;Communicated &quot;Ok to start&quot; to FOA engineer?&quot;</description>
+    <inlineHelpText>Technician reply for: &quot;Communicated &quot;Ok to start&quot; to FOA engineer?&quot;</inlineHelpText>
+    <label>Technician Response OK to Start</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

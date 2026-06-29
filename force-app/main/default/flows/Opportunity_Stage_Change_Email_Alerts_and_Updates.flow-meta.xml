@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Closed_Lost_Email</name>
+        <label>Closed Lost Email</label>
+        <locationX>1634</locationX>
+        <locationY>539</locationY>
+        <actionName>Opportunity.Close_Lost_Late_Stage_Opportunity</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Opportunity.Close_Lost_Late_Stage_Opportunity</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Closed_Won_Email</name>
+        <label>Closed Won Email</label>
+        <locationX>974</locationX>
+        <locationY>431</locationY>
+        <actionName>Opportunity.DealClosed</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Referral_Partner</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Opportunity.DealClosed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Closed_Won_Indirect_Email</name>
+        <label>Closed Won (Indirect) Email</label>
+        <locationX>2954</locationX>
+        <locationY>431</locationY>
+        <actionName>Opportunity.Closed_Won_Notification_Indirect</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Opportunity.Closed_Won_Notification_Indirect</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Early_Stage_Close_Lost_Opportunity_Email</name>
+        <label>Early Stage Close Lost Opportunity Email</label>
+        <locationX>1370</locationX>
+        <locationY>539</locationY>
+        <actionName>Opportunity.Close_Lost_Early_Stage_Opportunity</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Opportunity.Close_Lost_Early_Stage_Opportunity</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Firm_Proposal_Email</name>
+        <label>Firm Proposal Email</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <actionName>Opportunity.Firm_Proposal_Opportunity</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Opportunity.Firm_Proposal_Opportunity</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Firm_Proposal_Indirect_Email</name>
+        <label>Firm Proposal (Indirect) Email</label>
+        <locationX>2426</locationX>
+        <locationY>431</locationY>
+        <actionName>Opportunity.Firm_Proposal_Stage_Notification_Indirect</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Opportunity.Firm_Proposal_Stage_Notification_Indirect</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Indicative_Proposal_Email</name>
+        <label>Indicative Proposal Email</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <actionName>Opportunity.Indicative_Proposal_Opportunity</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Opportunity.Indicative_Proposal_Opportunity</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Negotiating_Contract_Email</name>
+        <label>Negotiating Contract Email</label>
+        <locationX>578</locationX>
+        <locationY>431</locationY>
+        <actionName>Opportunity.Negotiating_Contract_Opportunity</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Opportunity.Negotiating_Contract_Opportunity</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Negotiating_Contract_Indirect_Email</name>
+        <label>Negotiating Contract (Indirect) Email</label>
+        <locationX>2690</locationX>
+        <locationY>431</locationY>
+        <actionName>Opportunity.Negotiating_Contract_Stage_Notification_Indirect</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Opportunity.Negotiating_Contract_Stage_Notification_Indirect</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Proposal_RFP_Generation_Email</name>
+        <label>Proposal/RFP Generation Email</label>
+        <locationX>2162</locationX>
+        <locationY>431</locationY>
+        <actionName>Opportunity.Proposal_RFP_Generation_Stage_Notification</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Opportunity.Proposal_RFP_Generation_Stage_Notification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Referral_Partner_Won_Email</name>
+        <label>Referral Partner Won Email</label>
+        <locationX>842</locationX>
+        <locationY>647</locationY>
+        <actionName>Opportunity.Referral_Partner_Won_Opportunity</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Opportunity.Referral_Partner_Won_Opportunity</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Term_Sheet_Email</name>
+        <label>Term Sheet Email</label>
+        <locationX>1898</locationX>
+        <locationY>431</locationY>
+        <actionName>Opportunity.Term_Sheet_Stage_Notification</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <stringValue>{!$Record.Id}</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>Opportunity.Term_Sheet_Stage_Notification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Referral_Partner</name>
+        <label>Referral Partner</label>
+        <locationX>974</locationX>
+        <locationY>539</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Referral_Partner_Check</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Referral_Partner__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Referral_Partner_Won_Email</targetReference>
+            </connector>
+            <label>Referral Partner Check</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Stage_Change</name>
+        <label>Stage Change</label>
+        <locationX>1634</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Indicative_Proposal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Indicative Proposal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Initial Assessment</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Indicative_Proposal_Email</targetReference>
+            </connector>
+            <label>Indicative Proposal</label>
+        </rules>
+        <rules>
+            <name>Firm_Proposal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Firm Proposal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Indicative Proposal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Sales_Channel__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Direct</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Firm_Proposal_Email</targetReference>
+            </connector>
+            <label>Firm Proposal</label>
+        </rules>
+        <rules>
+            <name>Negotiating_Contract</name>
+            <conditionLogic>1 AND 2 AND (3 AND 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Negotiating Contract</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Sales_Channel__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Direct</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Lost</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Negotiating_Contract_Email</targetReference>
+            </connector>
+            <label>Negotiating Contract</label>
+        </rules>
+        <rules>
+            <name>Closed_Won</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Sales_Channel__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Direct</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Closed_Won_Email</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Closed Won</label>
+        </rules>
+        <rules>
+            <name>Closed_Lost_Early_Stage</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Lost</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Preliminary Meeting</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Preliminary Discussions</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Initial Assessment</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_Early_Stage</targetReference>
+            </connector>
+            <label>Closed Lost (Early Stage)</label>
+        </rules>
+        <rules>
+            <name>Closed_Lost_Late_Stage</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Reason_Lost_Primary__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Duplicate / Ignore</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Lost</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Preliminary Meeting</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Initial Assessment</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Preliminary Discussions</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity</targetReference>
+            </connector>
+            <label>Closed Lost (Late Stage)</label>
+        </rules>
+        <rules>
+            <name>Term_Stage</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Term Sheet</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Development_Sale</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Proposal/RFP Generation</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Term_Sheet_Email</targetReference>
+            </connector>
+            <label>Term Stage</label>
+        </rules>
+        <rules>
+            <name>Proposal_RFP_Generation_Stage</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Proposal/RFP Generation</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Development_Sale</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Preliminary Discussions</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Proposal_RFP_Generation_Email</targetReference>
+            </connector>
+            <label>Proposal/RFP Generation Stage</label>
+        </rules>
+        <rules>
+            <name>Firm_Proposal_Indirect</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Firm Proposal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Sales_Channel__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Indirect_MSE_Reseller</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Indicative Proposal</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Firm_Proposal_Indirect_Email</targetReference>
+            </connector>
+            <label>Firm Proposal (Indirect)</label>
+        </rules>
+        <rules>
+            <name>Negotiating_Contract_Indirect</name>
+            <conditionLogic>1 AND 2 AND (3 AND 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Negotiating Contract</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Sales_Channel__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Indirect_MSE_Reseller</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.StageName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Lost</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Negotiating_Contract_Indirect_Email</targetReference>
+            </connector>
+            <label>Negotiating Contract (Indirect)</label>
+        </rules>
+        <rules>
+            <name>Closed_Won_Indirect</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Sales_Channel__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Indirect_MSE_Reseller</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Closed_Won_Indirect_Email</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Closed Won (Indirect)</label>
+        </rules>
+    </decisions>
+    <description>Email alerts sent to business stakeholders and record updates triggered from Opportunity Updates</description>
+    <environments>Default</environments>
+    <interviewLabel>Opportunity Stage Change Email Alerts and Updates {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Stage Change Email Alerts and Updates</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Opportunity</name>
+        <label>Update Opportunity</label>
+        <locationX>1634</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Closed_Lost_Email</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>CloseDate</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Stage_Lost_From__c</field>
+            <value>
+                <elementReference>$Record__Prior.StageName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Opportunity_Early_Stage</name>
+        <label>Update Opportunity Early Stage</label>
+        <locationX>1370</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Early_Stage_Close_Lost_Opportunity_Email</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>CloseDate</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Stage_Lost_From__c</field>
+            <value>
+                <elementReference>$Record__Prior.StageName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>1508</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Stage_Change</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>StageName</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

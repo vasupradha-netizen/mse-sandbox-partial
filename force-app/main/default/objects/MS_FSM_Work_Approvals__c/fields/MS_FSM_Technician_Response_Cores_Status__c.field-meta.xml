@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Technician_Response_Cores_Status__c</fullName>
+    <description>Field for technician&apos;s response to question: &quot;What is the current status of the LGen? (cores running/ cores not running)?</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Technician response: &quot;What is the current status of the LGen? (cores running/ cores not running)?</inlineHelpText>
+    <label>Technician Response Cores Status</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

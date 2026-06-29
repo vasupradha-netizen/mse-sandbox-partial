@@ -1,0 +1,85 @@
+<template>
+  <template lwc:if={showComponent}>
+    <lightning-card>
+      <div class="page-container slds-p-horizontal_x-small">
+          <template if:true={detailsFetchedFromWoli}>
+            <template if:false={displaySpinner}>
+              <div class="install-woli-details">
+              <p class="slds-text-heading_small slds-text-align_center"><b>Root Asset: </b>{rootAssetSerial} | {rootAssetProductFamily}</p>
+                <template if:true={l2AssetSerial}>
+                  <p class="slds-text-heading_small slds-text-align_center"><b>L2 Asset: </b>{l2AssetSerial} | {l2AssetProductFamily}</p>
+                </template>
+                <template if:false={workTypeIsRemove}>
+                  <p class="slds-text-heading_small"><b>Parent Asset: </b>{parentAssetSerial} | {parentAssetProductFamily}</p>
+                </template>
+              </div>
+            </template>
+          </template>
+        <template lwc:if={screenOne}>
+          <div class="screen-one-container"> 
+              <c-ms-fsm-asset-actions-screen-one
+                display-override-date-time-select={displayOverrideDateTimeSelect}
+                dispo-picklist={dispoPicklist}
+                details-fetched-from-woli={detailsFetchedFromWoli}
+                object-to-send={objectToSend}></c-ms-fsm-asset-actions-screen-one>
+          </div>  
+        </template>
+        <template lwc:if={screenTwo}>
+          <template if:false={workTypeIsRemove}>
+            <div class="screen-two-container">
+              <c-ms-fsm-asset-actions-screen-two
+                serialized-product-sn-only={serializedProductSnOnly}
+                details-fetched-from-woli={detailsFetchedFromWoli}
+                object-to-send={objectToSend}
+                record-id={recordId}></c-ms-fsm-asset-actions-screen-two>
+            </div>
+          </template>
+        </template>
+        <template lwc:if={screenThree}> 
+          <div class="screen-three-container">
+            <template if:false={displaySpinner}>
+              <template if:true={workTypeIsRework}>
+                <p class="slds-text-heading_small"><b>Click "Complete Rework" to Rework:</b> {objectToSend.newAssetName}</p>
+                <div class="nav-button-container slds-p-top_x-large">
+                    <lightning-button variant="brand" label="COMPLETE REWORK" title="Finish" onclick={handleCompleteInstall} class="slds-m-left_x-small" disabled={recordUpdateButtonDisabled}></lightning-button>
+                </div>
+              </template>
+              <template if:true={workTypeIsNotRemoveOrRework}>
+                <p class="slds-text-heading_small"><b>Click "Complete Install" to Install:</b> {objectToSend.newAssetName}</p>
+                <div class="nav-button-container slds-p-top_x-large">
+                    <lightning-button variant="brand" label="COMPLETE INSTALL" title="Finish" onclick={handleCompleteInstall} class="slds-m-left_x-small" disabled={recordUpdateButtonDisabled}></lightning-button>
+                </div>
+              </template>
+              <template if:true={workTypeIsRemove}>
+                <p class="slds-text-heading_small"><b>{detailsFetchedFromWoli.Asset.Name.value}</b> was <b> REMOVED </b> from <b> {detailsFetchedFromWoli.MS_FSM_Root_Asset__r.Name.value}</b></p>
+                <div class="nav-button-container slds-p-top_x-large">
+                  <lightning-button variant="brand" label="COMPLETE REMOVAL" title="Finish" onclick={handleCompleteInstall} class="slds-m-left_x-small"></lightning-button>
+                </div>
+              </template>
+            </template>
+              <template if:true={displaySpinner}>
+                  <div class="slds-spinner_container">
+                    <template if:false={missingInventoryScreen}>
+                      <p class="slds-text-heading_small"><b>Finalizing your</b> {woliWorkType}</p>
+                    </template>
+                    <template if:true={missingInventoryScreen}>
+                      <p class="slds-text-heading_small slds-align_absolute-center slds-p-top_x-large"><b>Submitting Your Missing Inventory</b></p>                  
+                    </template>
+                    <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                      <div class="slds-spinner__dot-a"></div>
+                      <div class="slds-spinner__dot-b"></div>
+                    </div>
+                  </div>
+              </template>
+          </div>
+        </template>
+      </div>
+    </lightning-card>
+  </template>
+  <template lwc:if={showError}>
+    <p>An error occurred.</p>
+    <p>{error}</p>
+    <p>Error Source: {errorSrc}</p>
+    <p>Current Version: {VERSION}</p>
+  </template>
+</template>

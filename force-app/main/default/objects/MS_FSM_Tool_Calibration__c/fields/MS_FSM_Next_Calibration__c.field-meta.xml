@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Next_Calibration__c</fullName>
+    <formula>IF( ISPICKVAL( MS_FSM_Calibration_Frequency__c, &quot;1 Month&quot; ), ADDMONTHS(MS_FSM_Last_Calibration__c, 1), 
+IF( ISPICKVAL( MS_FSM_Calibration_Frequency__c, &quot;3 Months&quot; ), ADDMONTHS(MS_FSM_Last_Calibration__c, 3), 
+IF( ISPICKVAL( MS_FSM_Calibration_Frequency__c, &quot;6 Months&quot; ), ADDMONTHS(MS_FSM_Last_Calibration__c, 6), 
+IF( ISPICKVAL( MS_FSM_Calibration_Frequency__c, &quot;1 year&quot; ), ADDMONTHS(MS_FSM_Last_Calibration__c, 12), 
+IF( ISPICKVAL( MS_FSM_Calibration_Frequency__c, &quot;2 years&quot; ), ADDMONTHS(MS_FSM_Last_Calibration__c, 24), 
+NULL)))))</formula>
+    <label>Next Calibration</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

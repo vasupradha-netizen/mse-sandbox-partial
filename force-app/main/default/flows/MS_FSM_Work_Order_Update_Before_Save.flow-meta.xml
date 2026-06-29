@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Work_Order_Start_Date</name>
+        <label>Assign Work Order Start Date</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.StartDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Changing_to_What_Status</name>
+        <label>Changing to What Status</label>
+        <locationX>314</locationX>
+        <locationY>395</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Changing_to_In_Progress</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>In Progress</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Work_Order_Start_Date</targetReference>
+            </connector>
+            <label>Changing to In Progress</label>
+        </rules>
+        <rules>
+            <name>Changing_to_Closed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Completed</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Changing to Closed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_the_WO_Status_Changing</name>
+        <label>Is the WO Status Changing</label>
+        <locationX>578</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_WO_Status_is_Changing</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Changing_to_What_Status</targetReference>
+            </connector>
+            <label>Yes, WO Status is Changing</label>
+        </rules>
+    </decisions>
+    <description>Upon Work Order update, in a before Save Capacity, make any applicable field changes based on business defined criteria</description>
+    <environments>Default</environments>
+    <interviewLabel>MS_FSM_Work Order Update - Before Save {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MS_FSM_Work Order Update - Before Save</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>452</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_the_WO_Status_Changing</targetReference>
+        </connector>
+        <object>WorkOrder</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

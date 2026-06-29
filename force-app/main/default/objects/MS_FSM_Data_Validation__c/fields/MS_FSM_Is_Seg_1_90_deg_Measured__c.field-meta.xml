@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Is_Seg_1_90_deg_Measured__c</fullName>
+    <defaultValue>false</defaultValue>
+    <label>Is Segment 1 (90 deg) Measured</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Preferred_Fuel_Type__c</fullName>
+    <label>Preferred Fuel Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Natural Gas</fullName>
+                <default>false</default>
+                <label>Natural Gas</label>
+            </value>
+            <value>
+                <fullName>Hydrogen</fullName>
+                <default>false</default>
+                <label>Hydrogen</label>
+            </value>
+            <value>
+                <fullName>Ammonia</fullName>
+                <default>false</default>
+                <label>Ammonia</label>
+            </value>
+            <value>
+                <fullName>Propane</fullName>
+                <default>false</default>
+                <label>Propane</label>
+            </value>
+            <value>
+                <fullName>Syngas</fullName>
+                <default>false</default>
+                <label>Syngas</label>
+            </value>
+            <value>
+                <fullName>Directed Biogas</fullName>
+                <default>false</default>
+                <label>Directed Biogas</label>
+            </value>
+            <value>
+                <fullName>On-site Biogas</fullName>
+                <default>false</default>
+                <label>On-site Biogas</label>
+            </value>
+            <value>
+                <fullName>RNG</fullName>
+                <default>false</default>
+                <label>RNG</label>
+            </value>
+            <value>
+                <fullName>Biogas</fullName>
+                <default>false</default>
+                <label>Biogas</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Fallback_Notification</name>
+        <label>Send Fallback Notification</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recipientAddresses</name>
+            <value>
+                <collectionElements>
+                    <elementReference>Copy_2_of_createSDRTaskToReachOut.Owner:User.Email</elementReference>
+                </collectionElements>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>ccAddresses</name>
+            <value>
+                <collectionElements>
+                    <stringValue>keith@dahtech.net</stringValue>
+                </collectionElements>
+                <collectionElements>
+                    <stringValue>catherine.courselle@mainspringenergy.com</stringValue>
+                </collectionElements>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>sales@mainspringenergy.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Action Required: New MQA – {!$Record.Name}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>&lt;p&gt;Hi {!Copy_2_of_createSDRTaskToReachOut.Owner:User.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;An account has just transitioned to Marketing Qualified Account (MQA) status and requires immediate outreach. A high-priority task has been automatically created and assigned to you:&lt;/p&gt;&lt;p&gt;Account: &lt;a href=&quot;https://mainspringenergy2021.lightning.force.com/{!$Record.Account_ID_18_character__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.Name}&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Task: &lt;a href=&quot;https://mainspringenergy2021.lightning.force.com/{!createSDRTaskToReachOut.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!createSDRTaskToReachOut.Subject}&lt;/a&gt;&lt;/p&gt;&lt;p&gt;MQA Transition Time: {!$Flow.CurrentDateTime}&lt;/p&gt;&lt;p&gt;SLA Deadline: &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!todayAdd24hoursDateTime}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Task Priority: High&lt;/p&gt;</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>useLineBreaks</name>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>2.0.1</versionString>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Notification_SDR</name>
+        <label>Send Notification SDR</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recipientAddresses</name>
+            <value>
+                <collectionElements>
+                    <elementReference>createSDRTaskToReachOut.Owner:User.Email</elementReference>
+                </collectionElements>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>ccAddresses</name>
+            <value>
+                <collectionElements>
+                    <stringValue>keith@dahtech.net</stringValue>
+                </collectionElements>
+                <collectionElements>
+                    <stringValue>catherine.courselle@mainspringenergy.com</stringValue>
+                </collectionElements>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>sales@mainspringenergy.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Action Required: New MQA – {!$Record.Name}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>&lt;p&gt;Hi {!createSDRTaskToReachOut.Owner:User.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;An account has just transitioned to Marketing Qualified Account (MQA) status and requires immediate outreach. A high-priority task has been automatically created and assigned to you:&lt;/p&gt;&lt;p&gt;Account: &lt;a href=&quot;https://mainspringenergy2021.lightning.force.com/{!$Record.Account_ID_18_character__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.Name}&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Task: &lt;a href=&quot;https://mainspringenergy2021.lightning.force.com/{!createSDRTaskToReachOut.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!createSDRTaskToReachOut.Subject}&lt;/a&gt;&lt;/p&gt;&lt;p&gt;MQA Transition Time: {!$Flow.CurrentDateTime}&lt;/p&gt;&lt;p&gt;SLA Deadline: &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!todayAdd24hoursDateTime}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Task Priority: High&lt;/p&gt;</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>useLineBreaks</name>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>2.0.1</versionString>
+    </actionCalls>
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Decision_1</name>
+        <label>Was an SDR found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Copy_2_of_createSDRTaskToReachOut</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Outcome_1_of_Decision_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>getDefaultSDRAccountTeamMemberOfOwner</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>createSDRTaskToReachOut</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Created as part of EDS-4903</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>setDescription</name>
+        <dataType>String</dataType>
+        <expression>&quot;This account became an MQA on &quot; &amp;
+TEXT(DATEVALUE(NOW()-(8/24))) &amp; &quot; &quot; &amp;
+TEXT(
+  IF(
+    MOD(HOUR(TIMEVALUE(NOW()-(8/24))), 12) = 0,
+    12,
+    MOD(HOUR(TIMEVALUE(NOW()-(8/24))), 12)
+  )
+) &amp; &quot;:&quot; &amp;
+RIGHT(
+  &quot;0&quot; &amp; TEXT(MINUTE(TIMEVALUE(NOW()-(8/24)))),
+  2
+) &amp; &quot; &quot; &amp;
+IF(
+  HOUR(TIMEVALUE(NOW()-(8/24))) &gt;= 12,
+  &quot;PM&quot;,
+  &quot;AM&quot;
+) &amp;
+&quot;. You have until &quot; &amp;
+TEXT(DATEVALUE(NOW()+1-(8/24))) &amp; &quot; &quot; &amp;
+TEXT(
+  IF(
+    MOD(HOUR(TIMEVALUE(NOW()+1-(8/24))), 12) = 0,
+    12,
+    MOD(HOUR(TIMEVALUE(NOW()+1-(8/24))), 12)
+  )
+) &amp; &quot;:&quot; &amp;
+RIGHT(
+  &quot;0&quot; &amp; TEXT(MINUTE(TIMEVALUE(NOW()+1-(8/24)))),
+  2
+) &amp; &quot; &quot; &amp;
+IF(
+  HOUR(TIMEVALUE(NOW()+1-(8/24))) &gt;= 12,
+  &quot;PM&quot;,
+  &quot;AM&quot;
+) &amp;
+&quot; to reach out.&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>setSubject</name>
+        <dataType>String</dataType>
+        <expression>&quot;Reach out to &quot; &amp;{!$Record.Name} &amp;&quot; (New MQA)&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>todayAdd24hours</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()+1</expression>
+    </formulas>
+    <formulas>
+        <name>todayAdd24hoursDateTime</name>
+        <dataType>DateTime</dataType>
+        <expression>{!$Flow.CurrentDateTime} + 1</expression>
+    </formulas>
+    <interviewLabel>Account - Auto create followup tas {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account - Auto create reach out task when MQA</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Assigns to Rakshith</description>
+        <name>Copy_2_of_createSDRTaskToReachOut</name>
+        <label>create Task FALLBACK</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Send_Fallback_Notification</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>todayAdd24hours</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <elementReference>setDescription</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <stringValue>005Qr00000Fq40UIAR</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>High</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Open</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>setSubject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>createSDRTaskToReachOut</name>
+        <label>create Task for SDR</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Send_Notification_SDR</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>todayAdd24hours</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <elementReference>setDescription</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>getDefaultSDRAccountTeamMemberOfOwner.UserId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>High</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Open</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>setSubject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <description>finds the SDR that is assigned to the account team of the current owner of the opportunity</description>
+        <name>getDefaultSDRAccountTeamMemberOfOwner</name>
+        <label>getDefaultSDRAccountTeamMemberOfOwner</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Decision_1</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>OwnerId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>TeamMemberRole</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>SDR</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>UserAccountTeamMember</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>getDefaultSDRAccountTeamMemberOfOwner</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Website</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>https://www.dahtech.net/</stringValue>
+            </value>
+        </filters>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

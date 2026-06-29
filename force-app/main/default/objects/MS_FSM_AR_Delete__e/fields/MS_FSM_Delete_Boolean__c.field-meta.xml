@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Delete_Boolean__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Purpose of this Field is to indicate that a Delete Boolean needs to be passed into a subflow for SA Updates</description>
+    <isFilteringDisabled>false</isFilteringDisabled>
+    <isNameField>false</isNameField>
+    <isSortingDisabled>false</isSortingDisabled>
+    <label>Delete Boolean</label>
+    <type>Checkbox</type>
+</CustomField>

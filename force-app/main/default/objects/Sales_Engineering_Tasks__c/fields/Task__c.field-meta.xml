@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Task__c</fullName>
+    <label>Task</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Layout</fullName>
+                <default>false</default>
+                <label>Layout</label>
+            </value>
+            <value>
+                <fullName>Drawing Package</fullName>
+                <default>false</default>
+                <label>Drawing Package</label>
+            </value>
+            <value>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+                <label>Pricing</label>
+            </value>
+            <value>
+                <fullName>Project Scoping</fullName>
+                <default>false</default>
+                <label>Project Scoping</label>
+            </value>
+            <value>
+                <fullName>Site Walk</fullName>
+                <default>false</default>
+                <label>Site Walk</label>
+            </value>
+            <value>
+                <fullName>RFI/RFP</fullName>
+                <default>false</default>
+                <label>RFI/RFP</label>
+            </value>
+            <value>
+                <fullName>Technical Evaluation</fullName>
+                <default>false</default>
+                <label>Technical Evaluation</label>
+            </value>
+            <value>
+                <fullName>Permit/ Interconnection</fullName>
+                <default>false</default>
+                <label>Permit/ Interconnection</label>
+            </value>
+            <value>
+                <fullName>Regulatory Evaluation</fullName>
+                <default>false</default>
+                <label>Regulatory Evaluation</label>
+            </value>
+            <value>
+                <fullName>Firm Proposal Package</fullName>
+                <default>false</default>
+                <label>Firm Proposal Package</label>
+            </value>
+            <value>
+                <fullName>Prelim Proposal Package</fullName>
+                <default>false</default>
+                <label>Prelim Proposal Package</label>
+            </value>
+            <value>
+                <fullName>Vendor Services Package</fullName>
+                <default>false</default>
+                <label>Vendor Services Package</label>
+            </value>
+            <value>
+                <fullName>Handover Package</fullName>
+                <default>false</default>
+                <label>Handover Package</label>
+            </value>
+            <value>
+                <fullName>Single-Lines</fullName>
+                <default>false</default>
+                <label>Single-Lines</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

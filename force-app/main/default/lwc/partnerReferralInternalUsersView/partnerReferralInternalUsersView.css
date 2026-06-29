@@ -1,0 +1,35 @@
+.custom-card {
+    --sds-c-card-color-background: transparent;
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.custom-dark-header {
+    background-color: #0b152a; 
+    color: #ffffff;
+}
+
+.text-gray {
+    color: #a0aabf; 
+}
+
+.section-title {
+    color: #c23934; 
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+    letter-spacing: 0.0625rem;
+}
+
+.custom-label-bold {
+    font-weight: 600;
+    color: #444444;
+    font-size: 0.75rem;
+}
+
+:host {
+    --sds-c-tabs-scoped-color-background: transparent;
+    --sds-c-tabs-scoped-color-border: transparent;
+}

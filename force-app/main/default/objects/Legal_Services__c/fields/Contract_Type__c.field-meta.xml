@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Type__c</fullName>
+    <label>Contract Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PSA Review</fullName>
+                <default>false</default>
+                <label>PSA Review</label>
+            </value>
+            <value>
+                <fullName>GSA Review</fullName>
+                <default>false</default>
+                <label>GSA Review</label>
+            </value>
+            <value>
+                <fullName>O&amp;M Review</fullName>
+                <default>false</default>
+                <label>O&amp;M Review</label>
+            </value>
+            <value>
+                <fullName>Installation Review</fullName>
+                <default>false</default>
+                <label>Installation Review</label>
+            </value>
+            <value>
+                <fullName>Customer Paper Review</fullName>
+                <default>false</default>
+                <label>Customer Paper Review</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

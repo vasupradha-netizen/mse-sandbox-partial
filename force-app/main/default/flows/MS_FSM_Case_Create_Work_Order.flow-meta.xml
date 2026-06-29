@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>This Assignment passes necessary fields from the current Case record to the new Work Order variable</description>
+        <name>Assign_Data_from_Current_Case_Record_to_New_Work_Order_Record</name>
+        <label>Assign Data from Current Case Record to New Work Order Record</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>varWorkOrderNew.AccountId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Current_Case_Record.Account.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varWorkOrderNew.AssetId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Current_Case_Record.Asset.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varWorkOrderNew.Subject</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Current_Case_Record.Subject</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varWorkOrderNew.ContactId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Current_Case_Record.Contact.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varWorkOrderNew.CaseId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varWorkOrderNew.LocationId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Current_Case_Record.Asset.Location.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Are_any_Fields_null</targetReference>
+        </connector>
+    </assignments>
+    <customProperties>
+        <name>ScreenProgressIndicator</name>
+        <value>
+            <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
+        </value>
+    </customProperties>
+    <decisions>
+        <description>Decision to check whether inputs are null</description>
+        <name>Are_any_Fields_null</name>
+        <label>Are any Fields null?</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <defaultConnector>
+            <targetReference>Create_Work_Order</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_one_or_more_fields_are_null</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>varWorkOrderNew.WorkType.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Yes, one or more fields are null</label>
+        </rules>
+    </decisions>
+    <description>This flow gives the user the ability to create a Work Order record from a Case record</description>
+    <environments>Default</environments>
+    <interviewLabel>MS_FSM_Global - Create Work Order {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MS_FSM_Case - Create Work Order</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <description>Creates a new Work Order Record with data inputted from the user and the current Case record where the flow was launched</description>
+        <name>Create_Work_Order</name>
+        <label>Create Work Order</label>
+        <locationX>308</locationX>
+        <locationY>566</locationY>
+        <inputReference>varWorkOrderNew</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <description>this fetches the current Case Record data</description>
+        <name>Get_Current_Case_Record</name>
+        <label>Get Current Case Record</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Work_Order_Details</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Case</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <description>Screen input to collect user inputs for the new Work Order record</description>
+        <name>Create_Work_Order_Details</name>
+        <label>Create Work Order Details</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Assign_Data_from_Current_Case_Record_to_New_Work_Order_Record</targetReference>
+        </connector>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>varWorkOrderNew.WorkTypeId</objectFieldReference>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>varWorkOrderNew.Description</objectFieldReference>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Create Work Order</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Current_Case_Record</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>current Case record Id</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>current Case record to provide data for Work Order record fields</description>
+        <name>varCaseRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <description>variable to store data for the new Work Order record to be creates</description>
+        <name>varWorkOrderNew</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>WorkOrder</objectType>
+    </variables>
+</Flow>

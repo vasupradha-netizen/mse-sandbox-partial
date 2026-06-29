@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>updateOfficialsClearLookups2</name>
+        <label>updateOfficialsClearLookups</label>
+        <locationX>576</locationX>
+        <locationY>342</locationY>
+        <actionName>MainspringCiceroFlowUtility</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>siteIds</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>MainspringCiceroFlowUtility</nameSegment>
+    </actionCalls>
+    <apiVersion>59.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>Update Officials When New or Changed by invoking the Cicero Api method. This will clear the lookups if cicero does not return any official data.</description>
+    <environments>Default</environments>
+    <interviewLabel>Site - Update Officials When New or Changed {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Site - Update Officials When New or Changed</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>21</locationX>
+        <locationY>62</locationY>
+        <connector>
+            <targetReference>updateOfficialsClearLookups2</targetReference>
+        </connector>
+        <filterFormula>ISNEW() || ISCHANGED({!$Record.Street_1__c}) || ISCHANGED({!$Record.Street_2__c}) || ISCHANGED({!$Record.Postal_Code__c}) || ISCHANGED({!$Record.City__c}) || ISCHANGED({!$Record.State_Region__c}) || (ISCHANGED({!$Record.Active_Sale__c}) &amp;&amp; {!$Record.Active_Sale__c})</filterFormula>
+        <object>Sites__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

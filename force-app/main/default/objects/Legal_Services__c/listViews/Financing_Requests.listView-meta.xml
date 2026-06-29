@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Financing_Requests</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Why_does_customer_want_financing__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Request_Type__c</field>
+        <operation>equals</operation>
+        <value>Financing</value>
+    </filters>
+    <label>Financing Requests</label>
+</ListView>

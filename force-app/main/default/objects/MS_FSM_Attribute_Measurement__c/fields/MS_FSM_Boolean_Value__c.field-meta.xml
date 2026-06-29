@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Boolean_Value__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Field for capturing boolean values needed to be captured in the field</description>
+    <label>Boolean Value</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

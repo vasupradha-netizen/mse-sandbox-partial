@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage__c</fullName>
+    <label>Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>To Do</fullName>
+                <default>true</default>
+                <label>To Do</label>
+            </value>
+            <value>
+                <fullName>Info Needed</fullName>
+                <default>false</default>
+                <label>Info Needed</label>
+            </value>
+            <value>
+                <fullName>Ready for Analysis</fullName>
+                <default>false</default>
+                <label>Ready for Analysis</label>
+            </value>
+            <value>
+                <fullName>Analysis</fullName>
+                <default>false</default>
+                <label>Analysis</label>
+            </value>
+            <value>
+                <fullName>Validation</fullName>
+                <default>false</default>
+                <label>Validation</label>
+            </value>
+            <value>
+                <fullName>Ready for Review</fullName>
+                <default>false</default>
+                <label>Ready for Review</label>
+            </value>
+            <value>
+                <fullName>In Review</fullName>
+                <default>false</default>
+                <label>In Review</label>
+            </value>
+            <value>
+                <fullName>Finalize Proposal</fullName>
+                <default>false</default>
+                <label>Finalize Proposal</label>
+            </value>
+            <value>
+                <fullName>Proposal Check</fullName>
+                <default>false</default>
+                <label>Proposal Check</label>
+            </value>
+            <value>
+                <fullName>Ready for Dispatch</fullName>
+                <default>false</default>
+                <label>Ready for Dispatch</label>
+            </value>
+            <value>
+                <fullName>Released</fullName>
+                <default>false</default>
+                <label>Released</label>
+            </value>
+            <value>
+                <fullName>Dormant</fullName>
+                <default>false</default>
+                <label>Dormant</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

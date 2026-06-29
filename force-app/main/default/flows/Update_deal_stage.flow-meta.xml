@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Date_Initiated</name>
+        <label>Assign Date Initiated</label>
+        <locationX>50</locationX>
+        <locationY>1019</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Date_Initiated__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Deal_Stage</name>
+        <label>Deal Stage</label>
+        <locationX>182</locationX>
+        <locationY>803</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Deal_Stage__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>DealStage</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Date_Initiated</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Date_Initiated</name>
+        <label>Date Initiated</label>
+        <locationX>182</locationX>
+        <locationY>911</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>If_Date_initiated_is_blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Date_Initiated__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Date_Initiated</targetReference>
+            </connector>
+            <label>If Date initiated is blank</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Update_Site_details</name>
+        <label>Update Site details</label>
+        <locationX>182</locationX>
+        <locationY>503</locationY>
+        <defaultConnector>
+            <targetReference>Deal_Stage</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>If_site_details_are_blank</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8)</conditionLogic>
+            <conditions>
+                <leftValueReference>isnew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Opportunity__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Account__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Street_1__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.State__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.City__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Gas_Utility__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Electric_Utility__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Update_missing_site_details</targetReference>
+            </connector>
+            <label>If site details are blank</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>DealStage</name>
+        <dataType>String</dataType>
+        <expression>CASE(
+    {!Get_Opportunity.StageName}, 
+    &quot;Preliminary Meeting&quot;, &quot;Pre-Indicative Offer&quot;, 
+&quot;Preliminary Discussions&quot;, &quot;Pre-Indicative Offer&quot;,
+    &quot;Initial Assessment&quot;, &quot;Pre-Indicative Offer&quot;,
+    &quot;Indicative Proposal&quot;, &quot;Indicative Offer&quot;, 
+&quot;Proposal/RFP Generation&quot;, &quot;Indicative Offer&quot;,
+    &quot;Firm Proposal&quot;, &quot;Firm Pricing&quot;,
+&quot;Term Sheet&quot;, &quot;Firm Pricing&quot;,
+    &quot;Closed won&quot;, &quot;Contracted&quot;,
+    &quot;&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>isnew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <interviewLabel>Update deal stage {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Project Assessment Deal Stage</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Opportunity</name>
+        <label>Get Opportunity</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Site</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Opportunity__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Site</name>
+        <label>Get Site</label>
+        <locationX>182</locationX>
+        <locationY>395</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Site_details</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Site__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Sites__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_missing_site_details</name>
+        <label>Update missing site details</label>
+        <locationX>50</locationX>
+        <locationY>611</locationY>
+        <connector>
+            <targetReference>Deal_Stage</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Account__c</field>
+            <value>
+                <elementReference>Get_Site.Account__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>City__c</field>
+            <value>
+                <elementReference>Get_Site.City__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Electric_Utility__c</field>
+            <value>
+                <elementReference>Get_Site.Utility__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Gas_Utility__c</field>
+            <value>
+                <elementReference>Get_Site.Gas_Utility__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Opportunity__c</field>
+            <value>
+                <elementReference>Get_Opportunity.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>State__c</field>
+            <value>
+                <elementReference>Get_Site.State_Region__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Street_1__c</field>
+            <value>
+                <elementReference>Get_Site.Street_1__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Opportunity</targetReference>
+        </connector>
+        <object>Project_Assessment__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

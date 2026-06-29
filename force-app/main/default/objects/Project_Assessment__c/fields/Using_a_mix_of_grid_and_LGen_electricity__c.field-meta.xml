@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Using_a_mix_of_grid_and_LGen_electricity__c</fullName>
+    <inlineHelpText>&quot;Is the customer using a mix of grid and LGen supplied electricity?&quot;</inlineHelpText>
+    <label>Using a mix of grid and LGen electricity</label>
+    <length>131071</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

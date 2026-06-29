@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Fires missing inventory consumption to populate values and process</description>
+    <flowDefinition>MS_FSM_Consume_Missing_Inventory</flowDefinition>
+    <label>Consume Missing Inventory</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

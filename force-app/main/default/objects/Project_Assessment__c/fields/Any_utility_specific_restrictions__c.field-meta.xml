@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Any_utility_specific_restrictions__c</fullName>
+    <inlineHelpText>Are there any utility-specific restrictions that would negatively impact us (other than 3rd party ownership (row 40))? One example would be a RPS target which makes permitting a fuel-based generator more challenging.</inlineHelpText>
+    <label>Any utility-specific restrictions?</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

@@ -1,0 +1,54 @@
+<template>
+    <lightning-card>
+      <div class="remove-asset-container slds-p-horizontal_x-small">
+        <div class="slds-p-vertical_small detail-container">
+          <p class="slds-text-heading_small"><b>Root Asset: </b>{assetSerial} | {assetProductFamily}</p>
+          <p class="slds-text-heading_small"><b>Asset: </b>{selectedAssetToRemoveName}</p>
+          <p class="slds-text-heading_small"><b>L2 Asset: </b>{l2AssetSerial} | {l2AssetProductFamily}</p>
+          <template lwc:if={showRingInspection}> 
+            <p class="slds-text-heading_small">Return {l2AssetRingsOfInspection} for Inspection</p>
+          </template>
+        </div>
+        <template if:true={displayRemoveAssetForm}>
+        <div class="slds-p-vertical_small detail-container">
+          <p class="slds-text-body_regular slds-p-top_large asset-remove">Asset to Remove: {selectedAssetToRemoveName}</p>
+          <div class="selection-container">
+            <p class="slds-text-body_regular slds-p-top_large asset-remove">Removal Disposition: </p>
+            <div class="input-container">
+              <lightning-combobox
+              class="combo"
+              name="removal-disposition"
+              value={dispositionSelection}
+              options={removalComboBox}
+              onchange={handleDispositionSelection}></lightning-combobox>
+            </div>
+          </div>
+        </div>
+        <div class="button-container">
+          <lightning-button 
+            variant="brand" 
+            label="Click To Remove Asset" 
+            title="Primary action" 
+            onclick={handleNext} 
+            class="slds-m-left_x-small">
+          </lightning-button>
+        </div>
+      </template>
+      </div>
+    </lightning-card>
+    
+  <template if:false={displayRemoveAssetForm}>
+      <div class="remove-asset-container slds-p-horizontal_x-small">
+        <p class="slds-text-body_regular slds-p-vertical_small"><b>{selectedAssetToRemoveName}</b> was <b>REMOVED</b> from <b>{rootAssetName}</b></p>
+        <div class="button-container">
+          <lightning-button 
+          variant="brand" 
+          label="Finish" 
+          title="Primary action" 
+          onclick={handleFinish} 
+          class="slds-m-left_x-small"></lightning-button>
+        </div>
+
+      </div>
+  </template>
+</template>

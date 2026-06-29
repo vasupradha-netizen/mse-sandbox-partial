@@ -1,0 +1,3 @@
+<aura:component access="GLOBAL">
+    <c:partnerReferralParentLWC/>
+</aura:component>

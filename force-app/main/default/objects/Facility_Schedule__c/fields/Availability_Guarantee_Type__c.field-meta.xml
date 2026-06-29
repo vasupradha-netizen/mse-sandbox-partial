@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Availability_Guarantee_Type__c</fullName>
+    <label>Availability Guarantee Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Availability</fullName>
+                <default>false</default>
+                <label>Availability</label>
+            </value>
+            <value>
+                <fullName>Uptime</fullName>
+                <default>false</default>
+                <label>Uptime</label>
+            </value>
+            <value>
+                <fullName>EAF</fullName>
+                <default>false</default>
+                <label>EAF</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

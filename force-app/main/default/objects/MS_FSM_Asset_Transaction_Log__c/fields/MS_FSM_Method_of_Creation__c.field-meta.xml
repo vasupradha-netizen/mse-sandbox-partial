@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Method_of_Creation__c</fullName>
+    <label>Method of Creation</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>EtaHub Asset Staging</fullName>
+                <default>false</default>
+                <label>EtaHub Asset Staging</label>
+            </value>
+            <value>
+                <fullName>Obsolete Asset Flow</fullName>
+                <default>false</default>
+                <label>Obsolete Asset Flow</label>
+            </value>
+            <value>
+                <fullName>Upgrades</fullName>
+                <default>false</default>
+                <label>Upgrades</label>
+            </value>
+            <value>
+                <fullName>Rebuild Asset</fullName>
+                <default>false</default>
+                <label>Rebuild Asset</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

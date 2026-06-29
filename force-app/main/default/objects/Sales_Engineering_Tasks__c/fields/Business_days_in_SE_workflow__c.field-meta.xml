@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Business_days_in_SE_workflow__c</fullName>
+    <description>This field displays the number of days between the Completion Date and Request Date</description>
+    <externalId>false</externalId>
+    <formula>IF(
+    AND(
+        NOT(ISBLANK(Completion_Date__c)),
+        NOT(ISBLANK(Request_Date__c))
+    ),
+    ( 
+        /* Total days */
+        (FLOOR((Completion_Date__c - Request_Date__c) / 7) * 5) +
+        
+        /* Remaining days */
+        (MIN(5, 
+            MAX(0,
+                MOD( Completion_Date__c - Request_Date__c, 7) -
+                CASE( 
+                    MOD(DATE(1985,6,24) - Request_Date__c, 7),
+                    0, 0,
+                    1, 0,
+                    2, 0,
+                    3, 0,
+                    4, 0,
+                    5, 1,
+                    6, 2,
+                    0
+                )
+            )
+        ))
+    ),
+    NULL
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Business days in SE workflow</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

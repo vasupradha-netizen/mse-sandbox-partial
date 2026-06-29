@@ -1,0 +1,30 @@
+<apex:page showHeader="false"
+           sidebar="false"
+           standardStylesheets="false"
+           docType="html-5.0">
+
+    <apex:includeLightning />
+    <div id="flowContainer"></div>
+    <script>
+
+        $Lightning.use(
+            "c:referralPartnerSiteAuraApp",
+
+            function() {
+
+                $Lightning.createComponent(
+                    "c:referralPartnerSiteAura",
+                    {},
+                    "flowContainer",
+
+                    function(component) {
+                        console.log('Loaded Successfully');
+                    }
+                );
+            },
+
+        );
+
+    </script>
+
+</apex:page>

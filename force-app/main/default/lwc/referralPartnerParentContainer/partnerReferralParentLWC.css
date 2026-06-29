@@ -1,0 +1,128 @@
+/* ==========================================
+   GLOBAL CONTAINER (Matches Child Canvas Color)
+   ========================================== */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #ECECEC; /* Match the child component's workspace grey */
+}
+
+/* Reusable width container */
+.layout-width-fix {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ==========================================
+   BORDERLESS STICKY HEADER
+   ========================================== */
+.top-header-banner {
+    background-color: #ffffff;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 4rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    /* Soft shadow separates header from grey body without rigid lines */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); 
+}
+
+.logo-area {
+    flex: 0 0 auto;
+}
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+    line-height: 1;
+}
+
+.brand-logo {
+    max-height: 36px;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.title-area {
+    flex: 1 1 auto;
+    text-align: right;
+}
+
+.header-title-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.2;
+    margin: 0;
+}
+/* The Tagline - Slightly smaller, Mainspring Orange */
+.header-tagline-text {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #FF4500; /* Mainspring Orange */
+    letter-spacing: 1.5px;
+}
+
+/* ==========================================
+   MAIN CONTENT AREA
+   ========================================== */
+.main-content-fluid {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #ECECEC;
+}
+
+/* ==========================================
+   BORDERLESS STICKY FOOTER
+   ========================================== */
+.app-footer {
+    background-color: #ffffff;
+    min-height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 4rem;
+    position: sticky;
+    bottom: 0;
+    z-index: 999;
+    /* Soft upward shadow instead of a border line */
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.03);
+    margin-top: auto;
+}
+
+.legal-footnote {
+    font-size: 0.775rem;
+    line-height: 1.5;
+    text-align: justify;
+    color: #555555;
+    width: 100%;
+    margin: 0;
+}
+
+/* Responsive adjustment for clean text wrap on smaller viewports */
+@media (max-width: 992px) {
+    .top-header-banner, .app-footer {
+        height: auto;
+        padding: 1.25rem 2rem;
+    }
+    .layout-width-fix {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .title-area {
+        text-align: left;
+        margin-top: 0.5rem;
+    }
+    .header-title-text {
+        font-size: 1.25rem;
+    }
+}

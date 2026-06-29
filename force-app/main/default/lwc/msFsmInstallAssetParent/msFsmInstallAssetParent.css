@@ -1,0 +1,40 @@
+.page-container {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.install-woli-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+  height: 20%;
+  /* border: solid green 2px; */
+}
+
+.screen-one-container {
+  /* border: solid green 2px; */
+  height: 70%;
+}
+
+.screen-two-container{
+  /* border: solid green 2px; */
+  height: 100%;
+}
+
+.screen-three-container {
+  /* border: red dotted 2px; */
+  vertical-align: top;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center; 
+  padding-bottom: 100px;
+}

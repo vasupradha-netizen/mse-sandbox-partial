@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Log_Error__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Purpose of this field is to update Inventory Transaction Failure Root Cause if a Serialized Product is not found.</description>
+    <isFilteringDisabled>false</isFilteringDisabled>
+    <isNameField>false</isNameField>
+    <isSortingDisabled>false</isSortingDisabled>
+    <label>Log Error</label>
+    <type>Checkbox</type>
+</CustomField>

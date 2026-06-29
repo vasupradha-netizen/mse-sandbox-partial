@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Sales_Engineering_Tasks1</fullName>
+    <columns>NAME</columns>
+    <columns>Customer__c</columns>
+    <columns>Lead_PD_Rep__c</columns>
+    <columns>Market_Segment__c</columns>
+    <columns>Nature_of_Request__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Sales Engineering Tasks</label>
+</ListView>

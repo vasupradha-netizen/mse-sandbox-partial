@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Method_of_Creation__c</fullName>
+    <description>Used to define which process created the EtaHub Asset Staging record. Upgrades workspace is in EtaHub. Rebuild Asset is fired off a button the Asset in FSM and triggers an update in EtaHub to create staging records</description>
+    <label>Method of Creation</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Upgrades</fullName>
+                <default>false</default>
+                <label>Upgrades</label>
+            </value>
+            <value>
+                <fullName>Rebuild Asset</fullName>
+                <default>false</default>
+                <label>Rebuild Asset</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

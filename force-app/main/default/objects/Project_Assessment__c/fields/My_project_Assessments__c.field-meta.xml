@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_project_Assessments__c</fullName>
+    <formula>OR(
+    Sales_Analyst__r.Alias = $User.Alias,
+    Environmental_Permitting__r.Alias = $User.Alias,
+    Project_Delivery_Point_Person__r.Alias = $User.Alias,
+    Public_Affairs_Point_Person__r.Alias = $User.Alias,
+    Legal__r.Alias = $User.Alias
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>My project Assessments</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

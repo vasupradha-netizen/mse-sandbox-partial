@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opp_Product__c</fullName>
+    <externalId>false</externalId>
+    <formula>If(Opportunity__r.MSE3__c &gt; 0 ,&apos;MSE3&apos;,
+If(Opportunity__r.MSE3P__c &gt; 0 ,&apos;MSE3P&apos;,
+If(Opportunity__r.MSE4__c&gt; 0 ,&apos;MSE4&apos;,
+If(Opportunity__r.MSE5__c&gt; 0 ,&apos;MSE5&apos;,&apos;Unknown&apos;))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Opp Product</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

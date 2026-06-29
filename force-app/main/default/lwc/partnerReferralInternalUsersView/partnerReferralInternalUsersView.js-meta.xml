@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<isExposed>true</isExposed>
+	<apiVersion>67.0</apiVersion>
+	<description>Tabbed, schema-driven read-only viewer for Partner Applications.This LWC will replace the standard layout for the Partner Application, this view is for the Internal users of Mainspring's Team.</description>
+	<targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+</LightningComponentBundle>

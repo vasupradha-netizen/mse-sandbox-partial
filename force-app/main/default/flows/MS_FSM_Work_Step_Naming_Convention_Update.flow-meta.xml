@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_New_Name_to_Work_Step</name>
+        <label>Assign New Name to Work Step</label>
+        <locationX>50</locationX>
+        <locationY>1319</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>var_f_WorkStepName</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>is_the_Updated_Naming_Convention_Field_checked</name>
+        <label>is the Updated Naming Convention Field checked</label>
+        <locationX>424</locationX>
+        <locationY>395</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Updated_Naming_Convention_is_Checked</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SFS_Update_Naming_Convention__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Work_Order_Line_Item_from_Work_Step_Parent_Id</targetReference>
+            </connector>
+            <label>Yes, Updated Naming Convention is Checked</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_the_Work_Step_New_or_Updated</name>
+        <label>Is the Work Step New or Updated</label>
+        <locationX>677</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Work_Step_is_New</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ISNEW</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>is_the_Updated_Naming_Convention_Field_checked</targetReference>
+            </connector>
+            <label>Work Step is New</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_there_an_Asset_and_L2_Asset_on_the_related_WOLI</name>
+        <label>Is there an Asset and L2 Asset on the related WOLI</label>
+        <locationX>182</locationX>
+        <locationY>1211</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_there_is_a_value_in_both</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>var_LineItem.AssetId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>var_LineItem.MS_FSM_L2_Asset__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_New_Name_to_Work_Step</targetReference>
+            </connector>
+            <label>Yes, there is a value in both</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_a_Line_Item_found_from_direct_field</name>
+        <label>Was a Line Item found from direct field</label>
+        <locationX>314</locationX>
+        <locationY>827</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Line_Item_was_found_from_direct_field</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>var_LineItem.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_there_an_Asset_and_L2_Asset_on_the_related_WOLI</targetReference>
+            </connector>
+            <label>Yes, Line Item was found from direct field</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_a_Line_Item_Found_from_Parent</name>
+        <label>Was a Line Item Found from Parent</label>
+        <locationX>182</locationX>
+        <locationY>611</locationY>
+        <defaultConnector>
+            <targetReference>Get_Line_Item_from_direct_Field</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Line_Item_was_found_from_Parent</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>var_LineItem.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_there_an_Asset_and_L2_Asset_on_the_related_WOLI</targetReference>
+            </connector>
+            <label>Yes, Line Item was found from Parent</label>
+        </rules>
+    </decisions>
+    <description>Purpose of this flow is to make applicable Work Step updates, based on certain business criteria, in a before save capacity.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>ISNEW</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <formulas>
+        <name>var_f_WorkStepName</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!var_LineItem.Asset.ProductFamily})&amp;&quot; &quot;&amp;&quot;-&quot;&amp;TEXT({!var_LineItem.Asset.MS_FSM_Asset_Placement__c})&amp;&quot; &quot;&amp;&quot;-&quot;&amp;&quot; &quot;&amp;TEXT({!var_LineItem.MS_FSM_L2_Asset__r.ProductFamily})</expression>
+    </formulas>
+    <interviewLabel>MS_FSM Work Step Naming Convention Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MS_FSM_Work Step - Naming Convention Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Line_Item_from_direct_Field</name>
+        <label>Get Line Item from direct Field</label>
+        <locationX>314</locationX>
+        <locationY>719</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Was_a_Line_Item_found_from_direct_field</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WorkOrderLineItemId</elementReference>
+            </value>
+        </filters>
+        <object>WorkOrderLineItem</object>
+        <outputReference>var_LineItem</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>AssetId</queriedFields>
+        <queriedFields>MS_FSM_L2_Asset__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Work_Order_Line_Item_from_Work_Step_Parent_Id</name>
+        <label>Get Work Order Line Item from Work Step Parent Id</label>
+        <locationX>182</locationX>
+        <locationY>503</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Was_a_Line_Item_Found_from_Parent</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.ParentRecordId</elementReference>
+            </value>
+        </filters>
+        <object>WorkOrderLineItem</object>
+        <outputReference>var_LineItem</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>AssetId</queriedFields>
+        <queriedFields>MS_FSM_L2_Asset__c</queriedFields>
+    </recordLookups>
+    <start>
+        <locationX>551</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_the_Work_Step_New_or_Updated</targetReference>
+        </connector>
+        <object>WorkStep</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>var_LineItem</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>WorkOrderLineItem</objectType>
+    </variables>
+</Flow>

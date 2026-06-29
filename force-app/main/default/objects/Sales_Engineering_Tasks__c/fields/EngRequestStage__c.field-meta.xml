@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EngRequestStage__c</fullName>
+    <label>Eng Request Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Initial customer support</fullName>
+                <default>false</default>
+                <label>Initial customer support</label>
+            </value>
+            <value>
+                <fullName>Indicative proposal</fullName>
+                <default>false</default>
+                <label>Indicative proposal</label>
+            </value>
+            <value>
+                <fullName>Preliminary proposal</fullName>
+                <default>false</default>
+                <label>Preliminary proposal</label>
+            </value>
+            <value>
+                <fullName>Firm proposal</fullName>
+                <default>false</default>
+                <label>Firm proposal</label>
+            </value>
+            <value>
+                <fullName>Contract support</fullName>
+                <default>false</default>
+                <label>Contract support</label>
+            </value>
+            <value>
+                <fullName>Execution support</fullName>
+                <default>false</default>
+                <label>Execution support</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

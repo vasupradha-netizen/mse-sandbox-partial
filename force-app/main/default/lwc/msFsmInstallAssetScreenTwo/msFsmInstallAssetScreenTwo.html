@@ -1,0 +1,106 @@
+<template>
+  <template if:true={hasObjectRendered}>
+    <template if:false={missingInventoryScreen}>
+      <div class="slds-p-top_large screen-two-container">
+        <template if:true={_objectToSend.selectedProductName}>
+          <div>
+            <div class="new-asset-container">
+              <p class="slds-text-body_regular slds-p-top_large installed-product"><b>New Asset: {_objectToSend.selectedProductName}</b></p>
+            </div>
+          </div>
+        </template>
+        <template if:true={_objectToSend.isSerialized}>
+          <div class="specification-input-container">
+            <p class="slds-p-top_large prompt">New Serial Number: </p>
+            <div class="detail-input-container">
+              <lightning-input 
+                  type="text"
+                  class="combo" 
+                  onchange={handleSerializedChange} 
+                  data-id="trackInput"
+                  value={serialInput}>
+              </lightning-input>
+              <template if:true={showSerializedSuggestions}>
+                <div class="combo-container" style="border:1px solid;">
+                    <template for:each={limitedSerializedSuggestions} for:item="s">
+                        <div key={s.serial} style="padding:6px;">
+                            <lightning-button 
+                            label={s.serial} 
+                            style="width:100%;" 
+                            onclick={handleSerializedProductSelect} 
+                            data-value={s.serial}>
+                          </lightning-button>
+                        </div>
+                    </template>
+                </div>
+              </template>
+              <template if:false={serialErrorMessage}><p class="slds-text-color_error">Serial number not found. Please check input</p></template>
+              <lightning-icon 
+                class="slds-p-top_medium" 
+                icon-name="utility:scan" 
+                alternative-text="scan" 
+                size="large" title="scan"
+                data-input="scanInventory" 
+                onclick={handleBarcodeClick}>
+              </lightning-icon>
+            </div>
+          </div>
+        </template>
+        <template if:true={infoFetchedFromWoli.MS_FSM_Install_Swap_Product__r.MS_FSM_Require_Asset_Placement__c.value}>
+          <div class="asset-placement-input">
+            <p class="slds-p-top_large prompt">Asset Placement: </p>
+            <div class="detail-input-container">
+              <lightning-combobox 
+                class="combo"
+                value={assetPlacementSelection} 
+                options={assetPlacementOptions}
+                onchange={handleAssetPlacement}>
+              </lightning-combobox>
+            </div>
+            <template if:true={assetPlacementErrorMessage}><p class="slds-text-color_error">Please make asset placement selection</p></template>
+          </div>
+        </template>
+          <br>
+          <br>
+        <div class="nav-button-container-two">
+          <div class="button-container-two">
+            <template if:true={_objectToSend.isSerialized}>
+              <button 
+                onclick={handleScreenTwoNextSerialized} 
+                class="continue-button">CLICK HERE TO INSTALL ASSET</button>
+            </template>
+            <button onclick={handleMissingInventory} class="edit-button">Missing Inventory?</button>
+          </div>
+  
+        </div>
+      </div>
+    </template>
+    <template if:true={missingInventoryScreen}>
+        <div class="missing-inventory-container">
+          <div class="prompt-container">
+            <p class="slds-text-body_regular missing-text"><b>Missing Inventory: Serial Number / Product Description</b></p>
+          </div>
+          <lightning-input 
+              type="text"
+              class="missing-input" 
+              onchange={handleMissingInventoryInput} 
+              value={missingInventoryInput}>
+          </lightning-input>
+          <lightning-icon 
+            class="slds-p-top_medium" 
+            icon-name="utility:scan" 
+            alternative-text="scan" 
+            size="large" 
+            title="scan"
+            data-input="missingInventory" 
+            onclick={handleBarcodeClick}>
+          </lightning-icon>
+          <lightning-button variant="brand" label="Post to Slack" title="Primary action" onclick={handleMissingInventorySubmit} class="slds-m-left_x-small slds-p-top_large"></lightning-button>
+          <p class="slds-text-body_regular slds-align_absolute-center slds-p-top_large"><b>Photos:</b></p>
+          <div class="image-capture-container">
+            <c-image-capture info-fetched-from-woli={infoFetchedFromWoli}></c-image-capture>
+          </div>
+        </div>
+    </template>
+  </template>
+</template>

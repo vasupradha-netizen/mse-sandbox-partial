@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <label>Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not started</fullName>
+                <default>false</default>
+                <label>Not started</label>
+            </value>
+            <value>
+                <fullName>In progress: development</fullName>
+                <default>false</default>
+                <label>In progress: development</label>
+            </value>
+            <value>
+                <fullName>In progress: peer review</fullName>
+                <default>false</default>
+                <label>In progress: peer review</label>
+            </value>
+            <value>
+                <fullName>In progress: final review</fullName>
+                <default>false</default>
+                <label>In progress: final review</label>
+            </value>
+            <value>
+                <fullName>In progress: support</fullName>
+                <default>false</default>
+                <label>In progress: support</label>
+            </value>
+            <value>
+                <fullName>On deck (waiting info)</fullName>
+                <default>false</default>
+                <label>On deck (waiting info)</label>
+            </value>
+            <value>
+                <fullName>On hold</fullName>
+                <default>false</default>
+                <label>On hold</label>
+            </value>
+            <value>
+                <fullName>Submitted to sales/customer</fullName>
+                <default>false</default>
+                <label>Submitted to sales/customer</label>
+            </value>
+            <value>
+                <fullName>Cancelled/ customer withdrew</fullName>
+                <default>false</default>
+                <label>Cancelled/ customer withdrew</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

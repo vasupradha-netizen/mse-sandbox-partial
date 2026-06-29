@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Method_of_Creation__c</fullName>
+    <description>Records which automated flow the data validation was created from, such as SR26, LOTO 480-up</description>
+    <label>Method of Creation</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>LOTO 480-up</fullName>
+                <default>false</default>
+                <label>LOTO 480-up</label>
+            </value>
+            <value>
+                <fullName>SR26</fullName>
+                <default>false</default>
+                <label>SR26</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

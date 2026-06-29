@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Work_Order_Line_Item__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Associated WOLI to the work approval record</description>
+    <label>Work Order Line Item</label>
+    <referenceTo>WorkOrderLineItem</referenceTo>
+    <relationshipLabel>Work Approvals</relationshipLabel>
+    <relationshipName>Work_Approvals</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Incentives__c</fullName>
+    <label>Incentives</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>SGIP</fullName>
+                <default>false</default>
+                <label>SGIP</label>
+            </value>
+            <value>
+                <fullName>LCFS</fullName>
+                <default>false</default>
+                <label>LCFS</label>
+            </value>
+            <value>
+                <fullName>eRIN</fullName>
+                <default>false</default>
+                <label>eRIN</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

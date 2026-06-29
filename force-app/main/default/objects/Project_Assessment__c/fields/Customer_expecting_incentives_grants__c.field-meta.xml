@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_expecting_incentives_grants__c</fullName>
+    <inlineHelpText>Is the customer currently or expecting to receive any incentives, grants, or other funding mechanism for this or other DER projects?</inlineHelpText>
+    <label>Customer expecting incentives/grants</label>
+    <length>131071</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

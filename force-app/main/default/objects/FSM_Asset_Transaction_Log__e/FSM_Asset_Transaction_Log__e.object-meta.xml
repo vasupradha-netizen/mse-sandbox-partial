@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>The purpose of this platform event is to create Asset Transaction Logs once the Asset Actions are completed</description>
+    <eventType>HighVolume</eventType>
+    <label>FSM Asset Transaction Log</label>
+    <pluralLabel>FSM Asset Transaction Logs</pluralLabel>
+    <publishBehavior>PublishImmediately</publishBehavior>
+</CustomObject>

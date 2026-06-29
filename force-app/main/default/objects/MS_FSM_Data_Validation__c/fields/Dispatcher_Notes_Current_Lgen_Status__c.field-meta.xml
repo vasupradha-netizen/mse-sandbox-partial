@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dispatcher_Notes_Current_Lgen_Status__c</fullName>
+    <description>Field for notes from dispatcher on question: &quot;What is the current status of the LGen? (Power on / power off, fully assembled / disassembled)&quot;</description>
+    <label>Dispatcher Notes Current Lgen Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

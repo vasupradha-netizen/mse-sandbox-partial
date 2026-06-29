@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Journey_Stage_of_Unaware</name>
+        <label>Assign Journey Stage of Unaware</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.engagio__Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Unaware</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Created as part of EDS-4905 to automatically populated the Demandbase Journey Stage field with the value of Unaware if it is blank.</description>
+    <environments>Default</environments>
+    <interviewLabel>Account - Set default journey stage of Unaware on account creation when blank {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account - Set default Demandbase Journey stage on account creation</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_Journey_Stage_of_Unaware</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>engagio__Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </filters>
+        <object>Account</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

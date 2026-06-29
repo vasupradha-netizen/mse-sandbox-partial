@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Analytics_Model_Requests</fullName>
+    <columns>NAME</columns>
+    <columns>Category__c</columns>
+    <columns>Priority__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>My_Model_Requests__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>My Analytics Model Requests</label>
+</ListView>

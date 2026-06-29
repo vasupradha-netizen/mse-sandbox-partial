@@ -1,0 +1,1000 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Actual_End_Time</name>
+        <label>Assign Actual End Time</label>
+        <locationX>1018</locationX>
+        <locationY>1355</locationY>
+        <assignmentItems>
+            <assignToReference>OnUpdateSABoolean</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>On_Create_Does_Work_Order_need_to_be_updated</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Actual_End_Time_Cannot_Complete</name>
+        <label>Assign Actual End Time Cannot Complete</label>
+        <locationX>1282</locationX>
+        <locationY>1355</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.ActualEndTime</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OnUpdateSABoolean</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>On_Create_Does_Work_Order_need_to_be_updated</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Actual_Start_Time</name>
+        <label>Assign Actual Start Time</label>
+        <locationX>754</locationX>
+        <locationY>1355</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.ActualStartTime</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OnUpdateSABoolean</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>On_Create_Does_Work_Order_need_to_be_updated</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Assigns the local time offset</description>
+        <name>Assign_Local_Time_Offset</name>
+        <label>Assign Local Time Offset</label>
+        <locationX>2274</locationX>
+        <locationY>647</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.MS_FSM_Local_Offset__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>OffsetFormula</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OnUpdateSABoolean</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Did_the_status_change</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Null_territory_Value_to_Work_Order</name>
+        <label>Assign Null territory Value to Work Order</label>
+        <locationX>1746</locationX>
+        <locationY>755</locationY>
+        <assignmentItems>
+            <assignToReference>On_Update_Get_Parent_Work_Order.ServiceTerritoryId</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OnUpdateWOBoolean</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Did_the_status_change</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Parent_Work_Order_Status_to_Canceled</name>
+        <label>Assign Parent Work Order Status to Canceled</label>
+        <locationX>1722</locationX>
+        <locationY>1355</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Parent_Work_Order.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Canceled</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OnUpdateWOBoolean</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>On_Create_Does_Work_Order_need_to_be_updated</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Parent_Work_Order_Status_to_In_Progress</name>
+        <label>Assign Parent Work Order Status to In Progress</label>
+        <locationX>2360</locationX>
+        <locationY>1571</locationY>
+        <assignmentItems>
+            <assignToReference>On_Update_Get_Parent_Work_Order.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>In Progress</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OnUpdateWOBoolean</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_Apt_scheduled_for_today_or_tomorrow</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Slack_Message_and_Thread_Id</name>
+        <label>Assign Slack Message and Thread Id</label>
+        <locationX>1986</locationX>
+        <locationY>2195</locationY>
+        <assignmentItems>
+            <assignToReference>On_Update_Get_Parent_Work_Order.MS_FSM_Slack_Message_Id__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Pass_to_Slack_Thread_Subflow.var_SlackMessageIdWO</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>On_Update_Get_Parent_Work_Order.MS_FSM_Slack_Thread_Id__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Pass_to_Slack_Thread_Subflow.var_SlackThreadIdWO</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OnUpdateWOBoolean</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>On_Create_Does_Work_Order_need_to_be_updated</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Work_Order_Territory_Value</name>
+        <label>Assign Work Order Territory Value</label>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Parent_Work_Order.ServiceTerritoryId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.ServiceTerritoryId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>WOUpdateBoolean</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>On_Create_Does_Work_Order_need_to_be_updated</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Match_Work_Order_Territory_to_SA_Territory</name>
+        <label>Match Work Order Territory to SA Territory</label>
+        <locationX>2010</locationX>
+        <locationY>755</locationY>
+        <assignmentItems>
+            <assignToReference>On_Update_Get_Parent_Work_Order.ServiceTerritoryId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.ServiceTerritoryId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OnUpdateWOBoolean</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.MS_FSM_Local_Offset__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>OffsetFormula</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OnUpdateSABoolean</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Did_the_status_change</targetReference>
+        </connector>
+    </assignments>
+    <customErrors>
+        <name>On_Update_Work_Order_Error_Message</name>
+        <label>On Update Work Order Error Message</label>
+        <locationX>3064</locationX>
+        <locationY>539</locationY>
+        <customErrorMessages>
+            <errorMessage>Error Occurred:  {!$Flow.FaultMessage}</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <customErrors>
+        <name>Work_Order_Error_Message</name>
+        <label>Work Order Error Message</label>
+        <locationX>490</locationX>
+        <locationY>539</locationY>
+        <customErrorMessages>
+            <errorMessage>Error Occurred:  {!$Flow.FaultMessage}</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <name>Did_the_Service_Territory_Change</name>
+        <label>Did the Service Territory Change</label>
+        <locationX>2208</locationX>
+        <locationY>539</locationY>
+        <defaultConnector>
+            <targetReference>Did_the_status_change</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_the_Service_Territory_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ServiceTerritoryId</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>was_the_Service_Territory_Updated_to_Null</targetReference>
+            </connector>
+            <label>Yes, the Service Territory Changed</label>
+        </rules>
+        <rules>
+            <name>Local_Time_Offset_Missing</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ServiceTerritoryId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.MS_FSM_Local_Offset__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Local_Time_Offset</targetReference>
+            </connector>
+            <label>Local Time Offset Missing</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Did_the_status_change</name>
+        <label>Did the status change</label>
+        <locationX>2208</locationX>
+        <locationY>1031</locationY>
+        <defaultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Is_the_Service_Appointment_Dispatched</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_the_status_changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Was_the_status_updated_to_a_time_collection_status</targetReference>
+            </connector>
+            <label>Yes, the status changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Apt_scheduled_for_today_or_tomorrow</name>
+        <label>Is Apt scheduled for today or tomorrow</label>
+        <locationX>2272</locationX>
+        <locationY>1763</locationY>
+        <defaultConnector>
+            <targetReference>On_Create_Does_Work_Order_need_to_be_updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_either_today_or_tomorrow</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>AptScheduledToday</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>AppointmentScheduledTomorrow</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_the_Service_Appointment_Primary_and_Slack_Thread_Needed</targetReference>
+            </connector>
+            <label>Yes, either today or tomorrow</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_the_Parent_Work_Order_Status_In_Progress</name>
+        <label>Is the Parent Work Order Status In Progress</label>
+        <locationX>2272</locationX>
+        <locationY>1463</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Parent_Work_Order_Status_to_In_Progress</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_parent_work_order_status_is_in_progress</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>On_Update_Get_Parent_Work_Order.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>In Progress</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>On_Update_Get_Parent_Work_Order.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Completed</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_Apt_scheduled_for_today_or_tomorrow</targetReference>
+            </connector>
+            <label>Yes, parent work order status is in progress</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_the_Service_Appointment_Dispatched</name>
+        <label>Is the Service Appointment Dispatched</label>
+        <locationX>2448</locationX>
+        <locationY>1355</locationY>
+        <defaultConnector>
+            <targetReference>On_Create_Does_Work_Order_need_to_be_updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Service_Appointment_is_Dispatched</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Dispatched</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_the_Parent_Work_Order_Status_In_Progress</targetReference>
+            </connector>
+            <label>Yes, Service Appointment is Dispatched</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_the_Service_Appointment_New_or_Updated</name>
+        <label>Is the Service Appointment New or Updated</label>
+        <locationX>1755</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>SA_is_New</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ISNEW</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Parent_Work_Order</targetReference>
+            </connector>
+            <label>SA is New</label>
+        </rules>
+        <rules>
+            <name>SA_is_Updated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ISNEW</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>On_Update_Get_Parent_Work_Order</targetReference>
+            </connector>
+            <label>SA is Updated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_the_Service_Appointment_Primary_and_Slack_Thread_Needed</name>
+        <label>Is the Service Appointment Primary and Slack Thread Needed</label>
+        <locationX>2118</locationX>
+        <locationY>1871</locationY>
+        <defaultConnector>
+            <targetReference>On_Create_Does_Work_Order_need_to_be_updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Slack_Thread_is_Needed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>On_Update_Get_Parent_Work_Order.MS_FSM_Slack_Thread_Id__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>On_Update_Get_Parent_Work_Order.Asset.MS_FSM_Slack_Channel_Id__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Assigned_Resource</targetReference>
+            </connector>
+            <label>Yes, Slack Thread is Needed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_the_Service_Territory_Populated</name>
+        <label>Is the Service Territory Populated</label>
+        <locationX>182</locationX>
+        <locationY>539</locationY>
+        <defaultConnector>
+            <targetReference>On_Create_Does_Work_Order_need_to_be_updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_the_Service_Territory_is_Populated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ServiceTerritoryId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Work_Order_Territory_Value</targetReference>
+            </connector>
+            <label>Yes, the Service Territory is Populated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>On_Create_Does_Work_Order_need_to_be_updated</name>
+        <label>On Create Does Work Order need to be updated</label>
+        <locationX>1755</locationX>
+        <locationY>2891</locationY>
+        <defaultConnector>
+            <targetReference>On_Update_Does_Work_Order_need_to_get_updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>On_Create_Yes_Work_Order_Needs_to_be_updated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>WOUpdateBoolean</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>ISNEW</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>On_Create_Update_Work_Order</targetReference>
+            </connector>
+            <label>On Create, Yes Work Order Needs to be updated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>On_Update_does_SA_need_to_be_updated</name>
+        <label>On Update, does SA need to be updated</label>
+        <locationX>1755</locationX>
+        <locationY>3491</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>On_Update_Yes_SA_Needs_to_be_updated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>OnUpdateSABoolean</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>ISNEW</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Service_Appointment</targetReference>
+            </connector>
+            <label>On Update, Yes, SA Needs to be updated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>On_Update_Does_Work_Order_need_to_get_updated</name>
+        <label>On Update Does Work Order need to get updated</label>
+        <locationX>1755</locationX>
+        <locationY>3191</locationY>
+        <defaultConnector>
+            <targetReference>On_Update_does_SA_need_to_be_updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>On_Update_Yes_Work_Order_needs_to_be_updated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>OnUpdateWOBoolean</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>ISNEW</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>On_Update_Update_Work_Order</targetReference>
+            </connector>
+            <label>On Update, Yes Work Order needs to be updated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_the_Service_Appointment_updated_to_Canceled</name>
+        <label>Was the Service Appointment updated to Canceled</label>
+        <locationX>2085</locationX>
+        <locationY>1247</locationY>
+        <defaultConnector>
+            <targetReference>Is_the_Service_Appointment_Dispatched</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Service_Appointment_was_updated_to_Canceled</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Canceled</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Parent_Work_Order_Status_to_Canceled</targetReference>
+            </connector>
+            <label>Yes, Service Appointment was updated to Canceled</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>was_the_Service_Territory_Updated_to_Null</name>
+        <label>was the Service Territory Updated to Null</label>
+        <locationX>1878</locationX>
+        <locationY>647</locationY>
+        <defaultConnector>
+            <targetReference>Match_Work_Order_Territory_to_SA_Territory</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Service_Territory_was_Updated_to_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ServiceTerritoryId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Null_territory_Value_to_Work_Order</targetReference>
+            </connector>
+            <label>Yes, Service Territory was Updated to Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_the_status_updated_to_a_time_collection_status</name>
+        <label>Was the status updated to a time collection status</label>
+        <locationX>1617</locationX>
+        <locationY>1139</locationY>
+        <defaultConnector>
+            <targetReference>Was_the_Service_Appointment_updated_to_Canceled</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_it_was_updated_to_a_time_collection_status</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>In Progress</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Completed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Cannot Complete</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Which_status_is_the_Service_Appointment_in</targetReference>
+            </connector>
+            <label>Yes, it was updated to a time collection status</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Which_status_is_the_Service_Appointment_in</name>
+        <label>Which status is the Service Appointment in</label>
+        <locationX>1150</locationX>
+        <locationY>1247</locationY>
+        <defaultConnector>
+            <targetReference>On_Create_Does_Work_Order_need_to_be_updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>In_Progress</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>In Progress</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Actual_Start_Time</targetReference>
+            </connector>
+            <label>In Progress</label>
+        </rules>
+        <rules>
+            <name>Completed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Completed</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Actual_End_Time</targetReference>
+            </connector>
+            <label>Completed</label>
+        </rules>
+        <rules>
+            <name>Cannot_Complete</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Cannot Complete</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Actual_End_Time_Cannot_Complete</targetReference>
+            </connector>
+            <label>Cannot Complete</label>
+        </rules>
+    </decisions>
+    <description>Purpose of this Flow is to make applicable updates to a Service Appointment, as well as related Records, after the Service Appointment has been committed to the Database</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>AppointmentScheduledTomorrow</name>
+        <dataType>Boolean</dataType>
+        <expression>IF(DATEVALUE({!$Record.SchedStartTime}) = {!$Flow.CurrentDate} + 1, TRUE, FALSE)</expression>
+    </formulas>
+    <formulas>
+        <name>AptScheduledToday</name>
+        <dataType>Boolean</dataType>
+        <expression>IF(DATEVALUE({!$Record.SchedStartTime}) = {!$Flow.CurrentDate}, TRUE, FALSE)</expression>
+    </formulas>
+    <formulas>
+        <name>ISNEW</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <formulas>
+        <description>DST-aware UTC offset based on Service Territory operating hours timezone.</description>
+        <name>OffsetFormula</name>
+        <dataType>Number</dataType>
+        <expression>CASE({!$Record.ServiceTerritory.OperatingHours.TimeZone},
+  &quot;America/New_York&quot;,
+    IF(AND(
+      {!$Record.SchedStartTime} &gt;= DATETIMEVALUE(TEXT(YEAR(DATEVALUE({!$Record.SchedStartTime}))) &amp; &quot;-03-&quot; &amp; RIGHT(&quot;0&quot; &amp; TEXT(8 + MOD(8 - WEEKDAY(DATE(YEAR(DATEVALUE({!$Record.SchedStartTime})),3,1)),7)),2) &amp; &quot; 07:00:00&quot;),
+      {!$Record.SchedStartTime} &lt;  DATETIMEVALUE(TEXT(YEAR(DATEVALUE({!$Record.SchedStartTime}))) &amp; &quot;-11-&quot; &amp; RIGHT(&quot;0&quot; &amp; TEXT(1 + MOD(8 - WEEKDAY(DATE(YEAR(DATEVALUE({!$Record.SchedStartTime})),11,1)),7)),2) &amp; &quot; 06:00:00&quot;)
+    ), -4, -5),
+  &quot;America/Chicago&quot;,
+    IF(AND(
+      {!$Record.SchedStartTime} &gt;= DATETIMEVALUE(TEXT(YEAR(DATEVALUE({!$Record.SchedStartTime}))) &amp; &quot;-03-&quot; &amp; RIGHT(&quot;0&quot; &amp; TEXT(8 + MOD(8 - WEEKDAY(DATE(YEAR(DATEVALUE({!$Record.SchedStartTime})),3,1)),7)),2) &amp; &quot; 08:00:00&quot;),
+      {!$Record.SchedStartTime} &lt;  DATETIMEVALUE(TEXT(YEAR(DATEVALUE({!$Record.SchedStartTime}))) &amp; &quot;-11-&quot; &amp; RIGHT(&quot;0&quot; &amp; TEXT(1 + MOD(8 - WEEKDAY(DATE(YEAR(DATEVALUE({!$Record.SchedStartTime})),11,1)),7)),2) &amp; &quot; 07:00:00&quot;)
+    ), -5, -6),
+  &quot;America/Denver&quot;,
+    IF(AND(
+      {!$Record.SchedStartTime} &gt;= DATETIMEVALUE(TEXT(YEAR(DATEVALUE({!$Record.SchedStartTime}))) &amp; &quot;-03-&quot; &amp; RIGHT(&quot;0&quot; &amp; TEXT(8 + MOD(8 - WEEKDAY(DATE(YEAR(DATEVALUE({!$Record.SchedStartTime})),3,1)),7)),2) &amp; &quot; 09:00:00&quot;),
+      {!$Record.SchedStartTime} &lt;  DATETIMEVALUE(TEXT(YEAR(DATEVALUE({!$Record.SchedStartTime}))) &amp; &quot;-11-&quot; &amp; RIGHT(&quot;0&quot; &amp; TEXT(1 + MOD(8 - WEEKDAY(DATE(YEAR(DATEVALUE({!$Record.SchedStartTime})),11,1)),7)),2) &amp; &quot; 08:00:00&quot;)
+    ), -6, -7),
+  &quot;America/Los_Angeles&quot;,
+    IF(AND(
+      {!$Record.SchedStartTime} &gt;= DATETIMEVALUE(TEXT(YEAR(DATEVALUE({!$Record.SchedStartTime}))) &amp; &quot;-03-&quot; &amp; RIGHT(&quot;0&quot; &amp; TEXT(8 + MOD(8 - WEEKDAY(DATE(YEAR(DATEVALUE({!$Record.SchedStartTime})),3,1)),7)),2) &amp; &quot; 10:00:00&quot;),
+      {!$Record.SchedStartTime} &lt;  DATETIMEVALUE(TEXT(YEAR(DATEVALUE({!$Record.SchedStartTime}))) &amp; &quot;-11-&quot; &amp; RIGHT(&quot;0&quot; &amp; TEXT(1 + MOD(8 - WEEKDAY(DATE(YEAR(DATEVALUE({!$Record.SchedStartTime})),11,1)),7)),2) &amp; &quot; 09:00:00&quot;)
+    ), -7, -8),
+  &quot;America/Anchorage&quot;,
+    IF(AND(
+      {!$Record.SchedStartTime} &gt;= DATETIMEVALUE(TEXT(YEAR(DATEVALUE({!$Record.SchedStartTime}))) &amp; &quot;-03-&quot; &amp; RIGHT(&quot;0&quot; &amp; TEXT(8 + MOD(8 - WEEKDAY(DATE(YEAR(DATEVALUE({!$Record.SchedStartTime})),3,1)),7)),2) &amp; &quot; 11:00:00&quot;),
+      {!$Record.SchedStartTime} &lt;  DATETIMEVALUE(TEXT(YEAR(DATEVALUE({!$Record.SchedStartTime}))) &amp; &quot;-11-&quot; &amp; RIGHT(&quot;0&quot; &amp; TEXT(1 + MOD(8 - WEEKDAY(DATE(YEAR(DATEVALUE({!$Record.SchedStartTime})),11,1)),7)),2) &amp; &quot; 10:00:00&quot;)
+    ), -8, -9),
+  &quot;America/Phoenix&quot;,   -7,
+  &quot;Pacific/Honolulu&quot;, -10,
+  0
+)</expression>
+        <scale>2</scale>
+    </formulas>
+    <interviewLabel>MS_FSM_Service Appointment - After Save - Related Record Updates {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MS_FSM_Service Appointment - After Save - Related Record Updates</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Assigned_Resource</name>
+        <label>Get Assigned Resource</label>
+        <locationX>1986</locationX>
+        <locationY>1979</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Pass_to_Slack_Thread_Subflow</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ServiceAppointmentId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>AssignedResource</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Parent_Work_Order</name>
+        <label>Get Parent Work Order</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_the_Service_Territory_Populated</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Work_Order_Error_Message</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.ParentRecordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>WorkOrder</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>On_Update_Get_Parent_Work_Order</name>
+        <label>On Update - Get Parent Work Order</label>
+        <locationX>2208</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Did_the_Service_Territory_Change</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>On_Update_Work_Order_Error_Message</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.ParentRecordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>WorkOrder</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>On_Create_Update_Work_Order</name>
+        <label>On Create Update Work Order</label>
+        <locationX>1623</locationX>
+        <locationY>2999</locationY>
+        <connector>
+            <targetReference>On_Update_Does_Work_Order_need_to_get_updated</targetReference>
+        </connector>
+        <inputReference>Get_Parent_Work_Order</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>On_Update_Update_Work_Order</name>
+        <label>On Update, Update Work Order</label>
+        <locationX>1623</locationX>
+        <locationY>3299</locationY>
+        <connector>
+            <targetReference>On_Update_does_SA_need_to_be_updated</targetReference>
+        </connector>
+        <inputReference>On_Update_Get_Parent_Work_Order</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Service_Appointment</name>
+        <label>Update Service Appointment</label>
+        <locationX>1623</locationX>
+        <locationY>3599</locationY>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>1629</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_the_Service_Appointment_New_or_Updated</targetReference>
+        </connector>
+        <object>ServiceAppointment</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Pass_to_Slack_Thread_Subflow</name>
+        <label>Pass to Slack Thread Subflow</label>
+        <locationX>1986</locationX>
+        <locationY>2087</locationY>
+        <connector>
+            <targetReference>Assign_Slack_Message_and_Thread_Id</targetReference>
+        </connector>
+        <flowName>MS_FSM_Subflow_Service_Appointment_Slack_Thread</flowName>
+        <inputAssignments>
+            <name>var_ServiceAppointment</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>var_ServiceResourceName</name>
+            <value>
+                <elementReference>Get_Assigned_Resource.ServiceResource.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>var_WorkOrderId</name>
+            <value>
+                <elementReference>On_Update_Get_Parent_Work_Order.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <variables>
+        <name>OnUpdateSABoolean</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>OnUpdateWOBoolean</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>WOUpdateBoolean</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+</Flow>

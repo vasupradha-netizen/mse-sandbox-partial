@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Priority__c</fullName>
+    <label>Priority</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Highest</fullName>
+                <default>false</default>
+                <label>Highest</label>
+            </value>
+            <value>
+                <fullName>Per SLA</fullName>
+                <default>false</default>
+                <label>Per SLA</label>
+            </value>
+            <value>
+                <fullName>P0</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>P0</label>
+            </value>
+            <value>
+                <fullName>P1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>P1</label>
+            </value>
+            <value>
+                <fullName>P2</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>P2</label>
+            </value>
+            <value>
+                <fullName>P3</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>P3</label>
+            </value>
+            <value>
+                <fullName>P4</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>P4</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

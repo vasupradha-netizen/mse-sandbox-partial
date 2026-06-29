@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Tech_Resp_Lgen_Assembly_Status__c</fullName>
+    <description>Field for reply from technician on question: &quot;What is the current status of the LGen? (fully assembled / disassembled)&quot;</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Technician response: &quot;What is the current status of the LGen? (fully assembled / disassembled)&quot;</inlineHelpText>
+    <label>Technician Response Lgen Assembly Status</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

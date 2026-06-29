@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Rest_of_the_Users</name>
+        <label>Rest of the Users</label>
+        <locationX>578</locationX>
+        <locationY>431</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>sales@mainspringenergy.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Welcome to Salesforce! Your Access Details and Next Steps</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Forrestoftheusers</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>Action will send welcome email to users created in FSM</description>
+        <name>Send_Welcome_Email_to_FSM_User</name>
+        <label>Send Welcome Email to FSM User</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>sales@mainspringenergy.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Welcome to FSM Salesforce! Instructions to Get Started</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>ForFsmInternalUsersProduction</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_WeLcome_Email_to_Sales_USER</name>
+        <label>Send WeLcome Email to Sales USER</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>sales@mainspringenergy.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Welcome to Salesforce! Your Access Details and Next Steps</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>ForSalesUsersandFTMSales</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>61.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Verify_profile</name>
+        <label>Verify profile</label>
+        <locationX>446</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Sales_users_and_FTM_Sales</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sales User</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FTM Sales</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_WeLcome_Email_to_Sales_USER</targetReference>
+            </connector>
+            <label>Sales users and FTM Sales</label>
+        </rules>
+        <rules>
+            <name>FSM_Internal_Users</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FSM Internal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FSM Technician - Internal</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Welcome_Email_to_FSM_User</targetReference>
+            </connector>
+            <label>FSM Internal Users</label>
+        </rules>
+        <rules>
+            <name>Rest_of_the_profiles</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4 OR 5 OR 6)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Profile.Name</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Analyst User</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Marketing Standard</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Marketing Admin</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Read Only</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>GPRA</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Rest_of_the_Users</targetReference>
+            </connector>
+            <label>Rest of the profiles</label>
+        </rules>
+    </decisions>
+    <description>Welcome emails sent to different users in MSE Salesforce - included FSM mobile security guidelines and &quot;how-to&quot; videos (sending out the production version of email)</description>
+    <environments>Default</environments>
+    <interviewLabel>Welcome email {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>New Salesforce User Welcome email</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>320</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Verify_profile</targetReference>
+        </connector>
+        <object>User</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <description>Welcome email created just for FSM internal users in partial environment</description>
+        <name>ForFsmInternalUsersPartial</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;Hello {!$Record.FirstName},&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/strong&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(43, 44, 88); background-color: transparent;&quot;&gt;Welcome to &lt;/strong&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(245, 62, 0); background-color: transparent;&quot;&gt;Mainspring Energy&apos;s &lt;/strong&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(43, 44, 88); background-color: transparent;&quot;&gt;FSM on Salesforce!&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;To get started, please follow the following directions:&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;Verify Salesforce Email - Subject: &quot;Welcome to Salesforce: Verify your account&quot;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Your username will be first.last@mainspringenergy.com.partial in &lt;/span&gt;&lt;a href=&quot;test.salesforce.com&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px;&quot;&gt;FSM Partial&lt;/a&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;When verifying your account, set-up your password.  &lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: transparent;&quot;&gt;The second time you log in, you will be prompted to authenticate using your authenticator app.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: transparent;&quot;&gt;If you are logging into mobile and having trouble, please visit the &lt;/span&gt;&lt;span style=&quot;font-size: 14px; background-color: transparent; color: rgb(0, 0, 0);&quot;&gt; &lt;/span&gt;&lt;a href=&quot;https://docs.google.com/document/d/1lvKn5Lh96yHIwu3_gs_oZ-s6rIwsCNEthCWrGPveloI/edit?tab=t.0#bookmark=id.dgvvwuw5cvsf&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px;&quot;&gt;FSM Salesforce User Guide: FSM on Mobile&lt;/a&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt; &lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Need Help?&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;For Salesforce FSM Processes or Technical Support:&lt;/span&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: transparent;&quot;&gt;Please slack &lt;/span&gt;&lt;a href=&quot;https://mainspringenergy.slack.com/messages/enterprise-and-fleet-operations/&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px; color: rgb(17, 85, 204);&quot;&gt;&lt;u&gt;#enterprise-and-fleet-operations&lt;/u&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 14px; background-color: transparent;&quot;&gt; to reach us directly!&lt;/span&gt;&lt;strong style=&quot;font-size: 14px; background-color: transparent;&quot;&gt; &lt;/strong&gt;&lt;span style=&quot;font-size: 14px; background-color: transparent;&quot;&gt;Don’t forget to tag @Kyle Reilly, @Kristin Elmstrom and @Anna Poon&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; background-color: transparent;&quot;&gt;Additionally, please visit &lt;/span&gt;&lt;a href=&quot;https://help.salesforce.com/s/articleView?id=service.mfs_requirements.htm&amp;amp;type=5&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px; color: rgb(17, 85, 204);&quot;&gt;&lt;u&gt;Field Service Mobile App Requirements&lt;/u&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 14px; background-color: transparent;&quot;&gt; to ensure that all app requirements are met.&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Remember, users must follow Mainspring’s &lt;/span&gt;&lt;span style=&quot;font-size: 14px; color: rgb(77, 77, 79); background-color: transparent;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;https://app.drata.com/dashboard&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px;&quot;&gt;Acceptable Use Guidelines&lt;/a&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;and&lt;/span&gt;&lt;span style=&quot;font-size: 14px; color: rgb(77, 77, 79); background-color: transparent;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;https://app.drata.com/dashboard&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px;&quot;&gt;Information Security Policy&lt;/a&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt; in the Drata Dashboard&lt;/span&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;, including guidance on use of personal electronic devices for business purposes.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Lastly, ​​​​​​for more information, please visit: &lt;/span&gt;&lt;a href=&quot;https://docs.google.com/document/d/1lvKn5Lh96yHIwu3_gs_oZ-s6rIwsCNEthCWrGPveloI/edit?tab=t.0&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px; color: rgb(17, 85, 204);&quot;&gt;&lt;u&gt;FSM Salesforce User Guide&lt;/u&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;.&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;﻿Thank you and welcome onboard!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Best Regards,&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Anna Poon&lt;/span&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <description>Welcome email created for FSM Salesforce users.</description>
+        <name>ForFsmInternalUsersProduction</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);&quot;&gt;Hello {!$Record.FirstName},&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;﻿&lt;/strong&gt;&lt;strong style=&quot;background-color: transparent; color: rgb(43, 44, 88); font-size: 14px;&quot;&gt;Welcome to &lt;/strong&gt;&lt;strong style=&quot;background-color: transparent; color: rgb(245, 62, 0); font-size: 14px;&quot;&gt;Mainspring Energy&apos;s &lt;/strong&gt;&lt;strong style=&quot;background-color: transparent; color: rgb(43, 44, 88); font-size: 14px;&quot;&gt;FSM on Salesforce, Field Service Team!&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;To get started, please follow the following directions:&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;color: rgb(0, 0, 0); background-color: transparent; font-size: 14px;&quot;&gt;Verify Salesforce Email - Subject: &quot;Welcome to Salesforce: Verify your account&quot;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px;&quot;&gt;Login to &lt;/span&gt;&lt;a href=&quot;https://mainspringenergy2021.my.salesforce.com/&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: transparent; font-size: 14px;&quot;&gt;Salesforce&lt;/a&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px;&quot;&gt; using &lt;/span&gt;&lt;a href=&quot;https://docs.google.com/document/d/1kNTPxJnRrSbfGk11nI80rTgHBzQYwWYS3ewcvdXbL5E/edit?tab=t.0&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: transparent; font-size: 14px;&quot;&gt;Single-Sign-On (SSO) through Jump Cloud&lt;/a&gt;&lt;ul&gt;&lt;li&gt;&lt;em style=&quot;background-color: transparent; font-size: 14px;&quot;&gt;Note: &lt;/em&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px;&quot;&gt;your username will be your Mainspring Energy email address&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px;&quot;&gt;The second time you log in on FSM Desktop, you will be prompted to authenticate using your authenticator app.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px;&quot;&gt;Technicians, if you are on a mobile device, you will need to use &lt;/span&gt;&lt;a href=&quot;https://docs.google.com/document/d/1kNTPxJnRrSbfGk11nI80rTgHBzQYwWYS3ewcvdXbL5E/edit?tab=t.0#bookmark=id.a9iuexq64au4&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: transparent; font-size: 14px; color: rgb(17, 85, 204);&quot;&gt;&lt;u&gt;Single-Sign-On (SSO) through the Field Service Mobile App&lt;/u&gt;&lt;/a&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px;&quot;&gt;, please feel free to follow the instructions or watch this &lt;/span&gt;&lt;a href=&quot;https://drive.google.com/file/d/1nC5f9fJuE0hHpSyYU-CvElZx-676ebtP/view?usp=drive_link&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: transparent; font-size: 14px;&quot;&gt;How to Log In&lt;/a&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px;&quot;&gt; video on how to get help on how to sign on to production.&lt;/span&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Before signing in, ensure you have a phone passcode set-up.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Remember, to select the “Production” environment from the widget or three dots icon on the upper-right hand corner before signing in with SSO.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Additionally, remember to go to &quot;Use Custom Domain&quot; under the Log In button and enter &quot;mainspringenergy2021&quot;. This will guide you through JumpCloud for login.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 14px; background-color: transparent;&quot;&gt;For more general information on set-up, please use&lt;/span&gt;&lt;span style=&quot;font-size: 14px; background-color: transparent;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;https://docs.google.com/document/d/1lvKn5Lh96yHIwu3_gs_oZ-s6rIwsCNEthCWrGPveloI/edit?tab=t.0#bookmark=id.dgvvwuw5cvsf&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px; color: rgb(17, 85, 204);&quot;&gt;&lt;u&gt;FSM Salesforce User Guide: FSM on Mobile&lt;/u&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt; for more assistance.&amp;nbsp;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;Need Help?&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;For Salesforce FSM Processes or Technical Support:&lt;/span&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px;&quot;&gt;Please slack &lt;/span&gt;&lt;a href=&quot;https://mainspringenergy.slack.com/messages/enterprise-and-fleet-operations/&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: transparent; font-size: 14px; color: rgb(17, 85, 204);&quot;&gt;&lt;u&gt;#enterprise-and-fleet-operations&lt;/u&gt;&lt;/a&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px;&quot;&gt; to reach us directly!&lt;/span&gt;&lt;strong style=&quot;background-color: transparent; font-size: 14px;&quot;&gt; &lt;/strong&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px;&quot;&gt;Don’t forget to tag @Kyle Reilly, @eds-fleet-support for an EDS Team member to help!&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px;&quot;&gt;Additionally, please visit &lt;/span&gt;&lt;a href=&quot;https://help.salesforce.com/s/articleView?id=service.mfs_requirements.htm&amp;amp;type=5&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: transparent; font-size: 14px; color: rgb(17, 85, 204);&quot;&gt;&lt;u&gt;Field Service Mobile App Requirements&lt;/u&gt;&lt;/a&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px;&quot;&gt; to ensure that all app requirements are met.&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;Remember, users must follow Mainspring’s &lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: rgb(77, 77, 79); font-size: 14px;&quot;&gt; &lt;/span&gt;&lt;a href=&quot;https://app.drata.com/dashboard&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: rgb(255, 255, 255); font-size: 14px;&quot;&gt;Acceptable Use Guidelines&lt;/a&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(68, 68, 68);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px; color: rgb(0, 0, 0);&quot;&gt;and&lt;/span&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px; color: rgb(77, 77, 79);&quot;&gt; &lt;/span&gt;&lt;a href=&quot;https://app.drata.com/dashboard&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: rgb(255, 255, 255); font-size: 14px;&quot;&gt;Information Security Policy&lt;/a&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(0, 0, 0);&quot;&gt; in the Drata Dashboard&lt;/span&gt;&lt;span style=&quot;background-color: transparent; font-size: 14px; color: rgb(0, 0, 0);&quot;&gt;, including guidance on use of personal electronic devices for business purposes.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;Lastly, ​​​​​​for more information, please visit: &lt;/span&gt;&lt;a href=&quot;https://docs.google.com/document/d/1lvKn5Lh96yHIwu3_gs_oZ-s6rIwsCNEthCWrGPveloI/edit?tab=t.0&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: transparent; color: rgb(17, 85, 204); font-size: 14px;&quot;&gt;&lt;u&gt;FSM Salesforce User Guide&lt;/u&gt;&lt;/a&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;.&amp;nbsp;Thank you and welcome onboard!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;Best Regards,&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;Anna Poon&lt;/span&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Forrestoftheusers</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 11pt;&quot;&gt;Dear {!$Record.FirstName},&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 11pt;&quot;&gt;Your Salesforce account has been successfully created, and you’ve been assigned a profile to support your work at Mainspring energy.&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 11pt;&quot;&gt;Access Details:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 11pt;&quot;&gt;You will receive an email shortly with the subject line: &lt;/span&gt;&lt;strong style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 11pt;&quot;&gt;&quot;Welcome to Salesforce: Verify your account.&quot;&lt;/strong&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 11pt;&quot;&gt; This email will guide you through the process of verifying your account and setting up your password.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 11pt;&quot;&gt;We recommend that you sign-in to Salesforce using SSO after setting up a password. Please refer to the guide about signing into Salesforce using SSO:&lt;/span&gt;&lt;a href=&quot;https://docs.google.com/document/d/1jPIvDHZJAsjlMV03Oz9eRDzZ4GhuJoCFj6wJQs9QkSw/edit&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: transparent; color: rgb(17, 85, 204); font-family: Roboto, sans-serif; font-size: 10.5pt;&quot;&gt;&lt;u&gt;SSO for Salesforce&lt;/u&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 11pt;&quot;&gt;Next Steps:&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;strong style=&quot;background-color: transparent; font-size: 11pt;&quot;&gt;Check Your Email:&lt;/strong&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt;&quot;&gt; Look for an email with the subject line &quot;Welcome to Salesforce: Verify your account&quot; to get started with your Salesforce access.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;strong style=&quot;background-color: transparent; font-size: 11pt;&quot;&gt;Familiarize Yourself with Salesforce:&lt;/strong&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt;&quot;&gt; Please refer to the guide for more details: &lt;/span&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1DqPYmtmnHVcGXLXUIVCeWeFi97kPaB9pH4BVU6lCW5Y/edit#slide=id.p&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: transparent; font-size: 11pt; color: rgb(17, 85, 204);&quot;&gt;&lt;u&gt;Salesforce User Guide&lt;/u&gt;&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;strong style=&quot;background-color: transparent; color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 11pt;&quot;&gt;Need Help?&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;background-color: transparent; font-size: 11pt;&quot;&gt;For Salesforce process questions&lt;/strong&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt;&quot;&gt;, please reach out to Matt at &lt;/span&gt;&lt;a href=&quot;mailto:matt.white@mainspringenergy.com&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;background-color: transparent; font-size: 11pt; color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;matt.white@mainspringenergy.com&lt;/u&gt;&lt;/a&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt;&quot;&gt;.&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>ForSalesUsersandFTMSales</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Dear {!$Record.FirstName},&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Welcome to the team! Your Salesforce account has been successfully created, and you’ve been assigned a Sales profile to help you get started with your sales activities.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Access Details:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;You will receive an email shortly with the subject line: &lt;/span&gt;&lt;strong style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;&quot;Welcome to Salesforce: Verify your account.&quot;&lt;/strong&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt; This email will guide you through the process of verifying your account and setting up your password.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;We recommend that you sign-in to Salesforce using SSO after setting up a password. Please refer to the guide about signing into Salesforce using SSO:&lt;/span&gt;&lt;a href=&quot;https://docs.google.com/document/d/1jPIvDHZJAsjlMV03Oz9eRDzZ4GhuJoCFj6wJQs9QkSw/edit&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 10.5pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent;&quot;&gt;&lt;u&gt;SSO for Salesforce&lt;/u&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Salesforce Inbox License:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;You’ve also been assigned a Salesforce Inbox license, which will streamline your email and calendar management directly within Salesforce.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Next Steps:&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 11pt; background-color: transparent;&quot;&gt;Check Your Email:&lt;/strong&gt;&lt;span style=&quot;font-size: 11pt; background-color: transparent;&quot;&gt; Look for an email with the subject line &quot;Welcome to Salesforce: Verify your account&quot; to get started with your Salesforce access.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 11pt; background-color: transparent;&quot;&gt;Set Up Salesforce Inbox:&lt;/strong&gt;&lt;span style=&quot;font-size: 11pt; background-color: transparent;&quot;&gt; Follow these instructions: &lt;/span&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1sm1A96HXONlrFkxlxiMtk42qa7Rft71FT5kFGyjrf8E/edit#slide=id.p2&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 10.5pt; background-color: transparent; font-family: Roboto, sans-serif; color: rgb(17, 85, 204);&quot;&gt;&lt;u&gt;Installing Salesforce Chrome Extension&lt;/u&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 11pt; background-color: transparent;&quot;&gt;Familiarize Yourself with Salesforce:&lt;/strong&gt;&lt;span style=&quot;font-size: 11pt; background-color: transparent;&quot;&gt; Please refer to the guide for more details: &lt;/span&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1DqPYmtmnHVcGXLXUIVCeWeFi97kPaB9pH4BVU6lCW5Y/edit#slide=id.p&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 11pt; background-color: transparent; color: rgb(17, 85, 204);&quot;&gt;&lt;u&gt;Salesforce User Guide&lt;/u&gt;&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Need Help?&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 11pt; background-color: transparent;&quot;&gt;For Salesforce process questions&lt;/strong&gt;&lt;span style=&quot;font-size: 11pt; background-color: transparent;&quot;&gt;, please reach out to Matt at &lt;/span&gt;&lt;a href=&quot;mailto:matt.white@mainspringenergy.com&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 11pt; background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;matt.white@mainspringenergy.com&lt;/u&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 11pt; background-color: transparent;&quot;&gt;. Matt will be scheduling a Salesforce orientation meeting with you within the next 2 weeks.&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Welcome to Mainspring!&lt;/span&gt;&lt;/p&gt;</text>
+    </textTemplates>
+</Flow>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_paying_for_site_visit__c</fullName>
+    <label>Customer paying for site visit?</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Yes (no exec conversation)</fullName>
+                <default>false</default>
+                <label>Yes (no exec conversation)</label>
+            </value>
+            <value>
+                <fullName>Waived (exec conversation occurred)</fullName>
+                <default>false</default>
+                <label>Waived (exec conversation occurred)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

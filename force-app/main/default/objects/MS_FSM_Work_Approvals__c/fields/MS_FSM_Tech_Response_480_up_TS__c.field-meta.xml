@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Tech_Response_480_up_TS__c</fullName>
+    <description>Field for reply from technician on question: &quot;Did everyone discuss on the phone or in person what troubleshooting steps will be completed with 480 up?&quot;</description>
+    <inlineHelpText>Technician reply for: &quot;Did everyone discuss on the phone or in person what troubleshooting steps will be completed with 480 up?&quot;</inlineHelpText>
+    <label>Tech Response 480-up Troubleshooting</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

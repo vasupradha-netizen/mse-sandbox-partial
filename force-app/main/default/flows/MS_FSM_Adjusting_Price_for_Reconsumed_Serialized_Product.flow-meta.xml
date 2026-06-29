@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Check if the Original Cost and Product Cost are the same (assuming Product Cost is not zero). If it is not, then copy over the original cost</description>
+        <name>Is_Original_Cost_Populated</name>
+        <label>Is Original Cost Populated?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Update_Product_Cost_to_0</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Cost Populated, Do Nothing</defaultConnectorLabel>
+        <rules>
+            <name>Cost_Not_Populated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.MS_FSM_Original_Product_Cost__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.MS_FSM_Product_Cost__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.MS_FSM_Product_Cost__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Original_Cost_with_Product_Cost</targetReference>
+            </connector>
+            <label>Cost Not Populated</label>
+        </rules>
+    </decisions>
+    <description>Flow to adjust price for serialized products we reuse in service</description>
+    <environments>Default</environments>
+    <interviewLabel>MS_FSM {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MS FSM Adjusting Price for Reconsumed Serialized Product</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Original_Cost_with_Product_Cost</name>
+        <label>Update Original Cost with Product Cost</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Product_Cost_to_0</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>MS_FSM_Original_Product_Cost__c</field>
+            <value>
+                <elementReference>$Record.MS_FSM_Product_Cost__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Product_Cost_to_0</name>
+        <label>Update Product Cost to 0</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>MS_FSM_Product_Cost__c</field>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Original_Cost_Populated</targetReference>
+        </connector>
+        <filterFormula>ISPICKVAL({!$Record.Status}, &quot;Available&quot;) &amp;&amp;
+ISPICKVAL({!$Record__Prior.Status}, &quot;Consumed&quot;) &amp;&amp;
+NOT(ISBLANK({!$Record.Asset.Id}))</filterFormula>
+        <object>SerializedProduct</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

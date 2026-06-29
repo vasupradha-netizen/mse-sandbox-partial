@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approval_Stage__c</fullName>
+    <label>Approval Stage</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pending with Legal</fullName>
+                <default>false</default>
+                <label>Pending with Legal</label>
+            </value>
+            <value>
+                <fullName>Pending with Finance</fullName>
+                <default>false</default>
+                <label>Pending with Finance</label>
+            </value>
+            <value>
+                <fullName>Pending with Sales</fullName>
+                <default>false</default>
+                <label>Pending with Sales</label>
+            </value>
+            <value>
+                <fullName>Pending with Exec</fullName>
+                <default>false</default>
+                <label>Pending with Exec</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

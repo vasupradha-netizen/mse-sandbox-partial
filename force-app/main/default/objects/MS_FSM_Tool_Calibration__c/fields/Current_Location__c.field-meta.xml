@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_Location__c</fullName>
+    <label>Current Location</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Calibration Owner</fullName>
+                <default>false</default>
+                <label>Calibration Owner</label>
+            </value>
+            <value>
+                <fullName>HQ Inventory</fullName>
+                <default>true</default>
+                <label>HQ Inventory</label>
+            </value>
+            <value>
+                <fullName>In-transit</fullName>
+                <default>false</default>
+                <label>In-transit</label>
+            </value>
+            <value>
+                <fullName>OEM</fullName>
+                <default>false</default>
+                <label>OEM</label>
+            </value>
+            <value>
+                <fullName>Third-Party Calibration</fullName>
+                <default>false</default>
+                <label>Third-Party Calibration</label>
+            </value>
+            <value>
+                <fullName>Tool Owner</fullName>
+                <default>false</default>
+                <label>Tool Owner</label>
+            </value>
+            <value>
+                <fullName>Scrapped</fullName>
+                <default>false</default>
+                <label>Scrapped</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

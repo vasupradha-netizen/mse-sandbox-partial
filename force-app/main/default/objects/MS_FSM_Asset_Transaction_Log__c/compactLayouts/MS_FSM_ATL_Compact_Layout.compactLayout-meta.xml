@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_ATL_Compact_Layout</fullName>
+    <fields>Name</fields>
+    <fields>MS_FSM_Asset_Id__c</fields>
+    <fields>MS_FSM_Asset_Serial_Number__c</fields>
+    <fields>MS_FSM_Parent_Asset_Serial_Number__c</fields>
+    <fields>MS_FSM_Location_Id__c</fields>
+    <fields>MS_FSM_Work_Order_Line_Item_Id__c</fields>
+    <label>ATL Compact Layout</label>
+</CompactLayout>

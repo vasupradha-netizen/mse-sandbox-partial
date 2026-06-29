@@ -1,0 +1,178 @@
+<template>
+    <template if:true={screen1}>
+        <lightning-card title="Add Line Items | Step 1 of 2 | Select Child Assets">
+            <div class="card-inner">
+                <h3>
+                    Select the child Assets on which the work will be performed, commonly the Core A, Core B, or Package.
+                </h3>
+                <div class="card-block input-short">
+                    <lightning-combobox
+                        name="family"
+                        label="Product Family Filter"
+                        placeholder="Product Family"
+                        options={availableFams}
+                        onchange={addFamily} ></lightning-combobox>
+                </div>
+                <div class="card-block">
+                    <template for:each={selectedFams} for:item="s">
+                        <lightning-pill key={s} label={s} onremove={removeFamily}></lightning-pill>&nbsp;&nbsp;
+                    </template>
+                </div>
+                <div class="card-block input-short">
+                    <lightning-input type="search" label="Asset Name" onchange={searchChild}></lightning-input>
+                </div>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_10-of-12">
+                        <div class="card-block">
+                            <p>{childMsg}</p><br/>
+                            <lightning-datatable
+                                key-field="Id"
+                                data={displayChildAssets}
+                                columns={SCREEN_2_COLS}
+                                hide-checkbox-column="true"
+                                onrowaction={handleRowAction}
+                                sorted-direction={sortDirection}
+                                sorted-by={sortColumn}
+                                onsort={handleSort}>
+                            </lightning-datatable>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12">
+                        <template for:each={protoWoli} for:item="p">
+                            <div key={p.childId} class={p.cssClass}>
+                                <p style="font-size:10px;"><b>{p.childName}</b></p>
+                                <p>
+                                    <lightning-icon icon-name="utility:close"
+                                                    alternative-text="Remove" 
+                                                    title="Remove" 
+                                                    data-id={p.childId} 
+                                                    onclick={removeProto} 
+                                                    size="xx-small"></lightning-icon>
+                                </p>
+                                <template lwc:if={p.parent}><p style="font-size:10px;"><b>Parent:</b> {p.parent}</p></template>
+                                <template lwc:if={p.placement}><p style="font-size:10px;"><b>Placement:</b> {p.placement}</p></template>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                <br/>
+                <div class="card-block slds-text-align_right">
+                    <lightning-button variant="brand" label="Next" onclick={handleNext} disabled={nextDisabled}></lightning-button>
+                </div>
+            </div>
+        </lightning-card>
+    </template>
+    <template if:true={screen2}>
+        <lightning-card title="Add Line Items | Step 2 of 2 | Select Work Type">
+            <div class="card-inner">
+                <h3>
+                    Select a Work Type to apply to the Line Item. Click "include" on tiles in the left list to create a group of Line Items.
+                </h3>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_5-of-12">
+                        <div class="card-block input-short">
+                            <lightning-input type="search" label="Work Type Name" data-id="wtSearch" onchange={searchTypes}></lightning-input>
+                        </div>
+                        <div class="card-block">
+                            <template if:true={showWorkTypes}>
+                                <lightning-datatable
+                                    key-field="Id"
+                                    data-id="workTypeList"
+                                    data={filteredWorkTypes}
+                                    columns={WORK_TYPE_COLS}
+                                    max-row-selection="1"
+                                    onrowselection={workTypeSelect}></lightning-datatable>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_5-of-12">
+                        <div class="card-block">
+                            <div>
+                                <lightning-combobox
+                                    name="plannedReactive"
+                                    label="Planned or Reactive"
+                                    options={PLANNED_REACTIVE_OPTS}
+                                    data-id="plannedReactive"
+                                    onchange={checkSubmission}></lightning-combobox>
+                            </div>
+                            <div>
+                                <lightning-input type="number" 
+                                                 label="Duration" 
+                                                 name="Duration" 
+                                                 data-id="duration"
+                                                 onchange={checkSubmission}></lightning-input>
+                            </div>
+                            <div>
+                                <lightning-combobox
+                                    name="durationType"
+                                    label="Duration Type"
+                                    data-id="durationType"
+                                    options={HOURS_MINUTES_OPTS}
+                                    onchange={checkSubmission}></lightning-combobox>
+                            </div>
+                            <template if:true={installWorkType}>
+                                <div>
+                                    <div class="card-block">
+                                        <lightning-input type="search" label="Install/Replace Product" onchange={prodSearchChange} data-id="prodSearch"></lightning-input><br/>
+                                        <lightning-button variant="brand" label="Search Products" onclick={prodSearch}></lightning-button><br/>
+                                        <template lwc:if={prodReady}>
+                                            <br/>
+                                            <lightning-datatable
+                                                key-field="Id"
+                                                data={products}
+                                                columns={PROD_COLS}
+                                                max-row-selection="1"
+                                                onrowselection={prodSelect}></lightning-datatable>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12">
+                        <template for:each={protoWoli} for:item="p">
+                            <div key={p.childId} class={p.cssClass}>
+                                <div>
+                                    <p style="font-size:10px;"><b>{p.childName}</b></p>
+                                </div>
+                                <div>
+                                    <template if:false={p.disabled}>
+                                        <template if:false={p.selected}>
+                                            <lightning-icon icon-name="utility:add"
+                                                    alternative-text="Remove from Group" 
+                                                    title="Remove from Group" 
+                                                    data-id={p.childId} 
+                                                    onclick={groupProto} 
+                                                    size="xx-small"></lightning-icon>&nbsp;&nbsp;
+                                        </template>
+                                        <template if:true={p.selected}>
+                                            <lightning-icon icon-name="utility:dash"
+                                                    alternative-text="Remove from Group" 
+                                                    title="Remove from Group" 
+                                                    data-id={p.childId} 
+                                                    onclick={ungroupProto} 
+                                                    size="xx-small"></lightning-icon>&nbsp;&nbsp;
+                                        </template>
+                                    </template>
+                                    <lightning-icon icon-name="utility:close"
+                                                    alternative-text="Remove" 
+                                                    title="Remove" 
+                                                    data-id={p.childId} 
+                                                    onclick={removeProto} 
+                                                    size="xx-small"></lightning-icon>
+                                    <template lwc:if={p.parent}><p style="font-size:10px;"><b>Parent:</b> {p.parent}</p></template>
+                                    <template lwc:if={p.placement}><p style="font-size:10px;"><b>Placement:</b> {p.placement}</p></template>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                <div class="card-block slds-text-align_right">
+                    <lightning-button variant="destructive" label="Back" onclick={goBack}></lightning-button>&nbsp;&nbsp;
+                    <lightning-button variant="success" label={submitLabel} onclick={submitWoli} disabled={submitDisabled}></lightning-button>
+                </div>
+            </div>
+        </lightning-card>
+    </template>
+
+</template>

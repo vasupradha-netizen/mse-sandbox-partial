@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Technician_Acknowledgement__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checkbox for technician&apos;s acknowledgement: &quot;I understand that I am only to complete the scope of work outlined in the troubleshooting steps&quot;</description>
+    <inlineHelpText>Checkbox for technician&apos;s acknowledgement: &quot;I understand that I am only to complete the scope of work outlined in the troubleshooting steps&quot;</inlineHelpText>
+    <label>Technician Acknowledgement</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

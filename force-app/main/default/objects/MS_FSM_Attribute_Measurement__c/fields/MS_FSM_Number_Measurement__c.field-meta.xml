@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_FSM_Number_Measurement__c</fullName>
+    <description>Number field for capturing numeric measurements needed (decimal places 3)</description>
+    <externalId>false</externalId>
+    <label>Number Measurement</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>3</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
